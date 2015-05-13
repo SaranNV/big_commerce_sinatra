@@ -6,9 +6,9 @@ class ShipApp < Sinatra::Base
   attr_reader :payload
 
   before do
-    console.log(request.body.read)
-    # @payload = JSON.parse(request.body.read).with_indifferent_access
+    @payload = JSON.parse(request.body.read).with_indifferent_access
   end
+
 
   post "/get_shipments" do
     content_type :json
