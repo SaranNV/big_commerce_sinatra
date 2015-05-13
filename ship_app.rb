@@ -6,7 +6,7 @@ class ShipApp < Sinatra::Base
   attr_reader :payload
 
   before do
-    print request.body.read
+    console.log(request.body.read)
     # @payload = JSON.parse(request.body.read).with_indifferent_access
   end
 
