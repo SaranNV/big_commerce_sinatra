@@ -16,7 +16,7 @@ class ShipApp < Sinatra::Base
   end
 
   post "/test_shipment" do
-    json_payload = @payload.to_json
+    json_payload = @payload
     base_uri = 'https://push.wombat.co'
     res = HTTParty.post((base_uri),
         {
