@@ -20,7 +20,7 @@ class ShipApp < Sinatra::Base
     base_uri = 'https://push.wombat.co'
     res = HTTParty.post((base_uri),
         {
-            body: json_payload,
+            body: json_payload.to_json,
             headers: {
                 'Content-Type'       => 'application/json',
                 'X-Hub-Store'        => '5551e429736d6164084f0000',
