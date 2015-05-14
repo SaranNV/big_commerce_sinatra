@@ -1,12 +1,37 @@
 require 'sinatra'
+require 'httparty'
 require 'json'
 require 'active_support/core_ext/hash/indifferent_access'
 
 class ShipApp < Sinatra::Base
   attr_reader :payload
 
+
   before do
     @payload = JSON.parse(request.body.read).with_indifferent_access
+  end
+
+  get "/ship_app" do
+    "Welcome ShipApp"
+  end
+
+  post "/test_shipment" do
+    json_payload = @payload
+    base_uri = 'https://push.wombat.co'
+    res = HTTParty.post((base_uri),
+        {
+            body: json_payload,
+            headers: {
+                'Content-Type'       => 'application/json',
+                'X-Hub-Store'        => '5551e429736d6164084f0000',
+                'X-Hub-Access-Token' => 'ef72138b58869394a224dad3ce90d4e5ae677d4eaaa6a891',
+                'X-Hub-Timestamp'    => Time.now.utc.to_i.to_s
+            }
+        }
+    )
+
+    validate(res)
+
   end
 
 
@@ -50,7 +75,12 @@ class ShipApp < Sinatra::Base
     shipment = Service.new(payload).cancel
     { request_id: request_id, summary: "Shipment #{shipment} was canceled" }.to_json
   end
+  def self.validate(res)
+    raise PushApiError, "Push not successful. Wombat returned response code #{res.code} and message: #{res.body}" if res.code != 202
+  end
 end
+
+class PushApiError < StandardError; end
 
 class Service
   attr_reader :payload
@@ -58,6 +88,7 @@ class Service
   def initialize(payload = {})
     @payload = payload
   end
+
 
   # Search for shipments after a given timestamp, e.g. payload[:created_after]
   def shipments_since
