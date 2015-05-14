@@ -28,7 +28,7 @@ class ShipApp < Sinatra::Base
                 'X-Hub-Timestamp'    => Time.now.utc.to_i.to_s
             }
         }
-    )
+    ).to_json
 
     validate(res)
 
