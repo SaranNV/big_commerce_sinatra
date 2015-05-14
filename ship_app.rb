@@ -16,19 +16,19 @@ class ShipApp < Sinatra::Base
   end
 
   post "/test_shipment" do
-    json_payload = @payload
+    json_payload = @payload.to_json
     base_uri = 'https://push.wombat.co'
     res = HTTParty.post((base_uri),
         {
             body: json_payload,
             headers: {
                 'Content-Type'       => 'application/json',
-                'X-Hub-Store'        => '5551e429736d6164084f0000',
-                'X-Hub-Access-Token' => 'ef72138b58869394a224dad3ce90d4e5ae677d4eaaa6a891',
+                # 'X-Hub-Store'        => '5551e429736d6164084f0000',
+                # 'X-Hub-Access-Token' => 'ef72138b58869394a224dad3ce90d4e5ae677d4eaaa6a891',
                 'X-Hub-Timestamp'    => Time.now.utc.to_i.to_s
             }
         }
-    ).to_json
+    )
 
     validate(res)
 
