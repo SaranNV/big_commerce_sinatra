@@ -75,7 +75,7 @@ class ShipApp < Sinatra::Base
     shipment = Service.new(payload).cancel
     { request_id: request_id, summary: "Shipment #{shipment} was canceled" }.to_json
   end
-  def self.validate(res)
+  def validate(res)
     raise PushApiError, "Push not successful. Wombat returned response code #{res.code} and message: #{res.body}" if res.code != 202
   end
 end
