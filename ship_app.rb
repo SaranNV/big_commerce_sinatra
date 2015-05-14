@@ -124,7 +124,6 @@ class Service
     raise ResponseError, "#{response.code}, API error: #{response.body.inspect}"
   end
 
-
   class ResponseError < StandardError; end
 
 
