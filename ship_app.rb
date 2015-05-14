@@ -116,7 +116,7 @@ class Service
 
 
   def self.request(method, options)
-    base_uri = "https://push.wombat.co"
+     base_uri = "https://push.wombat.co"
     response = HTTParty.post("https://push.wombat.co", options)
 
     return response if response.code == 200
