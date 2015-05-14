@@ -3,6 +3,7 @@ require 'httparty'
 require 'json'
 require 'active_support/core_ext/hash/indifferent_access'
 
+
 class ShipApp < Sinatra::Base
   attr_reader :payload
 
@@ -23,25 +24,6 @@ class ShipApp < Sinatra::Base
     response = Service.request :post,  options
     result 200, "Shipment transmitted to ShipStation: #{response.body["orderId"]}"
   end
-
-  # post "/test_shipment" do
-  #   json_payload = @payload
-  #   base_uri = 'https://push.wombat.co'
-  #   res = HTTParty.post((base_uri),
-  #       {
-  #           body: json_payload.to_json,
-  #           headers: {
-  #               'Content-Type'       => 'application/json',
-  #               'X-Hub-Store'        => '5551e429736d6164084f0000',
-  #               'X-Hub-Access-Token' => 'ef72138b58869394a224dad3ce90d4e5ae677d4eaaa6a891',
-  #               'X-Hub-Timestamp'    => Time.now.utc.to_i.to_s
-  #           }
-  #       }
-  #   )
-  #
-  #   validate(res)
-  #
-  # end
 
   post "/get_shipments" do
     content_type :json
@@ -135,7 +117,7 @@ class Service
 
   def self.request(method, options)
     base_uri = "https://push.wombat.co"
-    response = HTTParty.post(base_uri,options)
+    response = HTTParty.post("https://push.wombat.co", options)
 
     return response if response.code == 200
 

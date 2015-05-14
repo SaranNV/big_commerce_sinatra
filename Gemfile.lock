@@ -2,16 +2,23 @@ GEM
   remote: https://rubygems.org/
   specs:
     activesupport (3.0.0)
+    addressable (2.3.8)
     httparty (0.13.3)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
     json (1.8.2)
     kgio (2.9.2)
+    mime-types (1.25.1)
     multi_xml (0.5.5)
     rack (1.5.2)
     rack-protection (1.5.2)
       rack
     raindrops (0.13.0)
+    rdoc (4.2.0)
+      json (~> 1.4)
+    rest-client (1.6.8)
+      mime-types (~> 1.16)
+      rdoc (>= 2.4.2)
     sinatra (1.4.4)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -21,6 +28,10 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    unirest (1.1.2)
+      addressable (~> 2.3.5)
+      json (~> 1.8.1)
+      rest-client (~> 1.6.7)
 
 PLATFORMS
   ruby
@@ -30,3 +41,4 @@ DEPENDENCIES
   httparty
   sinatra
   unicorn
+  unirest
