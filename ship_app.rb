@@ -31,7 +31,7 @@ class ShipApp < Sinatra::Base
     puts options
 
     response = Service.request :post, options
-    result 200, "Shipment transmitted to ShipStation: #{response.body["orderId"]}"
+    "Shipment transmitted to ShipStation: #{payload['shipments']['order_id']}"
   end
 
   post "/get_shipments" do
@@ -131,7 +131,62 @@ class Service
   def self.request(method,options)
     base_uri = "https://push.wombat.co"
     # response = HTTParty.post("http://api.neemtecsolutions.com/new_product.php", options)
-    response = HTTParty.post("http://api.neemtecsolutions.com/new_product.php", options)
+    options = {
+        "shipments"=>[
+            {
+                "id"=>"12836251406",
+                "order_id"=>"R154085346",
+                "email"=>"spree@example.com",
+                "cost"=>5,
+                "status"=>"ready",
+                "stock_location"=>"default",
+                "shipping_method"=>"UPS Ground (USD)",
+                "tracking"=>"12345678",
+                "shipped_at"=>"2014-02-03T17:33:55.343Z",
+                "channel"=>"spree",
+                "totals"=>{
+                    "item"=>200,
+                    "adjustment"=>10,
+                    "tax"=>10,
+                    "shipping"=>0,
+                    "payment"=>210,
+                    "order"=>210
+                },
+                "shipping_address"=>{
+                    "firstname"=>"Joe",
+                    "lastname"=>"Smith",
+                    "address1"=>"1234 Awesome Street",
+                    "address2"=>"",
+                    "zipcode"=>"90210",
+                    "city"=>"Hollywood",
+                    "state"=>"California",
+                    "country"=>"US",
+                    "phone"=>"0000000000"
+                },
+                "billing_address"=>{
+                    "firstname"=>"Joe",
+                    "lastname"=>"Smith",
+                    "address1"=>"1234 Awesome Street",
+                    "address2"=>"",
+                    "zipcode"=>"90210",
+                    "city"=>"Hollywood",
+                    "state"=>"California",
+                    "country"=>"US",
+                    "phone"=>"0000000000"
+                },
+                "items"=>[
+                    {
+                        "name"=>"Spree T-Shirt",
+                        "product_id"=>"SPREE-T-SHIRT",
+                        "quantity"=>1,
+                        "price"=>30,
+                        "options"=>{}
+                    }
+                ]
+            }
+        ]
+    }
+    response = HTTParty.post("https://push.wombat.co", options)
     # response = Unirest.send method, "http://api.neemtecsolutions.com/#{path}", options
 
     return response if response.code == 200
