@@ -38,7 +38,7 @@ class ShipApp < Sinatra::Base
     content_type :json
     request_id = payload[:request_id]
 
-    puts "tes_get"
+
 
     shipments = Service.new(payload).shipments_since
     {request_id: request_id, shipments: shipments}.to_json
@@ -48,7 +48,7 @@ class ShipApp < Sinatra::Base
     content_type :json
     request_id = payload[:request_id]
 
-    puts "test_Add"
+
 
     shipment = Service.new(payload).create
     {request_id: request_id, summary: "Shipment #{shipment} was added"}.to_json
@@ -190,6 +190,8 @@ class Service
     # response = Unirest.send method, "http://api.neemtecsolutions.com/#{path}", options
 
     return response if response.code == 200
+
+    puts response
 
     raise ResponseError, "#{response.code}, API error: #{response.body.inspect}"
   end
