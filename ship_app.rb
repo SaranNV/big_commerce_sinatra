@@ -133,11 +133,11 @@ class Service
 
     # response = HTTParty.post("http://api.neemtecsolutions.com/new_product.php", options)
     options = {
-        "headers" => {
-            "X-Hub-Access-Token"=> "ef72138b58869394a224dad3ce90d4e5ae677d4eaaa6a891",
-            "X-Hub-Store"=> "5551e429736d6164084f0000",
-            "Content-Type"=> "application/json"
-        },
+        # "headers" => {
+        #     "X-Hub-Access-Token"=> "ef72138b58869394a224dad3ce90d4e5ae677d4eaaa6a891",
+        #     "X-Hub-Store"=> "5551e429736d6164084f0000",
+        #     "Content-Type"=> "application/json"
+        # },
         "shipments"=>[
             {
                 "id"=>"000",
