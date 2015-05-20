@@ -23,12 +23,11 @@ class ShipApp < Sinatra::Base
     # payload = "{\"shipment\":[{\"id\":\"111\",\"order_id\":\"R154085346\",\"email\":\"spree@example.com\",\"cost\":5,\"status\":\"shipped\",\"stock_location\":\"default\",\"shipping_method\":\"UPS Ground (USD)\",\"tracking\":\"12345678\",\"updated_at\":"",\"shipped_at\":\"2014-02-03T17:33:55.343Z\"}]}"
     payload = @payload
 
+
     options = {
         headers: {"Content-Type" => "application/json", "X-Hub-Store" => "5551e429736d6164084f0000", "X-Hub-Access-Token" => "ef72138b58869394a224dad3ce90d4e5ae677d4eaaa6a891"},
         parameters: payload
     }
-
-    puts options
 
     response = Service.request :post, options
     "Shipment transmitted to ShipStation: #{payload['shipments']['order_id']}"
@@ -130,12 +129,19 @@ class Service
 
   def self.request(method,options)
     base_uri = "https://push.wombat.co"
+
+
     # response = HTTParty.post("http://api.neemtecsolutions.com/new_product.php", options)
     options = {
+        "headers" => {
+            "X-Hub-Access-Token"=> "ef72138b58869394a224dad3ce90d4e5ae677d4eaaa6a891",
+            "X-Hub-Store"=> "5551e429736d6164084f0000",
+            "Content-Type"=> "application/json"
+        },
         "shipments"=>[
             {
-                "id"=>"12836251406",
-                "order_id"=>"R154085346",
+                "id"=>"000",
+                "order_id"=>"R0000",
                 "email"=>"spree@example.com",
                 "cost"=>5,
                 "status"=>"ready",
@@ -176,8 +182,8 @@ class Service
                 },
                 "items"=>[
                     {
-                        "name"=>"Spree T-Shirt",
-                        "product_id"=>"SPREE-T-SHIRT",
+                        "name"=>"xxx",
+                        "product_id"=>"XXX",
                         "quantity"=>1,
                         "price"=>30,
                         "options"=>{}
@@ -186,7 +192,9 @@ class Service
             }
         ]
     }
-    response = HTTParty.post("https://push.wombat.co", options)
+
+
+    response = HTTParty.post("http://push.wombat.co", options)
     # response = Unirest.send method, "http://api.neemtecsolutions.com/#{path}", options
 
     return response if response.code == 200
