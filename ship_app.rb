@@ -20,18 +20,20 @@ class ShipApp < Sinatra::Base
 
   post '/test_shipment' do
 
-    # payload = "{\"shipment\":[{\"id\":\"111\",\"order_id\":\"R154085346\",\"email\":\"spree@example.com\",\"cost\":5,\"status\":\"shipped\",\"stock_location\":\"default\",\"shipping_method\":\"UPS Ground (USD)\",\"tracking\":\"12345678\",\"updated_at\":"",\"shipped_at\":\"2014-02-03T17:33:55.343Z\"}]}"
-    payload = @payload
-
-
-    options = {
-        headers: {"Content-Type" => "application/json", "X-Hub-Store" => "5551e429736d6164084f0000", "X-Hub-Access-Token" => "ef72138b58869394a224dad3ce90d4e5ae677d4eaaa6a891"},
-        parameters: payload
-    }
-
-    response = Service.request :post, options
-    "Shipment transmitted to ShipStation: #{payload['shipments']['order_id']}"
+    body = @payload
+    response = Service.request :post, body
+    "Shipment transmitted to ShipStation: #{body['shipments'][0]['order_id']}"
   end
+
+  post '/test_add_product' do
+    body = @payload
+
+    response = Service.request :post, body
+    puts response
+    "Product #{body['product'][0]['name']}"
+  end
+
+
 
   post "/get_shipments" do
     content_type :json
@@ -127,80 +129,17 @@ class Service
   end
 
 
-  def self.request(method,options)
-    base_uri = "https://push.wombat.co"
+  def self.request(method,body)
 
 
-    # response = HTTParty.post("http://api.neemtecsolutions.com/new_product.php", options)
-    options = {
-        # "headers" => {
-        #     "X-Hub-Access-Token"=> "ef72138b58869394a224dad3ce90d4e5ae677d4eaaa6a891",
-        #     "X-Hub-Store"=> "5551e429736d6164084f0000",
-        #     "Content-Type"=> "application/json"
-        # },
-        "shipments"=>[
-            {
-                "id"=>"000",
-                "order_id"=>"R0000",
-                "email"=>"spree@example.com",
-                "cost"=>5,
-                "status"=>"ready",
-                "stock_location"=>"default",
-                "shipping_method"=>"UPS Ground (USD)",
-                "tracking"=>"12345678",
-                "shipped_at"=>"2014-02-03T17:33:55.343Z",
-                "channel"=>"spree",
-                "totals"=>{
-                    "item"=>200,
-                    "adjustment"=>10,
-                    "tax"=>10,
-                    "shipping"=>0,
-                    "payment"=>210,
-                    "order"=>210
-                },
-                "shipping_address"=>{
-                    "firstname"=>"Joe",
-                    "lastname"=>"Smith",
-                    "address1"=>"1234 Awesome Street",
-                    "address2"=>"",
-                    "zipcode"=>"90210",
-                    "city"=>"Hollywood",
-                    "state"=>"California",
-                    "country"=>"US",
-                    "phone"=>"0000000000"
-                },
-                "billing_address"=>{
-                    "firstname"=>"Joe",
-                    "lastname"=>"Smith",
-                    "address1"=>"1234 Awesome Street",
-                    "address2"=>"",
-                    "zipcode"=>"90210",
-                    "city"=>"Hollywood",
-                    "state"=>"California",
-                    "country"=>"US",
-                    "phone"=>"0000000000"
-                },
-                "items"=>[
-                    {
-                        "name"=>"xxx",
-                        "product_id"=>"XXX",
-                        "quantity"=>1,
-                        "price"=>30,
-                        "options"=>{}
-                    }
-                ]
-            }
-        ]
-    }
-
-
-    response = HTTParty.post("http://push.wombat.co", options)
-    # response = Unirest.send method, "http://api.neemtecsolutions.com/#{path}", options
-
-    return response if response.code == 200
-
+    response = HTTParty.post("http://push.wombat.co", body: body.to_json, headers:
+                                                        {
+                                 "X-Hub-Access-Token"=> "7ce9ba94011c45b0e44c9a0f6e9e55102828ec3edd6e8dfc",
+                                 "X-Hub-Store"=> "555d5ba2736d61639cf50100",
+                                 "Content-Type"=> "application/json"
+                             })
+    return response if response.code == 200 || 202
     puts response
-
     raise ResponseError, "#{response.code}, API error: #{response.body.inspect}"
   end
 
