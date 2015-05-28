@@ -3,6 +3,10 @@ GEM
   specs:
     activesupport (3.0.0)
     addressable (2.3.8)
+    bigcommerce (0.10.0)
+      activesupport
+      json
+      rest-client
     httparty (0.13.3)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
@@ -38,6 +42,7 @@ PLATFORMS
 
 DEPENDENCIES
   activesupport
+  bigcommerce
   httparty
   sinatra
   unicorn

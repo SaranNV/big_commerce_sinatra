@@ -1,3 +1,4 @@
-require './ship_app'
+require './big_app'
 
-run ShipApp
+
+run BigApp
