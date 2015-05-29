@@ -18,17 +18,40 @@ class BigApp < Sinatra::Base
 
 
   post '/add_product' do
-    body = @payload
+    body = @payload['products']
     api = Bigcommerce::Api.new({
                                    :store_url => "https://store-auiautt3.mybigcommerce.com",
-                                   :username  => "rahman-11",
-                                   :api_key   => "ab2290273590c54591c60ea363b98cc723d361b7"
+                                   :username => "rahman-11",
+                                   :api_key => "ab2290273590c54591c60ea363b98cc723d361b7"
                                })
-    headers = { "Content-Type" => "application/json", 'Accept' => 'application/json'}
+    headers = {"Content-Type" => "application/json", 'Accept' => 'application/json'}
 
-    response = Service.request_bigapp :post, "/products", body, headers, api
-    "Product #{body['products'][0]['name']}"
+    body.each do |product_options|
+         response = Service.request_bigapp :post, "/products", product_options, headers, api
+         puts response
+      end
   end
+
+  post '/get_products' do
+    body = @payload['products']
+    api = Bigcommerce::Api.new({
+                                   :store_url => "https://store-auiautt3.mybigcommerce.com",
+                                   :username => "rahman-11",
+                                   :api_key => "ab2290273590c54591c60ea363b98cc723d361b7"
+                               })
+    headers = {"Content-Type" => "application/json", 'Accept' => 'application/json'}
+
+    body.each do |product_options|
+      response = Service.request_bigapp :get, "/products", product_options, headers, api
+      puts response
+      response.each do |get_res|
+        "Received" + get_res['name'] + "product"
+      end
+
+    end
+  end
+
+
 
 end
 
@@ -40,7 +63,7 @@ class Service
     @payload = payload
   end
 
-  def self.request_bigapp(method, path, options, headers={},api)
+  def self.request_bigapp(method, path, options, headers={}, api)
     @config = api.connection.configuration
     resource_options = {
         :user => @config[:username],
@@ -55,7 +78,7 @@ class Service
                    rest_client.get :params => options, :accept => :json, :content_type => :json
                  when :post then
                    begin
-                      rest_client.post(options['products'][0].to_json, :content_type => :json, :accept => :json)
+                     rest_client.post(options.to_json, :content_type => :json, :accept => :json)
                    rescue => e
                      e.response
                    end
@@ -77,23 +100,24 @@ class Service
     elsif response.code == 204
       {}
     elsif response.code == 409
-      exception =  JSON.parse response
+      exception = JSON.parse response
       exception.each do |response_error|
-          raise ResponseError, "#{response.code}, Api Error:" +  response_error['details']['conflict_reason']
+        # raise ResponseError, "#{response.code}, Api Error:" +  response_error['details']['conflict_reason']
+        return response_error['details']['conflict_reason']
       end
     end
   end
 
 
-  def self.request(method,body,api)
+  def self.request(method, body, api)
 
 
     response = HTTParty.post("http://push.wombat.co", body: body.to_json, headers:
                                                         {
-                                 "X-Hub-Access-Token"=> "7ce9ba94011c45b0e44c9a0f6e9e55102828ec3edd6e8dfc",
-                                 "X-Hub-Store"=> "555d5ba2736d61639cf50100",
-                                 "Content-Type"=> "application/json"
-                             })
+                                                            "X-Hub-Access-Token" => "7ce9ba94011c45b0e44c9a0f6e9e55102828ec3edd6e8dfc",
+                                                            "X-Hub-Store" => "555d5ba2736d61639cf50100",
+                                                            "Content-Type" => "application/json"
+                                                        })
 
     return response if response.code == 200 || 202
     puts response
