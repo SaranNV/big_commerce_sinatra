@@ -50,7 +50,7 @@ class BigApp < Sinatra::Base
       puts response
       response.each do |get_res|
         # "Received" + get_res['name'] + "product"
-        "Received product #{get_res['name']} from bigcommerce"
+        return "Received product #{get_res['name']} from bigcommerce"
       end
 
     end
