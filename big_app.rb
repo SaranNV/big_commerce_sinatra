@@ -12,8 +12,10 @@ class BigApp < Sinatra::Base
   attr_reader :payload
 
 
-  before do
-    @payload = JSON.parse(request.body.read).with_indifferent_access
+  before  do
+    unless request.env['PATH_INFO'] == '/'
+       @payload = JSON.parse(request.body.read).with_indifferent_access
+    end
   end
 
 
@@ -30,6 +32,9 @@ class BigApp < Sinatra::Base
     "Product #{body['products'][0]['name']}"
   end
 
+  get '/' do
+    erb :index
+  end
 end
 
 
