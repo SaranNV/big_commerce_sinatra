@@ -12,8 +12,10 @@ class BigApp < Sinatra::Base
   attr_reader :payload
 
 
-  before do
-    @payload = JSON.parse(request.body.read).with_indifferent_access
+  before  do
+    unless request.env['PATH_INFO'] == '/'
+       @payload = JSON.parse(request.body.read).with_indifferent_access
+    end
   end
 
 
@@ -71,6 +73,10 @@ class BigApp < Sinatra::Base
       # end
       return "Updated product"  + response['name'] + "in bigcommerce"
     end
+  end
+
+  get '/' do
+    erb :index
   end
 
 
