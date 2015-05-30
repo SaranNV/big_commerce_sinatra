@@ -32,7 +32,7 @@ class BigApp < Sinatra::Base
          response = Service.request_bigapp :post, "/products", product_options, headers, api
          puts response
          # "add product #{response}".to_json
-         "add product #{response}"
+         return "add product #{response}"
     end
   end
 
