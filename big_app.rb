@@ -49,7 +49,7 @@ class BigApp < Sinatra::Base
       response = Service.request_bigapp :get, "/products", product_options, headers, api
       puts response
       response.each do |get_res|
-        "Received" + get_res['name'] + "product"
+        # "Received" + get_res['name'] + "product"
         return "Received product #{get_res['name']} from bigcommerce"
       end
 
