@@ -32,7 +32,7 @@ class BigApp < Sinatra::Base
          response = Service.request_bigapp :post, "/products", product_options, headers, api
          puts response
          # "add product #{response}".to_json
-         return "add product #{response}"
+         "add product #{response}"
     end
   end
 
@@ -50,7 +50,7 @@ class BigApp < Sinatra::Base
       puts response
       response.each do |get_res|
         # "Received" + get_res['name'] + "product"
-        return "Received product #{get_res['name']} from bigcommerce"
+        "Received product #{get_res['name']} from bigcommerce"
       end
 
     end
