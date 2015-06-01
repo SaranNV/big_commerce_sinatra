@@ -63,11 +63,11 @@
 
         'add_product' => {
           'default_input' =>{
-                  'request_id' => '',
-                  'parameters' =>{
-                          "sku"=> "One",
-                  },
-                  'product' => {
+                  # 'request_id' => '',
+                  # 'parameters' =>{
+                  #         "sku"=> "One",
+                  # },
+                  'products' => {
                           "id" => "One",
                           "name"=> "Plain T-Shirt",
                           "sku"=> "One",
@@ -161,14 +161,12 @@
   </dl>
 </div>
 
-<script>
-
+<script type="text/javascript">
     $('form').on('submit',function(event){
         event.preventDefault();
-
+        console.log( "hi...its called");
         var $form = $(this);
         var $button = $form.find('button[type=submit]');
-
         if(!$button.is(':disabled'))
             WombatTestFront.request($form);
     });
@@ -181,11 +179,90 @@
 
     $('button[type=submit]').after('<div class="loading-spinner" style="display:none;"></div>');
 
+    var WombatTestFront = {
+        request: function($form){
+            // useful elements
+            var $response = $form.find('.response');
+            var $response_status = $form.find('.response_status');
+
+            // button reflects request status...
+            var $button = $form.find('button[type=submit]');
+            var button_text = $button.text();
+            $button.text('Loading...');
+            $button.next('.loading-spinner').fadeIn();
+            $button.prop('disabled', true);
+
+            // get data to send with request
+            var request_data = $form.find('fieldset:first textarea').val();
+            var request_object;
+            var request_input;
+            // parse input JSON
+            try { request_object = $.parseJSON(request_data);
+
+                  request_input = JSON.stringify(request_object,null,null);}
+            catch (e) { }
+
+            if(!request_object) {
+
+                $response_status.addClass('response_error');
+                $response.find('textarea').val('Input JSON is invalid.');
+
+                // update form to reflect complete request
+                $button.text(button_text);
+                $button.prop('disabled', false);
+                $button.next('.loading-spinner').fadeOut();
+
+                $response_status.html('error');
+                $response_status.attr('title','Request URL:\n'+$form.attr('action'));
+
+                $response.parents('.one_column').attr('class','two_columns');
+                $response.parent().fadeIn();
+
+            } else { // request object parsed
+                // make request
+//                request_object.parameters.api_username = encodeURIComponent($('.api_connection_info input[name=api_username]').val());
+//                request_object.parameters.api_path = encodeURIComponent($('.api_connection_info input[name=api_path]').val());
+//                request_object.parameters.api_token = encodeURIComponent($('.api_connection_info input[name=api_token]').val());
+
+                $response.find('textarea').val('Loading...');
+                $response_status.attr('class','response_status').html('loading');
+
+                $.ajax({
+                    type: "POST",
+                    url: $form.attr('action'),
+                    data: request_input,
+                    error: function(jqXHR,textStatus,errorThrown){
+                        $response_status.addClass('response_error');
+                        $response.find('textarea').val(errorThrown);
+                    },
+                    success: function(data,textStatus,jqXHR) {
+                        if(typeof data === 'object')
+                            data = JSON.stringify(data,null,4);
+
+                        $response_status.addClass('response_success');
+                        $response.find('textarea').val(data);
+                    },
+                    complete: function(jqXHR, textStatus) {
+                        // update form to reflect complete request
+                        $button.text(button_text);
+                        $button.prop('disabled', false);
+                        $button.next('.loading-spinner').fadeOut();
+
+                        $response_status.html(textStatus);
+                        $response_status.attr('title','Request URL:\n'+$form.attr('action'));
+
+                        $response.parents('.one_column').attr('class','two_columns');
+                        $response.parent().fadeIn();
+                    }
+                });
+            }
+        }
+    };
+
     $('.showbutton').on('click',function(){
         var data_show_ele = $(this).attr('data-showelement');
         $(data_show_ele).slideDown();
         $(this).parent().fadeOut();
         console.log( this.value );
     });
-
 </script>
