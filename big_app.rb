@@ -66,12 +66,29 @@ class BigApp < Sinatra::Base
     headers = {"Content-Type" => "application/json", 'Accept' => 'application/json'}
 
     body.each do |product_options|
-      response = Service.request_bigapp :put, "/products/#{product_options['product_id']}", product_options, headers, api
+      product_detail = product_options.except(:product_id)
+      response = Service.request_bigapp :put, "/products/#{product_options['product_id']}", product_detail, headers, api
       puts response
-      # response.each do |get_res|
-      #   "Updated product"  + get_res['name'] + "in bigcommerce"
-      # end
-      return "Updated product"  + response['name'] + "in bigcommerce"
+     return "Updated product"  + response['name'] + "in bigcommerce"
+    end
+  end
+
+
+
+  post '/add_customer' do
+    body = @payload['customers']
+    api = Bigcommerce::Api.new({
+                                   :store_url => "https://store-auiautt3.mybigcommerce.com",
+                                   :username => "rahman-11",
+                                   :api_key => "ab2290273590c54591c60ea363b98cc723d361b7"
+                               })
+    headers = {"Content-Type" => "application/json", 'Accept' => 'application/json'}
+
+    body.each do |customer_options|
+      response = Service.request_bigapp :post, "/customers", customer_options, headers, api
+      puts response
+      # "add product #{response}".to_json
+      return "add customer #{response}"
     end
   end
 
