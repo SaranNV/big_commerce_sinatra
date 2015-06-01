@@ -31,7 +31,9 @@ class BigApp < Sinatra::Base
     body.each do |product_options|
          response = Service.request_bigapp :post, "/products", product_options, headers, api
          puts response
-      end
+         # "add product #{response}".to_json
+         return "add product #{response}"
+    end
   end
 
   post '/get_products' do
@@ -47,15 +49,36 @@ class BigApp < Sinatra::Base
       response = Service.request_bigapp :get, "/products", product_options, headers, api
       puts response
       response.each do |get_res|
-        "Received" + get_res['name'] + "product"
+        # "Received" + get_res['name'] + "product"
+        return "Received product #{get_res['name']} from bigcommerce"
       end
 
+    end
+  end
+
+  post '/update_product' do
+    body = @payload['products']
+    api = Bigcommerce::Api.new({
+                                   :store_url => "https://store-auiautt3.mybigcommerce.com",
+                                   :username => "rahman-11",
+                                   :api_key => "ab2290273590c54591c60ea363b98cc723d361b7"
+                               })
+    headers = {"Content-Type" => "application/json", 'Accept' => 'application/json'}
+
+    body.each do |product_options|
+      response = Service.request_bigapp :put, "/products/#{product_options['product_id']}", product_options, headers, api
+      puts response
+      # response.each do |get_res|
+      #   "Updated product"  + get_res['name'] + "in bigcommerce"
+      # end
+      return "Updated product"  + response['name'] + "in bigcommerce"
     end
   end
 
   get '/' do
     erb :index
   end
+
 
 end
 
