@@ -11,84 +11,100 @@ require 'rest-client'
 class BigApp < Sinatra::Base
   attr_reader :payload
 
-
   before  do
     unless request.env['PATH_INFO'] == '/'
-       @payload = JSON.parse(request.body.read).with_indifferent_access
+      request.body.rewind
+      @payload = JSON.parse(request.body.read).with_indifferent_access
+      @config = Bigcommerce::Api.new({
+                                      :store_url => @payload['api_path'],
+                                      :username => @payload['api_username'],
+                                      :api_key => @payload['api_token']
+                                  })
+      @headers = {"Content-Type" => "application/json", 'Accept' => 'application/json'}
     end
   end
 
 
   post '/add_product' do
-    body = @payload['products']
-    api = Bigcommerce::Api.new({
-                                   :store_url => "https://store-auiautt3.mybigcommerce.com",
-                                   :username => "rahman-11",
-                                   :api_key => "ab2290273590c54591c60ea363b98cc723d361b7"
-                               })
-    headers = {"Content-Type" => "application/json", 'Accept' => 'application/json'}
-
-    body.each do |product_options|
-         response = Service.request_bigapp :post, "/products", product_options, headers, api
+    add_product_data = @payload['product']
+    add_product_data.each do |product_options|
+         response = Service.request_bigapp :post, "/products", product_options, @headers, @config
          puts response
-         # "add product #{response}".to_json
-         return "add product #{response}"
+         return JSON.pretty_generate(response)
     end
   end
 
   post '/get_products' do
-    body = @payload['products']
-    api = Bigcommerce::Api.new({
-                                   :store_url => "https://store-auiautt3.mybigcommerce.com",
-                                   :username => "rahman-11",
-                                   :api_key => "ab2290273590c54591c60ea363b98cc723d361b7"
-                               })
-    headers = {"Content-Type" => "application/json", 'Accept' => 'application/json'}
-
-    body.each do |product_options|
-      response = Service.request_bigapp :get, "/products", product_options, headers, api
-      puts response
-      response.each do |get_res|
-        # "Received" + get_res['name'] + "product"
-        return "Received product #{get_res['name']} from bigcommerce"
-      end
-
+    get_product_data = @payload['products']
+    get_product_data.each do |product_options|
+      response = Service.request_bigapp :get, "/products", product_options, @headers, @config
+      return JSON.pretty_generate(response)
     end
   end
 
   post '/update_product' do
-    body = @payload['products']
-    api = Bigcommerce::Api.new({
-                                   :store_url => "https://store-auiautt3.mybigcommerce.com",
-                                   :username => "rahman-11",
-                                   :api_key => "ab2290273590c54591c60ea363b98cc723d361b7"
-                               })
-    headers = {"Content-Type" => "application/json", 'Accept' => 'application/json'}
-
-    body.each do |product_options|
+    update_product_data = @payload['product']
+    update_product_data.each do |product_options|
       product_detail = product_options.except(:product_id)
-      response = Service.request_bigapp :put, "/products/#{product_options['product_id']}", product_detail, headers, api
-      puts response
-     return "Updated product"  + response['name'] + "in bigcommerce"
+      response = Service.request_bigapp :put, "/products/#{product_options['product_id']}", product_detail, @headers, @config
+      return JSON.pretty_generate(response)
+    end
+  end
+
+  post '/add_customer' do
+    add_customer_data = @payload['customer']
+    add_customer_data.each do |customer_options|
+      response = Service.request_bigapp :post, "/customers", customer_options, @headers, @config
+      return JSON.pretty_generate(response)
+    end
+  end
+
+  post '/get_customers' do
+    get_customer_data = @payload['customers']
+    get_customer_data.each do |customer_options|
+      response = Service.request_bigapp :get, "/customers", customer_options, @headers, @config
+      return JSON.pretty_generate(response)
     end
   end
 
 
-
-  post '/add_customer' do
-    body = @payload['customers']
-    api = Bigcommerce::Api.new({
-                                   :store_url => "https://store-auiautt3.mybigcommerce.com",
-                                   :username => "rahman-11",
-                                   :api_key => "ab2290273590c54591c60ea363b98cc723d361b7"
-                               })
-    headers = {"Content-Type" => "application/json", 'Accept' => 'application/json'}
-
-    body.each do |customer_options|
-      response = Service.request_bigapp :post, "/customers", customer_options, headers, api
+  post '/add_order' do
+    add_order_data = @payload['order']
+    add_order_data.each do |order_options|
+      response = Service.request_bigapp :post, "/orders", order_options, @headers, @config
       puts response
-      # "add product #{response}".to_json
-      return "add customer #{response}"
+      return JSON.pretty_generate(response)
+    end
+  end
+
+
+  post '/get_orders' do
+    get_order_data = @payload['orders']
+    get_order_data.each do |order_options|
+      response = Service.request_bigapp :get, "/orders", order_options, @headers, @config
+      return JSON.pretty_generate(response)
+    end
+  end
+
+
+  post '/get_shipments' do
+    resp_val = []
+    list_orders = Service.list_all_order(@config,@headers)
+    get_shipments_data = @payload['shipments']
+   list_orders.each do |order|
+      response = Service.request_bigapp :get, "/orders/#{order['id']}/shipments", get_shipments_data, @headers, @config
+      resp_val << response
+    end
+    reject_empty_array = res_val.reject &:empty?
+    return JSON.pretty_generate(reject_empty_array)
+  end
+
+
+  post '/get_shipment' do
+    get_shipment_data = @payload['shipment']
+    get_shipment_data.each do |shipment_options|
+      response = Service.request_bigapp :get, "/orders/#{shipment_options['order_id']}/shipments", shipment_options, headers, api
+      return JSON.pretty_generate(response)
     end
   end
 
@@ -107,8 +123,8 @@ class Service
     @payload = payload
   end
 
-  def self.request_bigapp(method, path, options, headers={}, api)
-    @config = api.connection.configuration
+  def self.request_bigapp(method, path, options, headers={}, config)
+    @config = config.connection.configuration
     resource_options = {
         :user => @config[:username],
         :password => @config[:api_key],
@@ -142,34 +158,41 @@ class Service
     if (200..201) === response.code
       JSON.parse response
     elsif response.code == 204
-      {}
+      return []
     elsif response.code == 409
       exception = JSON.parse response
       exception.each do |response_error|
-        # raise ResponseError, "#{response.code}, Api Error:" +  response_error['details']['conflict_reason']
         return response_error['details']['conflict_reason']
+      end
+    elsif response.code == 400
+      exception = JSON.parse response
+      exception.each do |response_error|
+        return response_error['message']
       end
     end
   end
 
+  def self.list_all_order(config,headers)
+    @config = config.connection.configuration
+    resource_options = {
+        :user => @config[:username],
+        :password => @config[:api_key],
+        :headers => headers
+    }
 
-  def self.request(method, body, api)
+    rest_client = RestClient::Resource.new "#{@config[:store_url]}/api/v2/orders.json", resource_options
+    response = rest_client.get  :accept => :json, :content_type => :json
 
 
-    response = HTTParty.post("http://push.wombat.co", body: body.to_json, headers:
-                                                        {
-                                                            "X-Hub-Access-Token" => "7ce9ba94011c45b0e44c9a0f6e9e55102828ec3edd6e8dfc",
-                                                            "X-Hub-Store" => "555d5ba2736d61639cf50100",
-                                                            "Content-Type" => "application/json"
-                                                        })
+    if (200..201) === response.code
+      JSON.parse response
 
-    return response if response.code == 200 || 202
-    puts response
-    raise ResponseError, "#{response.code}, API error: #{response.body.inspect}"
+    elsif response.code == 204
+      return []
+    end
   end
 
   class ResponseError < StandardError;
   end
-
 
 end

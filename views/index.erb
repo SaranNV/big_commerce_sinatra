@@ -3,46 +3,42 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <link href="<%= url('/header.css') %>" rel="stylesheet" type="text/css" />
 <div class="block api_connection_info" style="display:none;">
-  <label><span>Username:</span><input type="text" name="api_username" value="saran-neem" placeholder="athleticapi"></label>
-  <label><span>Path:</span><input type="text" name="api_path" value="https://store-da8jw5h.mybigcommerce.com/api/v2/" placeholder="https://store-pijlvyhy.mybigcommerce.com/api/v2/"></label>
-  <label><span>Token:</span><input type="text" name="api_token" value="761392f0b806303ee51e7ad721b6cc95a6f79808" placeholder="d1ee45ad7d3a7c7c97b102eea8fd9763bb7cf9c9"></label>
+  <label><span>Username:</span><input type="text" class="user_name" name="api_username" value="" placeholder="username"></label>
+  <label><span>Path:</span><input type="text" class="store_path" name="api_path" value="" placeholder="store_url"></label>
+  <label><span>Token:</span><input type="text" class="token" name="api_token" value="" placeholder="api_token"></label>
 </div>
 <p><button type="button" class="small right showbutton" data-showelement=".api_connection_info">Edit api connection info</button></p>
 <%
-   @functions = {
+   @demo_functions = {
         'get_products' => {
           'default_input' => {
-                  'request_id' => '',
-                  'parameters' => {
+                  'products' => [{
                           'sku' => 'BIKE-TURQ'
-                  }
+                  }]
           },
           'doc_link' => 'https://developer.bigcommerce.com/api/stores/v2/products#list-products'
         },
 
         'get_orders' =>{
           'default_input' => {
-                  'request_id' => '',
-                  'parameters' => {
+                  'orders' => [{
                           'customer_id' => '3'
-                  }
+                  }]
           },
           'doc_link' => 'https://developer.bigcommerce.com/api/stores/v2/orders#list-orders'
         },
         'get_customers' =>{
           'default_input' => {
-                  'request_id' => '',
-                  'parameters' => {
+                  'customers' => [{
                           'customer_group_id' => '0',
-                  }
+                  }]
           },
           'doc_link' => 'https://developer.bigcommerce.com/api/stores/v2/customers#list-customers'
         },
 
         'get_shipments' => {
           'default_input' => {
-                  'request_id' => '',
-                  'parameters' =>{
+                  'shipments' =>{
                           'limit' => '100',
 
                   }
@@ -63,27 +59,21 @@
 
         'add_product' => {
           'default_input' =>{
-                  'request_id' => '',
-                  'parameters' =>{
-                          "sku"=> "One",
-                  },
-                  'product' => {
-                          "id" => "One",
-                          "name"=> "Plain T-Shirt",
+                  # 'request_id' => '',
+                  # 'parameters' =>{
+                  #         "sku"=> "One",
+                  # },
+                  'product' => [{
+                          # "id" => "One",
+                          "name"=> "one",
                           "sku"=> "One",
                           "description"=> "This timeless fashion staple will never go out of style!",
                           "price"=> "29.99",
-                          "permalink"=> "/One/",
+                          "categories" => [14],
                           "type"=> "physical",
-                          "taxons"=> [
-                                  [
-                                          "Categories",
-                                          "Mens"
-                                  ]
-                          ],
                           "availability"=> "available",
-                          "weight"=> "0.5",
-                  },
+                          "weight"=> "0.5"
+                  }],
           },
           'doc_link' => 'https://developer.bigcommerce.com/api/stores/v2/products#create-product'
         },
@@ -95,11 +85,12 @@
                           'limit' => '100',
                   },
                   'order' => {
-                          "products"=> {
+                          "products"=>[{
                                   "product_id"=> '75',
-                                  "quantity"=>2
-
-                          },
+                                  "quantity"=>2,
+                                  "price_inc_tax"=> 10.0,
+                                  "price_ex_tax"=> 10
+                          }],
                           'billing_address' => {
                           'first_name' => 'Some',
                           'last_name' => 'Person',
@@ -122,15 +113,15 @@
 
         'add_customer' => {
           'default_input' => {
-                  'request_id' => '',
-                  'parameters' => {
-                          'limit' => '100',
-                  },
-                  'customer' => {
-                          'firstname' => 'Some',
-                          'lastname' => 'Person',
+                  # 'request_id' => '',
+                  # 'parameters' => {
+                  #         'limit' => '100',
+                  # },
+                  'customer' => [{
+                          'first_name' => 'Some',
+                          'last_name' => 'Person',
                           # 'email' => 'some.person'.rand().'@example.com',
-                  },
+                  }],
           },
           'doc_link' => 'https://developer.bigcommerce.com/api/stores/v2/orders#create-order'
         },
@@ -139,7 +130,7 @@
 
 <div class="block">
   <dl>
-   <%@functions.each do |key,value| %>
+   <%@demo_functions.each do |key,value| %>
 
     <dt><%= key %></dt>
     <dd>
@@ -161,16 +152,20 @@
   </dl>
 </div>
 
-<script>
-
+<script type="text/javascript">
     $('form').on('submit',function(event){
         event.preventDefault();
-
+        var user_name = $(".user_name").val();
+        var store_url = $(".store_path").val();
+        var token = $(".token").val();
         var $form = $(this);
         var $button = $form.find('button[type=submit]');
-
         if(!$button.is(':disabled'))
-            WombatTestFront.request($form);
+            if (user_name === "" || store_url === "" || token === "" ){
+                alert("Check user_name,Store_url and token ")
+            }else{
+                WombatTestFront.request($form);
+            }
     });
 
     $('.response_clear').on('click',function(){
@@ -181,11 +176,94 @@
 
     $('button[type=submit]').after('<div class="loading-spinner" style="display:none;"></div>');
 
+    var WombatTestFront = {
+        request: function($form){
+            // useful elements
+            var $response = $form.find('.response');
+            var $response_status = $form.find('.response_status');
+
+            // button reflects request status...
+            var $button = $form.find('button[type=submit]');
+            var button_text = $button.text();
+            $button.text('Loading...');
+            $button.next('.loading-spinner').fadeIn();
+            $button.prop('disabled', true);
+
+            // get data to send with request
+            var request_data = $form.find('fieldset:first textarea').val();
+            var request_object = [];
+            var request_input;
+            // parse input JSON
+            try { request_object = $.parseJSON(request_data);
+
+            request_object.api_username = encodeURIComponent($('.api_connection_info input[name=api_username]').val());
+            request_object.api_path = decodeURIComponent($('.api_connection_info input[name=api_path]').val());
+            request_object.api_token = encodeURIComponent($('.api_connection_info input[name=api_token]').val());
+            console.log(request_object.api_path);
+                request_input = JSON.stringify(request_object,null,null);}
+            catch (e) { }
+
+            if(!request_object) {
+
+                $response_status.addClass('response_error');
+                $response.find('textarea').val('Input JSON is invalid.');
+
+                // update form to reflect complete request
+                $button.text(button_text);
+                $button.prop('disabled', false);
+                $button.next('.loading-spinner').fadeOut();
+
+                $response_status.html('error');
+                $response_status.attr('title','Request URL:\n'+$form.attr('action'));
+
+                $response.parents('.one_column').attr('class','two_columns');
+                $response.parent().fadeIn();
+
+            } else { // request object parsed
+                // make request
+//                request_object.parameters.api_username = encodeURIComponent($('.api_connection_info input[name=api_username]').val());
+//                request_object.parameters.api_path = encodeURIComponent($('.api_connection_info input[name=api_path]').val());
+//                request_object.parameters.api_token = encodeURIComponent($('.api_connection_info input[name=api_token]').val());
+
+                $response.find('textarea').val('Loading...');
+                $response_status.attr('class','response_status').html('loading');
+
+                $.ajax({
+                    type: "POST",
+                    url: $form.attr('action'),
+                    data: request_input,
+                    error: function(jqXHR,textStatus,errorThrown){
+                        $response_status.addClass('response_error');
+                        $response.find('textarea').val(errorThrown);
+                    },
+                    success: function(data,textStatus,jqXHR) {
+                        if(typeof data === 'object')
+                            data = JSON.stringify(data,null,4);
+
+                        $response_status.addClass('response_success');
+                        $response.find('textarea').val(data);
+                    },
+                    complete: function(jqXHR, textStatus) {
+                        // update form to reflect complete request
+                        $button.text(button_text);
+                        $button.prop('disabled', false);
+                        $button.next('.loading-spinner').fadeOut();
+
+                        $response_status.html(textStatus);
+                        $response_status.attr('title','Request URL:\n'+$form.attr('action'));
+
+                        $response.parents('.one_column').attr('class','two_columns');
+                        $response.parent().fadeIn();
+                    }
+                });
+            }
+        }
+    };
+
     $('.showbutton').on('click',function(){
         var data_show_ele = $(this).attr('data-showelement');
         $(data_show_ele).slideDown();
         $(this).parent().fadeOut();
         console.log( this.value );
     });
-
 </script>
