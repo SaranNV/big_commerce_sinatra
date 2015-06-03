@@ -30,8 +30,8 @@
       <file leaf-file-name="big_app.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/big_app.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.61128527">
-              <caret line="37" column="24" selection-start-line="37" selection-start-column="24" selection-end-line="37" selection-end-column="24" />
+            <state vertical-scroll-proportion="0.61442006">
+              <caret line="139" column="53" selection-start-line="139" selection-start-column="46" selection-end-line="139" selection-end-column="53" />
               <folding />
             </state>
           </provider>
@@ -625,8 +625,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/big_app.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.61128527">
-          <caret line="37" column="24" selection-start-line="37" selection-start-column="24" selection-end-line="37" selection-end-column="24" />
+        <state vertical-scroll-proportion="0.61442006">
+          <caret line="139" column="53" selection-start-line="139" selection-start-column="46" selection-end-line="139" selection-end-column="53" />
           <folding />
         </state>
       </provider>
