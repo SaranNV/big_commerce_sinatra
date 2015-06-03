@@ -15,7 +15,7 @@ class BigApp < Sinatra::Base
     unless request.env['PATH_INFO'] == '/'
       request.body.rewind
       @payload = JSON.parse(request.body.read).with_indifferent_access
-      @config = Bigcommerce::Api.new({
+      @config1 = Bigcommerce::Api.new({
                                       :store_url => @payload['api_path'],
                                       :username => @payload['api_username'],
                                       :api_key => @payload['api_token']
@@ -28,13 +28,14 @@ class BigApp < Sinatra::Base
   post '/add_product' do
     add_product_data = @payload['product']
     add_product_data.each do |product_options|
-         response = Service.request_bigapp :post, "/products", product_options, @headers, @config
+         response = Service.request_bigapp :post, "/products", product_options, @headers, @config1
          puts response
          return JSON.pretty_generate(response)
     end
   end
 
   post '/get_products' do
+    console.log(@config)
     get_product_data = @payload['products']
     get_product_data.each do |product_options|
       response = Service.request_bigapp :get, "/products", product_options, @headers, @config
