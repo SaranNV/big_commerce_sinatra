@@ -35,9 +35,12 @@ class BigApp < Sinatra::Base
   end
 
   post '/get_products_demo' do
+    File.open("out.txt", 'w' ) {|f| f.write(@payload) }
+    File.open("config.txt", 'w' ) {|f| f.write(@config) }
+    File.open("config_single.txt", 'w' ) {|f| f.write(config) }
     get_product_data = @payload['products']
     get_product_data.each do |product_options|
-      response = Service.request_bigapp :get, "/products", product_options, @headers, @config
+      response = Service.request_bigapp :get, "/products", product_options, @headers, @config1
       return JSON.pretty_generate(response)
     end
   end
