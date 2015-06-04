@@ -19,7 +19,7 @@ class BigApp < Sinatra::Base
       puts "#{@payload['API_PATH']}"
       # connections = @config
       @config1 = Bigcommerce::Api.new({
-                                      :store_url => @payload['API_PATH'],
+                                      :store_url => URI.decode(@payload['API_PATH']),
                                       :username => @payload['API_USERNAME'],
                                       :api_key => @payload['API_TOKEN']
                                   })
