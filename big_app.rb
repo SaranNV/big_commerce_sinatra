@@ -15,10 +15,10 @@ class BigApp < Sinatra::Base
   before  do
     unless request.env['PATH_INFO'] == '/'
       request.body.rewind
-      puts @payload
       @payload = JSON.parse(request.body.read).with_indifferent_access
+      puts "#{@payload}"
       @config1 = Bigcommerce::Api.new({
-                                      :store_url => @payload['api_path'],
+                                      :store_url => URI.decode(@payload['api_path']),
                                       :username => @payload['api_username'],
                                       :api_key => @payload['api_token']
                                   })
