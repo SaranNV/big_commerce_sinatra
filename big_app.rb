@@ -16,14 +16,11 @@ class BigApp < Sinatra::Base
     unless request.env['PATH_INFO'] == '/'
       request.body.rewind
       @payload = JSON.parse(request.body.read).with_indifferent_access
-      puts "hi #{@payload['parameters'][:api_path]}"
-      @payload_json = JSON.parse(@payload).with_indifferent_access
-      puts "#{@payload_json[:api_path]}"
 
       @config1 = Bigcommerce::Api.new({
-                                      :store_url => @payload['api_path'],
-                                      :username => @payload['api_username'],
-                                      :api_key => @payload['api_token']
+                                      :store_url => @payload['parameters']['api_path'],
+                                      :username => @payload['parameters']['api_username'],
+                                      :api_key => @payload['parameters']['api_token']
                                   })
       puts "#{@config1}"
       @headers = {"Content-Type" => "application/json", 'Accept' => 'application/json'}
@@ -52,9 +49,6 @@ class BigApp < Sinatra::Base
   end
 
   post '/get_products' do
-    File.open("out.txt", 'w' ) {|f| f.write(@payload) }
-    File.open("config.txt", 'w' ) {|f| f.write(@config) }
-    File.open("config_single.txt", 'w' ) {|f| f.write(config) }
     # get_product_data = @payload['products']
     # get_product_data.each do |product_options|
       product_options = @config['min_date_created'] || @config['max_date_created'] || @config['min_date_modified'] || @config['max_date_modified'] ||
