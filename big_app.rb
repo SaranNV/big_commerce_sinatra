@@ -19,7 +19,7 @@ class BigApp < Sinatra::Base
       puts request.body.read
       # connections = @config
       @config1 = Bigcommerce::Api.new({
-                                      :store_url => URI.decode(@payload['api_path']),
+                                      :store_url => "http://still-eyrie-9078.herokuapp.com",
                                       :username => @payload['api_username'],
                                       :api_key => @payload['api_token']
                                   })
