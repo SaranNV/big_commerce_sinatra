@@ -51,7 +51,7 @@ class BigApp < Sinatra::Base
     # get_product_data.each do |product_options|
       product_options = @payload['parameters']['min_date_created'] || @payload['parameters']['max_date_created'] || @payload['parameters']['min_date_modified'] || @config['max_date_modified'] ||
           @payload['parameters']['min_date_last_imported'] || @payload['parameters']['max_date_last_imported']
-      response = Service.request_bigapp :get, "/products", product_options, @headers, @config1
+      response = Service.request_bigapp :get, "/products", product_options, @headers, @config
       return JSON.pretty_generate(response).to_json
     # end
   end
