@@ -46,6 +46,9 @@ class BigApp < Sinatra::Base
   end
 
   post '/get_products' do
+    File.open("out.txt", 'w' ) {|f| f.write(@payload) }
+    File.open("config.txt", 'w' ) {|f| f.write(@config) }
+    File.open("config_single.txt", 'w' ) {|f| f.write(config) }
     # get_product_data = @payload['products']
     # get_product_data.each do |product_options|
       product_options = @config['min_date_created'] || @config['max_date_created'] || @config['min_date_modified'] || @config['max_date_modified'] ||
