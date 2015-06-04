@@ -17,6 +17,8 @@ class BigApp < Sinatra::Base
       request.body.rewind
       @payload = JSON.parse(request.body.read).with_indifferent_access
 
+      puts "#{@payload['parameters']['api_path']}"
+
       @config = Bigcommerce::Api.new({
                                       :store_url => @payload['parameters']['api_path'],
                                       :username => @payload['parameters']['api_username'],
