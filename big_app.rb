@@ -7,6 +7,7 @@ require 'active_support/core_ext/numeric/time'
 require 'base64'
 require 'bigcommerce'
 require 'rest-client'
+require 'uri'
 
 class BigApp < Sinatra::Base
   attr_reader :payload
@@ -14,6 +15,7 @@ class BigApp < Sinatra::Base
   before  do
     unless request.env['PATH_INFO'] == '/'
       request.body.rewind
+      puts @payload
       @payload = JSON.parse(request.body.read).with_indifferent_access
       @config1 = Bigcommerce::Api.new({
                                       :store_url => @payload['api_path'],
