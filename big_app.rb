@@ -16,6 +16,7 @@ class BigApp < Sinatra::Base
     unless request.env['PATH_INFO'] == '/'
       request.body.rewind
       @payload = JSON.parse(request.body.read).with_indifferent_access
+      puts "hi #{@payload['parameters'][:api_path]}"
       @payload_json = JSON.parse(@payload).with_indifferent_access
       puts "#{@payload_json[:api_path]}"
 
