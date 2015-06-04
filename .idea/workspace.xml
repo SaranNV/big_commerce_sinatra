@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="89f7b689-da40-44dd-a5d5-efe605afbe19" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/big_app.rb" afterPath="$PROJECT_DIR$/big_app.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/bigcommerce_sinatra.iml" afterPath="$PROJECT_DIR$/.idea/bigcommerce_sinatra.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="bigcommerce_sinatra.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,8 +30,8 @@
       <file leaf-file-name="big_app.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/big_app.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.70846397">
-              <caret line="57" column="29" selection-start-line="57" selection-start-column="29" selection-end-line="57" selection-end-column="29" />
+            <state vertical-scroll-proportion="0.7554859">
+              <caret line="55" column="118" selection-start-line="55" selection-start-column="118" selection-end-line="55" selection-end-column="118" />
               <folding />
             </state>
           </provider>
@@ -777,8 +775,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/big_app.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.70846397">
-          <caret line="57" column="29" selection-start-line="57" selection-start-column="29" selection-end-line="57" selection-end-column="29" />
+        <state vertical-scroll-proportion="0.7554859">
+          <caret line="55" column="118" selection-start-line="55" selection-start-column="118" selection-end-line="55" selection-end-column="118" />
           <folding />
         </state>
       </provider>
