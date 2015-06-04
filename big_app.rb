@@ -7,7 +7,6 @@ require 'active_support/core_ext/numeric/time'
 require 'base64'
 require 'bigcommerce'
 require 'rest-client'
-require 'uri'
 
 class BigApp < Sinatra::Base
   attr_reader :payload
@@ -17,16 +16,12 @@ class BigApp < Sinatra::Base
       request.body.rewind
       @payload = JSON.parse(request.body.read).with_indifferent_access
       puts "hi..its called"
-      puts "#{@payload['parameters']}"
-      puts "passed p=ayload parameters"
-      puts "#{@payload['parameters'][:API_PATH]}"
       # connections = @config
       @config1 = Bigcommerce::Api.new({
-                                      :store_url => URI.decode(@payload['API_PATH']),
-                                      :username => @payload['API_USERNAME'],
-                                      :api_key => @payload['API_TOKEN']
+                                      :store_url => @payload['parameters']['API_PATH'],
+                                      :username => @payload['parameters']['API_USERNAME'],
+                                      :api_key => @payload['parameters']['API_TOKEN']
                                   })
-      puts "#{@config1}"
       @headers = {"Content-Type" => "application/json", 'Accept' => 'application/json'}
     end
   end
