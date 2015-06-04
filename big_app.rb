@@ -7,6 +7,7 @@ require 'active_support/core_ext/numeric/time'
 require 'base64'
 require 'bigcommerce'
 require 'rest-client'
+require 'uri'
 
 class BigApp < Sinatra::Base
   attr_reader :payload
