@@ -15,7 +15,8 @@ class BigApp < Sinatra::Base
     unless request.env['PATH_INFO'] == '/'
       request.body.rewind
       @payload = JSON.parse(request.body.read).with_indifferent_access
-      @config = Bigcommerce::Api.new({
+      # connections = @config
+      @config1 = Bigcommerce::Api.new({
                                       :store_url => @payload['api_path'],
                                       :username => @payload['api_username'],
                                       :api_key => @payload['api_token']
@@ -28,19 +29,33 @@ class BigApp < Sinatra::Base
   post '/add_product' do
     add_product_data = @payload['product']
     add_product_data.each do |product_options|
-         response = Service.request_bigapp :post, "/products", product_options, @headers, @config
+         response = Service.request_bigapp :post, "/products", product_options, @headers, @config1
          puts response
          return JSON.pretty_generate(response)
     end
   end
 
-  post '/get_products' do
+  post '/get_products_demo' do
     get_product_data = @payload['products']
     get_product_data.each do |product_options|
       response = Service.request_bigapp :get, "/products", product_options, @headers, @config
       return JSON.pretty_generate(response)
     end
   end
+
+  post '/get_products' do
+    # get_product_data = @payload['products']
+    File.open("out.txt", 'w' ) {|f| f.write(@payload) }
+    File.open("config.txt", 'w' ) {|f| f.write(@config) }
+    File.open("config_single.txt", 'w' ) {|f| f.write(config) }
+    # get_product_data.each do |product_options|
+    product_options = @config['min_date_created'] || @config['max_date_created'] || @config['min_date_modified'] || @config['max_date_modified'] ||
+        @config['min_date_last_imported'] || @config['max_date_last_imported']
+      response = Service.request_bigapp :get, "/products", product_options, @headers, @config
+      return JSON.pretty_generate(response)
+    # end
+  end
+
 
   post '/update_product' do
     update_product_data = @payload['product']

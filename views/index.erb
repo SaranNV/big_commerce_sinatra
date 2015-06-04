@@ -3,14 +3,14 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <link href="<%= url('/header.css') %>" rel="stylesheet" type="text/css" />
 <div class="block api_connection_info" style="display:none;">
-  <label><span>Username:</span><input type="text" class="user_name" name="api_username" value="" placeholder="username"></label>
-  <label><span>Path:</span><input type="text" class="store_path" name="api_path" value="" placeholder="store_url"></label>
-  <label><span>Token:</span><input type="text" class="token" name="api_token" value="" placeholder="api_token"></label>
+  <label><span>Username:</span><input type="text" class="user_name" name="api_username" value="rahman-11" placeholder="username"></label>
+  <label><span>Path:</span><input type="text" class="store_path" name="api_path" value="https://store-auiautt3.mybigcommerce.com/api/v2/" placeholder="store_url"></label>
+  <label><span>Token:</span><input type="text" class="token" name="api_token" value="ab2290273590c54591c60ea363b98cc723d361b7" placeholder="api_token"></label>
 </div>
 <p><button type="button" class="small right showbutton" data-showelement=".api_connection_info">Edit api connection info</button></p>
 <%
    @demo_functions = {
-        'get_products' => {
+        'get_products_demo' => {
           'default_input' => {
                   'products' => [{
                           'sku' => 'BIKE-TURQ'
