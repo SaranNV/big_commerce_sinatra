@@ -51,7 +51,7 @@ class BigApp < Sinatra::Base
     product_options = min_date_created
       response = Service.request_bigapp :get, "/products", product_options, @headers, @config1
       # final_respone = respone.to_json
-     puts "#{response.first['date_modified']}"
+     # puts "#{response.first['min_date_created']}"
       return JSON.pretty_generate(response).to_json
     # end
   end
