@@ -16,8 +16,8 @@ class BigApp < Sinatra::Base
     unless request.env['PATH_INFO'] == '/'
       request.body.rewind
       @payload = JSON.parse(request.body.read).with_indifferent_access
-
-      puts "#{@payload['parameters']['api_path']}"
+      puts "hi its called"
+      puts "#{@payload['parameters']}"
 
       @config = Bigcommerce::Api.new({
                                       :store_url => @payload['parameters']['api_path'],
