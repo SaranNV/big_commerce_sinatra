@@ -18,9 +18,9 @@ class BigApp < Sinatra::Base
       puts "hi..its called"
       # connections = @config
       @config1 = Bigcommerce::Api.new({
-                                      :store_url => @payload['parameters']['API_PATH'],
-                                      :username => @payload['parameters']['API_USERNAME'],
-                                      :api_key => @payload['parameters']['API_TOKEN']
+                                      :store_url => @payload['parameters']['api_path'],
+                                      :username => @payload['parameters']['api_username'],
+                                      :api_key => @payload['parameters']['api_token']
                                   })
       @headers = {"Content-Type" => "application/json", 'Accept' => 'application/json'}
     end
@@ -49,14 +49,14 @@ class BigApp < Sinatra::Base
   post '/get_products' do
     puts "#{@payload['parameters']['last_modified_date']}"
     # get_product_data.each do |product_options|
-    min_date_created = @payload['last_modified_date']
-    product_options = min_date_created
+    min_date_modified = @payload['min_date_modified']
+    product_options = min_date_modified
       response = Service.request_bigapp :get, "/products", product_options, @headers, @config1
       # final_respone = respone.to_json
        final_response = JSON.pretty_generate(response)
      #  final_response = response.map { |o| Hash[o.each_pair.to_a] }.to_json
       puts "#{final_response}"
-       return JSON.parse(final_response.to_json)
+       return JSON.parse(final_response.to_json==============================)
      # puts "#{final_response[0]}"
      #  return final_response
     # end
