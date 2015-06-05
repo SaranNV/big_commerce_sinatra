@@ -148,10 +148,10 @@ class Service
 
     response = case method
                  when :get then
-                   rest_client.get :params => options, :accept => :json, :content_type => :json
+                   rest_client.get :params => options
                  when :post then
                    begin
-                     rest_client.post(options.to_json, :content_type => :json, :accept => :json)
+                     rest_client.post(options.to_json)
                    rescue => e
                      e.response
                    end
