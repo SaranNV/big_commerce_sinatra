@@ -55,8 +55,9 @@ class BigApp < Sinatra::Base
     #   product_options = @payload['parameters']['min_date_created'] || @payload['parameters']['max_date_created'] || @payload['parameters']['min_date_modified'] || @config['max_date_modified'] ||
     #       @payload['parameters']['min_date_last_imported'] || @payload['parameters']['max_date_last_imported']
     product_options = DateTime.parse(@payload['parameters']['min_date_created'])
-    @products << {'min_date_created' => product_options}
-    # product_date_options = product_options.strftime('%a %b %d %H:%M:%S %Z %Y')
+    product_date = product_options.strftime('%a %b %d %H:%M:%S %Z %Y')
+    @products << {'min_date_created' => product_date}
+
     @headers = {"Content-Type" => "application/json", 'Accept' => 'application/json',
                 "X-Hub-Access-Token"=> "7f3bbce9dafb861ac511430afd61ba8a28366752d496c0c8",
                 "X-Hub-Store"=> "556fdb5a736d61422aec0000"}
