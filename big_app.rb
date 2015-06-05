@@ -44,6 +44,7 @@ class BigApp < Sinatra::Base
       response = Service.request_bigapp :get, "/products", product_options, @headers, @config
       return response.to_json
     # end
+    
   end
 
   post '/get_products' do
