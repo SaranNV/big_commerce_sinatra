@@ -143,6 +143,7 @@ class Service
         :password => @config[:api_key],
         :headers => headers
     }
+    
 
     rest_client = RestClient::Resource.new "#{@config[:store_url]}/api/v2#{path}.json", resource_options
 
