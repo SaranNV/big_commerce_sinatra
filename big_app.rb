@@ -59,8 +59,8 @@ class BigApp < Sinatra::Base
      #  puts "#{final_response}"
      #  final_response = final_response.to_json
        puts "response"
-      puts "#{final_response.last}"
-      return final_response
+      puts "#{final_response}"
+
     # end
   end
 
