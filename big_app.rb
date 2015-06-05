@@ -58,19 +58,19 @@ class BigApp < Sinatra::Base
     #       @payload['parameters']['min_date_last_imported'] || @payload['parameters']['max_date_last_imported']
     product_options = DateTime.parse(@payload['parameters']['min_date_created'])
     product_date = product_options.strftime('%a %b %d %H:%M:%S %Z %Y')
-    @products << {'min_date_created' => product_date}
+    # @products << {'min_date_created' => product_date}
 
     @headers = {"Content-Type" => "application/json", 'Accept' => 'application/json',
                 "X-Hub-Access-Token"=> "7f3bbce9dafb861ac511430afd61ba8a28366752d496c0c8",
                 "X-Hub-Store"=> "556fdb5a736d61422aec0000"}
-    puts "#{@products}"
-    @products.each do |product_date_options|
-      puts "#{product_date_options}"
-    response = Service.request_bigapp :get, "/products", product_date_options, @headers, @config
+    # puts "#{@products}"
+    # @products.each do |product_date_options|
+    #   puts "#{product_date_options}"
+    response = Service.request_bigapp :get, "/products", {:min_date_created => product_date}, @headers, @config
       # return JSON.pretty_generate(response).to_json
     puts "#{response}"
       return response.to_json
-    end
+    # end
   end
 
   post '/update_product' do
