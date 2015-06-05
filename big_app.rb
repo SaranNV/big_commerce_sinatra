@@ -8,6 +8,7 @@ require 'base64'
 require 'bigcommerce'
 require 'rest-client'
 require 'uri'
+require 'time'
 
 class BigApp < Sinatra::Base
   attr_reader :payload
@@ -38,7 +39,7 @@ class BigApp < Sinatra::Base
   post '/get_products_demo' do
     get_product_data = @payload['products']
     get_product_data.each do |product_options|
-      response = Service.request_bigapp :get, "/products/products?min_date_created=#{@payload['parameters']['min_date_created']}", product_options, @headers, @config
+      response = Service.request_bigapp :get, "/products", product_options, @headers, @config
       return response.to_json
     end
   end
@@ -48,7 +49,8 @@ class BigApp < Sinatra::Base
     # get_product_data.each do |product_options|
     #   product_options = @payload['parameters']['min_date_created'] || @payload['parameters']['max_date_created'] || @payload['parameters']['min_date_modified'] || @config['max_date_modified'] ||
     #       @payload['parameters']['min_date_last_imported'] || @payload['parameters']['max_date_last_imported']
-    product_options = @payload['parameters']['min_date_created']
+    product_options = @payload['parameters']['min_date_created'].rfc2822
+    puts "#{product_options}"
     response = Service.request_bigapp :get, "/products", product_options, @headers, @config
       # return JSON.pretty_generate(response).to_json
       return response.to_json
@@ -143,7 +145,7 @@ class Service
         :password => @config[:api_key],
         :headers => headers
     }
-    
+
 
     rest_client = RestClient::Resource.new "#{@config[:store_url]}/api/v2#{path}.json", resource_options
 
