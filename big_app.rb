@@ -38,10 +38,12 @@ class BigApp < Sinatra::Base
 
   post '/get_products_demo' do
     get_product_data = @payload['products']
-    get_product_data.each do |product_options|
-      response = Service.request_bigapp :get, "/products", product_options, @headers, @config
+
+     get_product_data.each do |product_options|
+       last_modified_date = product_options['last_modified_date']
+      response = Service.request_bigapp :get, "/products", product_options, @headers, @config1
       return JSON.pretty_generate(response)
-    end
+     end
   end
 
   post '/get_products' do
@@ -52,7 +54,10 @@ class BigApp < Sinatra::Base
       response = Service.request_bigapp :get, "/products", product_options, @headers, @config1
       # final_respone = respone.to_json
      # puts "#{response.first['min_date_created']}"
-      return JSON.pretty_generate(response).to_json
+      final_response = response.map { |o| Hash[o.each_pair.to_a] }.to_json
+      # return JSON.pretty_generate(response).to_json
+     puts "#{final_response.content_type}"
+      return final_response
     # end
   end
 
