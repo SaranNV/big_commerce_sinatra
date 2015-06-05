@@ -65,6 +65,7 @@ class BigApp < Sinatra::Base
                 "X-Hub-Store"=> "556fdb5a736d61422aec0000"}
     puts "#{@products}"
     @products.each do |product_date_options|
+      puts "#{product_date_options}"
     response = Service.request_bigapp :get, "/products", product_date_options, @headers, @config
       # return JSON.pretty_generate(response).to_json
     puts "#{response}"
