@@ -54,7 +54,7 @@ class BigApp < Sinatra::Base
       response = Service.request_bigapp :get, "/products", product_options, @headers, @config1
       # final_respone = respone.to_json
      puts "its json format"
-     puts "#{JSON.parse(response)}"
+     puts "#{response.to_json}"
      #  final_response = response.map { |o| Hash[o.each_pair.to_a] }.to_json
        return JSON.parse(response)
      # puts "#{final_response[0]}"
