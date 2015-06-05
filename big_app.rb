@@ -56,7 +56,7 @@ class BigApp < Sinatra::Base
        final_response = JSON.pretty_generate(response)
      #  final_response = response.map { |o| Hash[o.each_pair.to_a] }.to_json
       puts "#{final_response}"
-       return JSON.parse(final_response.to_json==============================)
+       return JSON.parse(final_response.to_json)
      # puts "#{final_response[0]}"
      #  return final_response
     # end
