@@ -9,6 +9,7 @@ require 'bigcommerce'
 require 'rest-client'
 require 'uri'
 require 'time'
+require 'date'
 
 class BigApp < Sinatra::Base
   attr_reader :payload
@@ -37,11 +38,12 @@ class BigApp < Sinatra::Base
   end
 
   post '/get_products_demo' do
-    get_product_data = @payload['products']
-    get_product_data.each do |product_options|
+    get_product_data = @payload['parameters']['min_date_created']
+    product_options = get_product_data
+    # get_product_data.each do |product_options|
       response = Service.request_bigapp :get, "/products", product_options, @headers, @config
       return response.to_json
-    end
+    # end
   end
 
   post '/get_products' do
@@ -49,9 +51,10 @@ class BigApp < Sinatra::Base
     # get_product_data.each do |product_options|
     #   product_options = @payload['parameters']['min_date_created'] || @payload['parameters']['max_date_created'] || @payload['parameters']['min_date_modified'] || @config['max_date_modified'] ||
     #       @payload['parameters']['min_date_last_imported'] || @payload['parameters']['max_date_last_imported']
-    product_options = @payload['parameters']['min_date_created'].rfc2822
-    puts "#{product_options}"
-    response = Service.request_bigapp :get, "/products", product_options, @headers, @config
+    product_options = DateTime.parse(@payload['parameters']['min_date_created'])
+    product_date_options = product_options.strftime('%a %b %d %H:%M:%S %Z %Y')
+    puts "#{product_date_options}"
+    response = Service.request_bigapp :get, "/products", product_date_options, @headers, @config
       # return JSON.pretty_generate(response).to_json
       return response.to_json
     # end
