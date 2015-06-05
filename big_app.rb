@@ -18,7 +18,7 @@ class BigApp < Sinatra::Base
       @payload = JSON.parse(request.body.read).with_indifferent_access
       @config = Bigcommerce::Api.new({
                                       :username => @payload['parameters']['api_username'],
-                                      :store_hash => @payload['parameters']['api_path'],
+                                      :store_url => @payload['parameters']['api_path'],
                                       :api_key => @payload['parameters']['api_token']
                                   })
       @headers = {"Content-Type" => "application/json", 'Accept' => 'application/json'}
