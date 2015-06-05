@@ -16,14 +16,9 @@ class BigApp < Sinatra::Base
     unless request.env['PATH_INFO'] == '/'
       request.body.rewind
       @payload = JSON.parse(request.body.read).with_indifferent_access
-      puts "hi its called"
-      puts "#{@payload['parameters']}"
-      puts "hi its path"
-      puts "#{@payload['parameters']['api_path']}"
-      puts "#{@payload['parameters'][:api_path]}"
       @config = Bigcommerce::Api.new({
-                                      :store_url => @payload['parameters']['api_path'],
                                       :username => @payload['parameters']['api_username'],
+                                      :store_hash => @payload['parameters']['api_path'],
                                       :api_key => @payload['parameters']['api_token']
                                   })
       @headers = {"Content-Type" => "application/json", 'Accept' => 'application/json'}
@@ -43,7 +38,7 @@ class BigApp < Sinatra::Base
   post '/get_products_demo' do
     get_product_data = @payload['products']
     get_product_data.each do |product_options|
-      response = Service.request_bigapp :get, "/products", product_options, @headers, @config
+      response = Service.request_bigapp :get, "/products/products?min_date_created=#{@payload['parameters']['min_date_created']}", product_options, @headers, @config
       return response.to_json
     end
   end
@@ -51,9 +46,10 @@ class BigApp < Sinatra::Base
   post '/get_products' do
     # get_product_data = @payload['products']
     # get_product_data.each do |product_options|
-      product_options = @payload['parameters']['min_date_created'] || @payload['parameters']['max_date_created'] || @payload['parameters']['min_date_modified'] || @config['max_date_modified'] ||
-          @payload['parameters']['min_date_last_imported'] || @payload['parameters']['max_date_last_imported']
-      response = Service.request_bigapp :get, "/products?min_date_created=#{@payload['parameters']['min_date_created']}", product_options, @headers, @config
+    #   product_options = @payload['parameters']['min_date_created'] || @payload['parameters']['max_date_created'] || @payload['parameters']['min_date_modified'] || @config['max_date_modified'] ||
+    #       @payload['parameters']['min_date_last_imported'] || @payload['parameters']['max_date_last_imported']
+    product_options = @payload['parameters']['min_date_created']
+    response = Service.request_bigapp :get, "/products", product_options, @headers, @config
       # return JSON.pretty_generate(response).to_json
       return response.to_json
     # end
