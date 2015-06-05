@@ -61,6 +61,7 @@ class BigApp < Sinatra::Base
     @headers = {"Content-Type" => "application/json", 'Accept' => 'application/json',
                 "X-Hub-Access-Token"=> "7f3bbce9dafb861ac511430afd61ba8a28366752d496c0c8",
                 "X-Hub-Store"=> "556fdb5a736d61422aec0000"}
+    puts "#{@products}"
     @products.each do |product_date_options|
     response = Service.request_bigapp :get, "/products", product_date_options, @headers, @config
       # return JSON.pretty_generate(response).to_json
