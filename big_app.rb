@@ -37,7 +37,7 @@ class BigApp < Sinatra::Base
     end
   end
 
-  post '/get_products' do
+  post '/get_products_demo' do
     # get_product_data = @payload['parameters']['min_date_created']
     get_product_data = @payload['products']
     # product_options = get_product_data
@@ -48,23 +48,24 @@ class BigApp < Sinatra::Base
 
   end
 
-  # post '/get_products' do
-  #   # get_product_data = @payload['products']
-  #   # get_product_data.each do |product_options|
-  #   #   product_options = @payload['parameters']['min_date_created'] || @payload['parameters']['max_date_created'] || @payload['parameters']['min_date_modified'] || @config['max_date_modified'] ||
-  #   #       @payload['parameters']['min_date_last_imported'] || @payload['parameters']['max_date_last_imported']
-  #   product_options = DateTime.parse(@payload['parameters']['min_date_created'])
-  #   product_date_options = product_options.strftime('%a %b %d %H:%M:%S %Z %Y')
-  #   puts "#{product_date_options}"
-  #   @headers = {"Content-Type" => "application/json", 'Accept' => 'application/json',
-  #               "X-Hub-Access-Token"=> "7f3bbce9dafb861ac511430afd61ba8a28366752d496c0c8",
-  #               "X-Hub-Store"=> "556fdb5a736d61422aec0000"}
-  #   puts "#{@headers}"
-  #   response = Service.request_bigapp :get, "/products", product_date_options, @headers, @config
-  #     # return JSON.pretty_generate(response).to_json
-  #     return response.to_json
-  #   # end
-  # end
+  post '/get_products' do
+    @products = []
+    # get_product_data = @payload['products']
+    # get_product_data.each do |product_options|
+    #   product_options = @payload['parameters']['min_date_created'] || @payload['parameters']['max_date_created'] || @payload['parameters']['min_date_modified'] || @config['max_date_modified'] ||
+    #       @payload['parameters']['min_date_last_imported'] || @payload['parameters']['max_date_last_imported']
+    product_options = DateTime.parse(@payload['parameters']['min_date_created'])
+    @products << {'min_date_created' => product_options}
+    # product_date_options = product_options.strftime('%a %b %d %H:%M:%S %Z %Y')
+    @headers = {"Content-Type" => "application/json", 'Accept' => 'application/json',
+                "X-Hub-Access-Token"=> "7f3bbce9dafb861ac511430afd61ba8a28366752d496c0c8",
+                "X-Hub-Store"=> "556fdb5a736d61422aec0000"}
+    @products.each do |product_date_options|
+    response = Service.request_bigapp :get, "/products", product_date_options, @headers, @config
+      # return JSON.pretty_generate(response).to_json
+      return response.to_json
+    end
+  end
 
   post '/update_product' do
     update_product_data = @payload['product']
