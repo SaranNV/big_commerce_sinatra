@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="89f7b689-da40-44dd-a5d5-efe605afbe19" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/big_app.rb" afterPath="$PROJECT_DIR$/big_app.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/index.erb" afterPath="$PROJECT_DIR$/views/index.erb" />
     </list>
     <ignored path="bigcommerce_sinatra.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,8 +30,8 @@
       <file leaf-file-name="big_app.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/big_app.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33114755">
-              <caret line="163" column="95" selection-start-line="163" selection-start-column="19" selection-end-line="163" selection-end-column="95" />
+            <state vertical-scroll-proportion="0.67540985">
+              <caret line="65" column="20" selection-start-line="65" selection-start-column="20" selection-end-line="65" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -141,8 +140,8 @@
         <option value="$PROJECT_DIR$/public/jquery.min.js" />
         <option value="$PROJECT_DIR$/config/environments/staging.rb" />
         <option value="$PROJECT_DIR$/config.ru" />
-        <option value="$PROJECT_DIR$/big_app.rb" />
         <option value="$PROJECT_DIR$/views/index.erb" />
+        <option value="$PROJECT_DIR$/big_app.rb" />
       </list>
     </option>
   </component>
@@ -492,12 +491,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="ruby-line">
           <url>file://$PROJECT_DIR$/big_app.rb</url>
-          <line>166</line>
+          <line>167</line>
           <option name="timeStamp" value="168" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="ruby-line">
           <url>file://$PROJECT_DIR$/big_app.rb</url>
-          <line>159</line>
+          <line>160</line>
           <option name="timeStamp" value="169" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="ruby-line">
@@ -507,7 +506,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="ruby-line">
           <url>file://$PROJECT_DIR$/big_app.rb</url>
-          <line>168</line>
+          <line>169</line>
           <option name="timeStamp" value="171" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="ruby-line">
@@ -537,12 +536,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="ruby-line">
           <url>file://$PROJECT_DIR$/big_app.rb</url>
-          <line>151</line>
+          <line>152</line>
           <option name="timeStamp" value="177" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="ruby-line">
           <url>file://$PROJECT_DIR$/big_app.rb</url>
-          <line>163</line>
+          <line>164</line>
           <option name="timeStamp" value="178" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="ruby-line">
@@ -967,8 +966,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/big_app.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33114755">
-          <caret line="163" column="95" selection-start-line="163" selection-start-column="19" selection-end-line="163" selection-end-column="95" />
+        <state vertical-scroll-proportion="0.67540985">
+          <caret line="65" column="20" selection-start-line="65" selection-start-column="20" selection-end-line="65" selection-end-column="20" />
           <folding />
         </state>
       </provider>
