@@ -44,7 +44,7 @@ class BigApp < Sinatra::Base
       response = Service.request_bigapp :get, "/products", product_options, @headers, @config
       return response.to_json
     # end
-    
+
   end
 
   post '/get_products' do
@@ -55,6 +55,9 @@ class BigApp < Sinatra::Base
     product_options = DateTime.parse(@payload['parameters']['min_date_created'])
     product_date_options = product_options.strftime('%a %b %d %H:%M:%S %Z %Y')
     puts "#{product_date_options}"
+    @headers = {"Content-Type" => "application/json", 'Accept' => 'application/json',
+                "X-Hub-Access-Token"=> "7ce9ba94011c45b0e44c9a0f6e9e55102828ec3edd6e8dfc",
+                "X-Hub-Store"=> "555d5ba2736d61639cf50100"}
     response = Service.request_bigapp :get, "/products", product_date_options, @headers, @config
       # return JSON.pretty_generate(response).to_json
       return response.to_json
@@ -155,10 +158,10 @@ class Service
 
     response = case method
                  when :get then
-                   rest_client.get :params => options
+                   rest_client.get :params => options, :content_type => :json, :accept => :json
                  when :post then
                    begin
-                     rest_client.post(options.to_json)
+                     rest_client.post(options.to_json, :content_type => :json, :accept => :json)
                    rescue => e
                      e.response
                    end
