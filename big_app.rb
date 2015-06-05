@@ -56,7 +56,7 @@ class BigApp < Sinatra::Base
      # puts "#{response.first['min_date_created']}"
       final_response = response.map { |o| Hash[o.each_pair.to_a] }.to_json
       # return JSON.pretty_generate(response).to_json
-     puts "#{final_response}"
+     puts "#{final_response[0]}"
       return final_response
     # end
   end
