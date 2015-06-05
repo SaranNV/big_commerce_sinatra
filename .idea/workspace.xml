@@ -16,7 +16,7 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/bigcommerce_sinatra@development.coverage" NAME="development Coverage Results" MODIFIED="1433495396725" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="bigcommerce_sinatra" />
+    <SUITE FILE_PATH="coverage/bigcommerce_sinatra@development.coverage" NAME="development Coverage Results" MODIFIED="1433501787818" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="bigcommerce_sinatra" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -30,8 +30,8 @@
       <file leaf-file-name="big_app.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/big_app.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4918033">
-              <caret line="58" column="88" selection-start-line="58" selection-start-column="88" selection-end-line="58" selection-end-column="88" />
+            <state vertical-scroll-proportion="0.33114755">
+              <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -484,17 +484,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="ruby-line">
           <url>file://$PROJECT_DIR$/big_app.rb</url>
-          <line>44</line>
+          <line>45</line>
           <option name="timeStamp" value="167" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="ruby-line">
           <url>file://$PROJECT_DIR$/big_app.rb</url>
-          <line>164</line>
+          <line>165</line>
           <option name="timeStamp" value="168" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="ruby-line">
           <url>file://$PROJECT_DIR$/big_app.rb</url>
-          <line>157</line>
+          <line>158</line>
           <option name="timeStamp" value="169" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="ruby-line">
@@ -504,21 +504,46 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="ruby-line">
           <url>file://$PROJECT_DIR$/big_app.rb</url>
-          <line>166</line>
+          <line>167</line>
           <option name="timeStamp" value="171" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="ruby-line">
           <url>file://$PROJECT_DIR$/big_app.rb</url>
-          <line>42</line>
+          <line>43</line>
           <option name="timeStamp" value="172" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="ruby-line">
           <url>file://$PROJECT_DIR$/big_app.rb</url>
-          <line>41</line>
+          <line>42</line>
           <option name="timeStamp" value="173" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="ruby-line">
+          <url>file://$PROJECT_DIR$/big_app.rb</url>
+          <line>41</line>
+          <option name="timeStamp" value="174" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="ruby-line">
+          <url>file://$PROJECT_DIR$/big_app.rb</url>
+          <line>19</line>
+          <option name="timeStamp" value="175" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="ruby-line">
+          <url>file://$PROJECT_DIR$/big_app.rb</url>
+          <line>44</line>
+          <option name="timeStamp" value="176" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="ruby-line">
+          <url>file://$PROJECT_DIR$/big_app.rb</url>
+          <line>150</line>
+          <option name="timeStamp" value="177" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="ruby-line">
+          <url>file://$PROJECT_DIR$/big_app.rb</url>
+          <line>162</line>
+          <option name="timeStamp" value="178" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="174" />
+      <option name="time" value="179" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -914,8 +939,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/big_app.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4918033">
-          <caret line="58" column="88" selection-start-line="58" selection-start-column="88" selection-end-line="58" selection-end-column="88" />
+        <state vertical-scroll-proportion="0.33114755">
+          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
           <folding />
         </state>
       </provider>

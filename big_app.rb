@@ -38,12 +38,13 @@ class BigApp < Sinatra::Base
   end
 
   post '/get_products_demo' do
-    get_product_data = @payload['parameters']['min_date_created']
-    product_options = get_product_data
-    # get_product_data.each do |product_options|
+    # get_product_data = @payload['parameters']['min_date_created']
+    get_product_data = @payload['products']
+    # product_options = get_product_data
+    get_product_data.each do |product_options|
       response = Service.request_bigapp :get, "/products", product_options, @headers, @config
       return response.to_json
-    # end
+    end
 
   end
 
