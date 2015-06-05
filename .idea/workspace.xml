@@ -45,7 +45,7 @@
         <entry file="file://$PROJECT_DIR$/big_app.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.44871795">
-              <caret line="55" column="62" selection-start-line="55" selection-start-column="62" selection-end-line="55" selection-end-column="62" />
+              <caret line="55" column="55" selection-start-line="55" selection-start-column="55" selection-end-line="55" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -373,42 +373,42 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="ruby-line">
           <url>file://$PROJECT_DIR$/big_app.rb</url>
-          <line>149</line>
+          <line>148</line>
           <option name="timeStamp" value="148" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="ruby-line">
           <url>file://$PROJECT_DIR$/big_app.rb</url>
-          <line>156</line>
+          <line>155</line>
           <option name="timeStamp" value="149" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="ruby-line">
           <url>file://$PROJECT_DIR$/big_app.rb</url>
-          <line>163</line>
+          <line>162</line>
           <option name="timeStamp" value="150" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="ruby-line">
           <url>file://$PROJECT_DIR$/big_app.rb</url>
-          <line>165</line>
+          <line>164</line>
           <option name="timeStamp" value="151" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="ruby-line">
           <url>file://$PROJECT_DIR$/big_app.rb</url>
-          <line>164</line>
+          <line>163</line>
           <option name="timeStamp" value="152" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="ruby-line">
           <url>file://$PROJECT_DIR$/big_app.rb</url>
-          <line>181</line>
+          <line>180</line>
           <option name="timeStamp" value="155" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="ruby-line">
           <url>file://$PROJECT_DIR$/big_app.rb</url>
-          <line>185</line>
+          <line>184</line>
           <option name="timeStamp" value="156" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="ruby-line">
           <url>file://$PROJECT_DIR$/big_app.rb</url>
-          <line>190</line>
+          <line>189</line>
           <option name="timeStamp" value="157" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="ruby-line">
@@ -428,7 +428,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="ruby-line">
           <url>file://$PROJECT_DIR$/big_app.rb</url>
-          <line>62</line>
+          <line>61</line>
           <option name="timeStamp" value="166" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="ruby-line">
@@ -438,12 +438,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="ruby-line">
           <url>file://$PROJECT_DIR$/big_app.rb</url>
-          <line>160</line>
+          <line>159</line>
           <option name="timeStamp" value="176" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="ruby-line">
           <url>file://$PROJECT_DIR$/big_app.rb</url>
-          <line>72</line>
+          <line>71</line>
           <option name="timeStamp" value="177" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="ruby-line">
@@ -822,7 +822,7 @@
     <entry file="file://$PROJECT_DIR$/big_app.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.44871795">
-          <caret line="55" column="62" selection-start-line="55" selection-start-column="62" selection-end-line="55" selection-end-column="62" />
+          <caret line="55" column="55" selection-start-line="55" selection-start-column="55" selection-end-line="55" selection-end-column="55" />
           <folding />
         </state>
       </provider>
