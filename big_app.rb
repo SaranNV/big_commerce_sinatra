@@ -56,8 +56,8 @@ class BigApp < Sinatra::Base
     product_date_options = product_options.strftime('%a %b %d %H:%M:%S %Z %Y')
     puts "#{product_date_options}"
     @headers = {"Content-Type" => "application/json", 'Accept' => 'application/json',
-                "X-Hub-Access-Token"=> "7ce9ba94011c45b0e44c9a0f6e9e55102828ec3edd6e8dfc",
-                "X-Hub-Store"=> "555d5ba2736d61639cf50100"}
+                "X-Hub-Access-Token"=> "7f3bbce9dafb861ac511430afd61ba8a28366752d496c0c8",
+                "X-Hub-Store"=> "556fdb5a736d61422aec0000"}
     puts "#{@headers}"
     response = Service.request_bigapp :get, "/products", product_date_options, @headers, @config
       # return JSON.pretty_generate(response).to_json
