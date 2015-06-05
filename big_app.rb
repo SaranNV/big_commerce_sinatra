@@ -41,7 +41,7 @@ class BigApp < Sinatra::Base
 
      get_product_data.each do |product_options|
        last_modified_date = product_options['min_date_created']
-      response = Service.request_bigapp :get, "/products",{'query' =>  product_options}, @headers, @config1
+      response = Service.request_bigapp :get, "/products", product_options, @headers, @config1
       return JSON.pretty_generate(response.last['date_modified'])
      end
   end
@@ -49,15 +49,16 @@ class BigApp < Sinatra::Base
   post '/get_products' do
     puts "#{@payload['parameters']['last_modified_date']}"
     # get_product_data.each do |product_options|
-    puts "response modified with query"
+
     min_date_modified = @payload['min_date_modified']
     product_options = min_date_modified
-      response = Service.request_bigapp :get, "/products", {'query' =>  product_options}, @headers, @config1
+    params = {:query => product_options}
+      response = Service.request_bigapp :get, "/products", params, @headers, @config1
         final_response = response.to_json
      #  final_response = response.map { |o| Hash[o.each_pair.to_a] }.to_json
      #  puts "#{final_response}"
      #  final_response = final_response.to_json
-
+       puts "response"
       puts "#{final_response}"
       return final_response
     # end
