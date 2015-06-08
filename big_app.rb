@@ -7,9 +7,10 @@ require 'active_support/core_ext/numeric/time'
 require 'base64'
 require 'bigcommerce'
 require 'rest-client'
-
+require_relative 'Entity/Products'
 class BigApp < Sinatra::Base
   attr_reader :payload
+  # include Products
 
   before  do
     unless request.env['PATH_INFO'] == '/'
@@ -47,19 +48,10 @@ class BigApp < Sinatra::Base
 
   post '/get_products' do
     content_type :json
-
     min_date_modified = @payload['parameters']['min_date_modified']
     product_options = min_date_modified
-      response = Service.request_bigapp :get, "/products", {:min_date_modified => product_options }, @headers, @config1
-      response
-        my_json = {
-            :request_id => @payload['request_id'],
-            :parameters => @payload['parameters'],
-            :products => response
-        }
-       pretty_json =  JSON.pretty_generate(my_json)
-       # final_response = pretty_json
-       # final_response
+    response = Service.request_bigapp :get, "/products", {:min_date_modified => product_options }, @headers, @config1
+    Entity::Products.get_format_data(response,@payload)
   end
 
 
