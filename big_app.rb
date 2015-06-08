@@ -7,7 +7,6 @@ require 'active_support/core_ext/numeric/time'
 require 'base64'
 require 'bigcommerce'
 require 'rest-client'
-require 'uri'
 
 class BigApp < Sinatra::Base
   attr_reader :payload
@@ -19,7 +18,7 @@ class BigApp < Sinatra::Base
       puts "hi..its called"
       # connections = @config
       @config1 = Bigcommerce::Api.new({
-                                      :store_url => URI.encode(@payload['parameters']['api_path']),
+                                      :store_url => @payload['parameters']['api_path'],
                                       :username => @payload['parameters']['api_username'],
                                       :api_key => @payload['parameters']['api_token']
                                   })
