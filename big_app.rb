@@ -46,8 +46,7 @@ class BigApp < Sinatra::Base
   end
 
   post '/get_products' do
-    puts "parameter changed"
-    puts "#{@payload['parameters']['min_date_modified']}"
+    content_type :json
     # get_product_data.each do |product_options|
 
     min_date_modified = @payload['parameters']['min_date_modified']
