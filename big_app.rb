@@ -53,10 +53,10 @@ class BigApp < Sinatra::Base
     min_date_modified = @payload['parameters']['min_date_modified']
     product_options = min_date_modified
       response = Service.request_bigapp :get, "/products", {:min_date_modified => product_options }, @headers, @config1
-      # final_response = response.to_json
+      final_response = response.to_json
        puts "response"
-      puts "#{response}"
-      response
+      puts "#{final_response}"
+    final_response
     # end
   end
 
