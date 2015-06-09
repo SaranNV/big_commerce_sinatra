@@ -74,10 +74,16 @@
           'default_input' => {
                   'request_id' => '',
                   'parameters' =>{
-                          'limit' => '100'
+                          "api_path"=> "https://store-m3l3la.mybigcommerce.com/api/v2/",
+                          "api_username"=> "saran-sample",
+                          "api_token"=> "b96bb98aae600a4cc22a9be342dabbf8dbf0997b",
+                          "limit"=> "100"
+
                   },
-                  'order_id' => 101,
-                  'shipment_id' => 4,
+                  'shipment' => {
+                       'order_id' => 101,
+                       'shipment_id' => 4,
+                  }
           },
          'doc_link' => 'https://developer.bigcommerce.com/api/stores/v2/orders/shipments#get-shipment'
         },
@@ -141,15 +147,35 @@
 
         'add_customer' => {
           'default_input' => {
-                  # 'request_id' => '',
-                  # 'parameters' => {
-                  #         'limit' => '100',
-                  # },
-                  'customer' => [{
+                  'request_id' => '',
+                  'parameters' => {
+                           "api_username"=> "saran-sample",
+                           "api_token"=> "b96bb98aae600a4cc22a9be342dabbf8dbf0997b",
+                           "api_path"=> "https://store-m3l3la.mybigcommerce.com/api/v2/"
+                  },
+                  'customer' => {
                           'first_name' => 'Some',
                           'last_name' => 'Person',
-                          # 'email' => 'some.person'.rand().'@example.com',
-                  }],
+                          "email"=> "david@example.com",
+                         "shipping_address"=> {
+                             "address1"=> "1234 Awesome Street",
+                             "address2"=> "",
+                             "zipcode"=> "90210",
+                             "city"=> "Hollywood",
+                             "state"=> "California",
+                             "country"=> "US",
+                             "phone"=> "0000000000"
+                         },
+                         "billing_address"=> {
+                             "address1"=> "1234 Awesome Street",
+                             "address2"=> "",
+                             "zipcode"=> "90210",
+                             "city"=> "Hollywood",
+                             "state"=> "California",
+                             "country"=> "US",
+                             "phone"=> "0000000000"
+                         }
+                  },
           },
           'doc_link' => 'https://developer.bigcommerce.com/api/stores/v2/orders#create-order'
         },

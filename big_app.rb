@@ -71,7 +71,8 @@ class BigApp < Sinatra::Base
   post '/add_customer' do
     add_customer_data = @payload['customer']
     add_customer_data.each do |customer_options|
-      response = Service.request_bigapp :post, "/customers", customer_options, @headers, @config
+      customer_data = Entity::Customers.post_format_data(customer_options)
+      response = Service.request_bigapp :post, "/customers", customer_data, @headers, @config1
       return JSON.pretty_generate(response)
     end
   end
@@ -105,7 +106,6 @@ class BigApp < Sinatra::Base
 
 
   post '/get_shipments' do
-    content_type :json
     order_ids = []
     @payload['parameters']['status_id'] = '2'; #shipped
     min_date_modified =  @payload['parameters']['min_date_modified']
@@ -119,6 +119,7 @@ class BigApp < Sinatra::Base
     end
     min_date_modified =  @payload['parameters']['min_date_modified']
     order_options = min_date_modified
+    content_type :json
     unless order_ids.empty?
       order_ids.each do |order_id|
         response = Service.request_bigapp :get, "/orders/#{order_id}/shipments",  {:min_date_modified => order_options }, @headers, @config1
@@ -129,18 +130,18 @@ class BigApp < Sinatra::Base
             :shipments => response
         }
         pretty_json =  JSON.pretty_generate(my_json)
-        pretty_json
       end
     end
   end
 
 
   post '/get_shipment' do
-    get_shipment_data = @payload['shipment']
-    get_shipment_data.each do |shipment_options|
-      response = Service.request_bigapp :get, "/orders/#{shipment_options['order_id']}/shipments", shipment_options, headers, api
-      return JSON.pretty_generate(response)
-    end
+       content_type :json
+      limit = @payload['parameters']['limit']
+      order_id = @payload['shipment']['order_id']
+      shipment_id = @payload['shipment']['shipment_id']
+      response = Service.request_bigapp :get, "/orders/#{order_id}/shipments/#{shipment_id}",{:limit => '100'}, headers, @config1
+      Entity::Shipments.get_format_shipment_data(response,@payload)
   end
 
   get '/' do
