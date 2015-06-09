@@ -9,6 +9,7 @@ require 'bigcommerce'
 require 'rest-client'
 require_relative 'Entity/Products'
 require_relative 'Entity/Orders'
+require_relative 'Entity/Customers'
 
 class BigApp < Sinatra::Base
   attr_reader :payload
@@ -75,10 +76,11 @@ class BigApp < Sinatra::Base
   end
 
   post '/get_customers' do
-    get_customer_data = @payload['customers']
+    get_customer_data =  @payload['parameters']['min_date_created']
+    customer_options = get_customer_data
     get_customer_data.each do |customer_options|
-      response = Service.request_bigapp :get, "/customers", customer_options, @headers, @config
-      return JSON.pretty_generate(response)
+      response = Service.request_bigapp :get, "/customers", {:min_date_created => customer_options}, @headers, @config
+      Entity::Customers.get_format_customer_data(response,@payload)
     end
   end
 
