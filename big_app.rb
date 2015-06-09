@@ -10,6 +10,7 @@ require 'rest-client'
 require_relative 'Entity/Products'
 require_relative 'Entity/Orders'
 require_relative 'Entity/Customers'
+require_relative 'Entity/Shipments'
 
 class BigApp < Sinatra::Base
   attr_reader :payload
@@ -79,10 +80,8 @@ class BigApp < Sinatra::Base
     content_type :json
     get_customer_data =  @payload['parameters']['min_date_created']
     customer_options = get_customer_data
-    get_customer_data.each do |customer_options|
-      response = Service.request_bigapp :get, "/customers", {:min_date_created => customer_options}, @headers, @config
+      response = Service.request_bigapp :get, "/customers", {:min_date_created => customer_options}, @headers, @config1
       Entity::Customers.get_format_customer_data(response,@payload)
-    end
   end
 
 
@@ -106,15 +105,33 @@ class BigApp < Sinatra::Base
 
 
   post '/get_shipments' do
-    resp_val = []
-    list_orders = Service.list_all_order(@config,@headers)
-    get_shipments_data = @payload['shipments']
-   list_orders.each do |order|
-      response = Service.request_bigapp :get, "/orders/#{order['id']}/shipments", get_shipments_data, @headers, @config
-      resp_val << response
+    content_type :json
+    order_ids = []
+    @payload['parameters']['status_id'] = '2'; #shipped
+    min_date_modified =  @payload['parameters']['min_date_modified']
+    order_options = min_date_modified
+    orders = Service.request_bigapp :get, "/orders",  {:min_date_modified => order_options,:status_id =>  @payload['parameters']['status_id'] }, @headers, @config1
+    unless orders.empty?
+      orders.each do |order|
+        order_ids << order['id']
+      end
+      order_ids
     end
-    reject_empty_array = res_val.reject &:empty?
-    return JSON.pretty_generate(reject_empty_array)
+    min_date_modified =  @payload['parameters']['min_date_modified']
+    order_options = min_date_modified
+    unless order_ids.empty?
+      order_ids.each do |order_id|
+        response = Service.request_bigapp :get, "/orders/#{order_id}/shipments",  {:min_date_modified => order_options }, @headers, @config1
+          # Entity::Shipments.get_format_shipment_data(response,@payload)
+        my_json = {
+            :request_id => payload['request_id'],
+            :parameters => payload['parameters'],
+            :shipments => response
+        }
+        pretty_json =  JSON.pretty_generate(my_json)
+        pretty_json
+      end
+    end
   end
 
 

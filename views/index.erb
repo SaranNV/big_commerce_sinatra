@@ -41,7 +41,14 @@
         },
         'get_customers' =>{
           'default_input' => {
+                  "parameters"=> {
+                          "api_path"=> "https://store-m3l3la.mybigcommerce.com/api/v2/",
+                          "api_username"=> "saran-sample",
+                          "api_token"=> "b96bb98aae600a4cc22a9be342dabbf8dbf0997b",
+                          "min_date_modified"=> "2015-06-09T04:49:57+0000"
+                  },
                   'customers' => [{
+                          "min_date_created"=> "2015-06-09T04:49:57+0000",
                           'customer_group_id' => '0',
                   }]
           },
@@ -50,10 +57,16 @@
 
         'get_shipments' => {
           'default_input' => {
-                  'shipments' =>{
-                          'limit' => '100',
+                  "parameters"=> {
+                        "api_path"=> "https://store-m3l3la.mybigcommerce.com/api/v2/",
+                        "api_username"=> "saran-sample",
+                        "api_token"=> "b96bb98aae600a4cc22a9be342dabbf8dbf0997b",
+                        "min_date_modified"=> "2015-06-09T04:49:57+0000"
+                  },
+                  'shipments' => [{
+                        "min_date_modified"=> "2015-06-09T04:49:57+0000"
 
-                  }
+                  }]
           },
          'doc_link' => 'https://developer.bigcommerce.com/api/stores/v2/orders/shipments#list-shipments'
         },
