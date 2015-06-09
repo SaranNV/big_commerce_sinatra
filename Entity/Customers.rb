@@ -12,7 +12,6 @@ module Entity
     end
 
     def self.post_format_data(customer_options)
-      puts "#{customer_options}"
       customer = {
           :first_name => customer_options['firstname'],
           :last_name =>customer_options['lastname'],

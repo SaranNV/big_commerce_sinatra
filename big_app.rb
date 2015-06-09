@@ -107,6 +107,7 @@ class BigApp < Sinatra::Base
 
   post '/get_shipments' do
     order_ids = []
+    shipments = []
     @payload['parameters']['status_id'] = '2'; #shipped
     min_date_modified =  @payload['parameters']['min_date_modified']
     order_options = min_date_modified
@@ -123,14 +124,16 @@ class BigApp < Sinatra::Base
     unless order_ids.empty?
       order_ids.each do |order_id|
         response = Service.request_bigapp :get, "/orders/#{order_id}/shipments",  {:min_date_modified => order_options }, @headers, @config1
-          # Entity::Shipments.get_format_shipment_data(response,@payload)
         my_json = {
             :request_id => payload['request_id'],
             :parameters => payload['parameters'],
-            :shipments => response
+            :shipments => response.to_json
         }
-        pretty_json =  JSON.pretty_generate(my_json)
+        shipments << my_json
+
       end
+      pretty_json =  JSON.pretty_generate(shipments)
+      pretty_json
     end
   end
 
