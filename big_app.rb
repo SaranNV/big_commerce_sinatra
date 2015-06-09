@@ -76,6 +76,7 @@ class BigApp < Sinatra::Base
   end
 
   post '/get_customers' do
+    content_type :json
     get_customer_data =  @payload['parameters']['min_date_created']
     customer_options = get_customer_data
     get_customer_data.each do |customer_options|
