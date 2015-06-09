@@ -32,6 +32,7 @@ class BigApp < Sinatra::Base
 
 
   post '/add_product' do
+    content_type :json
     add_product_data = @payload['product']
     add_product_data.each do |product_options|
          response = Service.request_bigapp :post, "/products", product_options, @headers, @config1
