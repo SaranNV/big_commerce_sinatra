@@ -96,6 +96,7 @@ class BigApp < Sinatra::Base
 
 
   post '/get_orders' do
+    content_type :json
     min_date_modified =  @payload['parameters']['min_date_modified']
     order_options = min_date_modified
     response = Service.request_bigapp :get, "/orders",  {:min_date_modified => order_options }, @headers, @config1
