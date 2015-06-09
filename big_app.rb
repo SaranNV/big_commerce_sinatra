@@ -8,6 +8,8 @@ require 'base64'
 require 'bigcommerce'
 require 'rest-client'
 require_relative 'Entity/Products'
+require_relative 'Entity/Orders'
+
 class BigApp < Sinatra::Base
   attr_reader :payload
   # include Products
@@ -51,7 +53,7 @@ class BigApp < Sinatra::Base
     min_date_modified = @payload['parameters']['min_date_modified']
     product_options = min_date_modified
     response = Service.request_bigapp :get, "/products", {:min_date_modified => product_options }, @headers, @config1
-    Entity::Products.get_format_data(response,@payload)
+    Entity::Products.get_format_product_data(response,@payload)
   end
 
 
@@ -92,11 +94,10 @@ class BigApp < Sinatra::Base
 
 
   post '/get_orders' do
-    get_order_data = @payload['orders']
-    get_order_data.each do |order_options|
-      response = Service.request_bigapp :get, "/orders", order_options, @headers, @config
-      return JSON.pretty_generate(response)
-    end
+    min_date_modified =  @payload['parameters']['min_date_modified']
+    order_options = min_date_modified
+    response = Service.request_bigapp :get, "/orders",  {:min_date_modified => order_options }, @headers, @config1
+    Entity::Orders.get_format_order_data(response,@payload)
   end
 
 

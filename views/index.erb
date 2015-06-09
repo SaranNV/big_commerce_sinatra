@@ -27,8 +27,14 @@
 
         'get_orders' =>{
           'default_input' => {
+                  'parameters' => {
+                          "api_username"=> "saran-sample",
+                          "api_token"=> "b96bb98aae600a4cc22a9be342dabbf8dbf0997b",
+                          "api_path"=> "https://store-m3l3la.mybigcommerce.com/api/v2/",
+                          "min_date_modified" => "2015-06-08T04:51:54+00:00"
+                  },
                   'orders' => [{
-                          'customer_id' => '3'
+                        "min_date_modified" => "2015-06-08T04:51:54+00:00"
                   }]
           },
           'doc_link' => 'https://developer.bigcommerce.com/api/stores/v2/orders#list-orders'

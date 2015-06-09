@@ -1,6 +1,7 @@
 module Entity
-  class Products < Sinatra::Base
-    def self.get_format_product_data(response,payload)
+
+  class Orders < Sinatra::Base
+    def self.get_format_order_data(response,payload)
       my_json = {
           :request_id => payload['request_id'],
           :parameters => payload['parameters'],
@@ -11,6 +12,3 @@ module Entity
     end
   end
 end
-
-
-
