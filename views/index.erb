@@ -251,11 +251,11 @@
             // parse input JSON
             try { request_object = $.parseJSON(request_data);
 
-//            request_object.api_username = encodeURIComponent($('.api_connection_info input[name=api_username]').val());
-//            request_object.api_path = decodeURIComponent($('.api_connection_info input[name=api_path]').val());
-//            request_object.api_token = encodeURIComponent($('.api_connection_info input[name=api_token]').val());
-//                request_input = JSON.stringify(request_object,null,null);
-//
+            request_object.api_username = encodeURIComponent($('.api_connection_info input[name=api_username]').val());
+            request_object.api_path = decodeURIComponent($('.api_connection_info input[name=api_path]').val());
+            request_object.api_token = encodeURIComponent($('.api_connection_info input[name=api_token]').val());
+                request_input = JSON.stringify(request_object,null,null);
+
              }
             catch (e) { }
 
@@ -287,7 +287,7 @@
                 $.ajax({
                     type: "POST",
                     url: $form.attr('action'),
-                    data: request_object,
+                    data: request_input,
                     error: function(jqXHR,textStatus,errorThrown){
                         $response_status.addClass('response_error');
                         $response.find('textarea').val(errorThrown);
