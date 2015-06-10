@@ -89,7 +89,7 @@ class BigApp < Sinatra::Base
   post '/add_order' do
     add_order_data = @payload['order']
     add_order_data.each do |order_options|
-      response = Service.request_bigapp :post, "/orders", order_options, @headers, @config
+      response = Service.request_bigapp :post, "/orders", order_options, @headers, @config1
       puts response
       return JSON.pretty_generate(response)
     end
@@ -109,6 +109,17 @@ class BigApp < Sinatra::Base
     order_ids = []
     shipments = []
     @payload['parameters']['status_id'] = '2'; #shipped
+    min_date_modified =  @payload['parameters']['min_date_modified']
+    order_options = min_date_modified
+    orders = Service.request_bigapp :get, "/orders",  {:min_date_modified => order_options,:status_id =>  @payload['parameters']['status_id'] }, @headers, @config1
+    unless orders.empty?
+      orders.each do |order|
+        order_ids << order['id']
+      end
+      order_ids
+    end
+
+    @payload['parameters']['status_id'] = '3'; #partially shipped
     min_date_modified =  @payload['parameters']['min_date_modified']
     order_options = min_date_modified
     orders = Service.request_bigapp :get, "/orders",  {:min_date_modified => order_options,:status_id =>  @payload['parameters']['status_id'] }, @headers, @config1
