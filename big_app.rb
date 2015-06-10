@@ -132,6 +132,7 @@ class BigApp < Sinatra::Base
     min_date_modified =  @payload['parameters']['min_date_modified']
     order_options = min_date_modified
     content_type :json
+    puts "#{ payload['request_id']}"
     unless order_ids.empty?
       order_ids.each do |order_id|
         response = Service.request_bigapp :get, "/orders/#{order_id}/shipments",  {:min_date_modified => order_options }, @headers, @config1
