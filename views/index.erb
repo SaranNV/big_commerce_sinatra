@@ -3,9 +3,9 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <link href="<%= url('/header.css') %>" rel="stylesheet" type="text/css" />
 <div class="block api_connection_info" style="display:none;">
-  <label><span>Username:</span><input type="text" class="user_name" name="api_username" value="rahman-11" placeholder="username"></label>
-  <label><span>Path:</span><input type="text" class="store_path" name="api_path" value="https://store-auiautt3.mybigcommerce.com/api/v2/" placeholder="store_url"></label>
-  <label><span>Token:</span><input type="text" class="token" name="api_token" value="ab2290273590c54591c60ea363b98cc723d361b7" placeholder="api_token"></label>
+  <label><span>Username:</span><input type="text" class="user_name" name="api_username" value="" placeholder="username"></label>
+  <label><span>Path:</span><input type="text" class="store_path" name="api_path" value="" placeholder="store_url"></label>
+  <label><span>Token:</span><input type="text" class="token" name="api_token" value="" placeholder="api_token"></label>
 </div>
 <p><button type="button" class="small right showbutton" data-showelement=".api_connection_info">Edit api connection info</button></p>
 <%
@@ -91,9 +91,9 @@
         'add_product' => {
           'default_input' =>{
                   'parameters' => {
-                          "api_username"=> "saran-sample",
-                          "api_token"=> "b96bb98aae600a4cc22a9be342dabbf8dbf0997b",
-                          "api_path"=> "https://store-m3l3la.mybigcommerce.com/api/v2/",
+                          "api_username"=> "",
+                          "api_token"=> "",
+                          "api_path"=> "",
                           "min_date_modified" => "2015-06-08T04:51:54+00:00"
                   },
                   'product' => [{
@@ -116,8 +116,10 @@
           'default_input' => {
                   'request_id' => '',
                   'parameters' => {
-                          "api_username" => "saran-sample",
+                          "api_username" => "",
                           "api_token" => "b96bb98aae600a4cc22a9be342dabbf8dbf0997b",
+
+
                           "api_path" => "https://store-m3l3la.mybigcommerce.com/api/v2/",
                   },
                   'order' => [{
@@ -218,11 +220,7 @@
         var $form = $(this);
         var $button = $form.find('button[type=submit]');
         if(!$button.is(':disabled'))
-            if (user_name === "" || store_url === "" || token === "" ){
-                alert("Check user_name,Store_url and token ")
-            }else{
                 WombatTestFront.request($form);
-            }
     });
 
     $('.response_clear').on('click',function(){
@@ -253,11 +251,12 @@
             // parse input JSON
             try { request_object = $.parseJSON(request_data);
 
-            request_object.api_username = encodeURIComponent($('.api_connection_info input[name=api_username]').val());
-            request_object.api_path = decodeURIComponent($('.api_connection_info input[name=api_path]').val());
-            request_object.api_token = encodeURIComponent($('.api_connection_info input[name=api_token]').val());
-            console.log(request_object.api_path);
-                request_input = JSON.stringify(request_object,null,null);}
+//            request_object.api_username = encodeURIComponent($('.api_connection_info input[name=api_username]').val());
+//            request_object.api_path = decodeURIComponent($('.api_connection_info input[name=api_path]').val());
+//            request_object.api_token = encodeURIComponent($('.api_connection_info input[name=api_token]').val());
+//                request_input = JSON.stringify(request_object,null,null);
+//
+             }
             catch (e) { }
 
             if(!request_object) {
@@ -278,9 +277,9 @@
 
             } else { // request object parsed
                 // make request
-//                request_object.parameters.api_username = encodeURIComponent($('.api_connection_info input[name=api_username]').val());
-//                request_object.parameters.api_path = encodeURIComponent($('.api_connection_info input[name=api_path]').val());
-//                request_object.parameters.api_token = encodeURIComponent($('.api_connection_info input[name=api_token]').val());
+                request_object.parameters.api_username = encodeURIComponent($('.api_connection_info input[name=api_username]').val());
+                request_object.parameters.api_path = encodeURIComponent($('.api_connection_info input[name=api_path]').val());
+                request_object.parameters.api_token = encodeURIComponent($('.api_connection_info input[name=api_token]').val());
 
                 $response.find('textarea').val('Loading...');
                 $response_status.attr('class','response_status').html('loading');
@@ -288,7 +287,7 @@
                 $.ajax({
                     type: "POST",
                     url: $form.attr('action'),
-                    data: request_input,
+                    data: request_object,
                     error: function(jqXHR,textStatus,errorThrown){
                         $response_status.addClass('response_error');
                         $response.find('textarea').val(errorThrown);
