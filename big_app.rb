@@ -113,27 +113,31 @@ class BigApp < Sinatra::Base
   post '/get_shipments' do
     order_ids = []
     shipments = []
+    shipped_order_ids = []
+    partially_shipped_order_ids = []
     @payload['parameters']['status_id'] = '2'; #shipped
     min_date_modified =  @payload['parameters']['min_date_modified']
     order_options = min_date_modified
-    orders = Service.request_bigapp :get, "/orders",  {:min_date_modified => order_options,:status_id =>  @payload['parameters']['status_id'] }, @headers, @config1
-    unless orders.empty?
-      orders.each do |order|
-        order_ids << order['id']
+    shipped_orders = Service.request_bigapp :get, "/orders",  {:min_date_modified => order_options,:status_id =>  @payload['parameters']['status_id'] }, @headers, @config1
+    unless shipped_orders.empty?
+      shipped_orders.each do |order|
+        shipped_order_ids << order['id']
       end
-      order_ids
+      shipped_order_ids
     end
 
     @payload['parameters']['status_id'] = '3'; #partially shipped
     min_date_modified =  @payload['parameters']['min_date_modified']
     order_options = min_date_modified
-    orders = Service.request_bigapp :get, "/orders",  {:min_date_modified => order_options,:status_id =>  @payload['parameters']['status_id'] }, @headers, @config1
-    unless orders.empty?
-      orders.each do |order|
-        order_ids << order['id']
-      end
-      order_ids
+    partially_shipped_orders = Service.request_bigapp :get, "/orders",  {:min_date_modified => order_options,:status_id =>  @payload['parameters']['status_id'] }, @headers, @config1
+    unless partially_shipped_orders.empty?
+      partially_shipped_orders.each do |order|
+        partially_shipped_order_ids << order['id']
+       end
+      partially_shipped_order_ids
     end
+    #   merge both shipped order ids and partially shipped_order_ids
+    order_ids = shipped_order_ids + partially_shipped_order_ids
     min_date_modified =  @payload['parameters']['min_date_modified']
     order_options = min_date_modified
     content_type :json
@@ -142,8 +146,8 @@ class BigApp < Sinatra::Base
       order_ids.each do |order_id|
         response = Service.request_bigapp :get, "/orders/#{order_id}/shipments",  {:min_date_modified => order_options }, @headers, @config1
         my_json = {
-            :request_id => payload['request_id'],
-            :parameters => payload['parameters'],
+            :request_id => @payload['request_id'],
+            :parameters => @payload['parameters'],
             :shipments => response.to_json
         }
         shipments << my_json
