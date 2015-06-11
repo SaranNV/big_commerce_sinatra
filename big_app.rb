@@ -74,11 +74,12 @@ class BigApp < Sinatra::Base
   end
 
   post '/add_customer' do
+    content_type :json
     add_customer_data = @payload['customer']
       customer_data = Entity::Customers.post_format_data(add_customer_data)
       response = Service.request_bigapp :post, "/customers", customer_data, @headers, @config1
-      # return JSON.pretty_generate(response)
-      response.to_json
+      return JSON.pretty_generate(response)
+      # response.to_json
   end
 
   post '/get_customers' do
