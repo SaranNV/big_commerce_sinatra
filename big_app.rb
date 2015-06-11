@@ -16,18 +16,19 @@ class BigApp < Sinatra::Base
   attr_reader :payload
   # include Products
 
-  # use Rack::Auth::Basic, "Protected Area" do |username, password|
-  #   username == 'sample' && password == 'wombat'
-  # end
+  use Rack::Auth::Basic, "Protected Area" do |username, password|
+    username == 'sample' && password == 'wombat'
+  end
 
   before  do
     unless request.env['PATH_INFO'] == '/'
       request.body.rewind
       @payload = JSON.parse(request.body.read).with_indifferent_access
-      # connections = @config
+      puts "payload value"
+      puts "#{@payload}"
       @config1 = Bigcommerce::Api.new({
-                                      :store_url => @payload['parameters']['api_path'],
                                       :username => @payload['parameters']['api_username'],
+                                      :store_url => @payload['parameters']['api_path'],
                                       :api_key => @payload['parameters']['api_token']
                                   })
       @headers = {"Content-Type" => "application/json", 'Accept' => 'application/json'}
@@ -41,19 +42,10 @@ class BigApp < Sinatra::Base
     add_product_data.each do |product_options|
          response = Service.request_bigapp :post, "/products", product_options, @headers, @config1
          puts response
-         return JSON.pretty_generate(response)
+         return JSON.pretty_generate(response).to_json
     end
   end
 
-  post '/get_products_demo' do
-    get_product_data = @payload['products']
-
-     get_product_data.each do |product_options|
-       last_modified_date = product_options['min_date_created']
-      response = Service.request_bigapp :get, "/products", product_options, @headers, @config1
-      return JSON.pretty_generate(response.last['date_modified'])
-     end
-  end
 
   post '/get_products' do
     content_type :json
@@ -68,7 +60,7 @@ class BigApp < Sinatra::Base
     update_product_data = @payload['product']
     update_product_data.each do |product_options|
       product_detail = product_options.except(:product_id)
-      response = Service.request_bigapp :put, "/products/#{product_options['product_id']}", product_detail, @headers, @config
+      response = Service.request_bigapp :put, "/products/#{product_options['product_id']}", product_detail, @headers, @config1
       return JSON.pretty_generate(response)
     end
   end
@@ -191,11 +183,12 @@ class Service
         :headers => headers
     }
 
+
     rest_client = RestClient::Resource.new "#{@config[:store_url]}/api/v2#{path}.json", resource_options
 
     response = case method
                  when :get then
-                   rest_client.get :params => options, :accept => :json, :content_type => :json
+                   rest_client.get :params => options, :content_type => :json, :accept => :json
                  when :post then
                    begin
                      rest_client.post(options.to_json, :content_type => :json, :accept => :json)
