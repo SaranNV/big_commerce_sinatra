@@ -26,7 +26,7 @@ class BigApp < Sinatra::Base
       @payload = JSON.parse(request.body.read).with_indifferent_access
       puts "payload value"
       puts "#{@payload}"
-      @config = Bigcommerce::Api.new({
+      @config1 = Bigcommerce::Api.new({
                                       :username => @payload['parameters']['api_username'],
                                       :store_url => @payload['parameters']['api_path'],
                                       :api_key => @payload['parameters']['api_token']
@@ -60,7 +60,7 @@ class BigApp < Sinatra::Base
     update_product_data = @payload['product']
     update_product_data.each do |product_options|
       product_detail = product_options.except(:product_id)
-      response = Service.request_bigapp :put, "/products/#{product_options['product_id']}", product_detail, @headers, @config
+      response = Service.request_bigapp :put, "/products/#{product_options['product_id']}", product_detail, @headers, @config1
       return JSON.pretty_generate(response)
     end
   end
