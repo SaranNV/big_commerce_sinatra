@@ -14,11 +14,6 @@ require_relative 'Entity/Shipments'
 
 class BigApp < Sinatra::Base
   attr_reader :payload
-  # include Products
-
-  use Rack::Auth::Basic, "Protected Area" do |username, password|
-    username == 'sample' && password == 'wombat'
-  end
 
   before  do
     unless request.env['PATH_INFO'] == '/'
