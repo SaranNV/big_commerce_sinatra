@@ -14,11 +14,7 @@ require_relative 'Entity/Shipments'
 
 class BigApp < Sinatra::Base
   attr_reader :payload
-  # include Products
 
-  # use Rack::Auth::Basic, "Protected Area" do |username, password|
-  #   username == 'sample' && password == 'wombat'
-  # end
 
   before  do
     unless request.env['PATH_INFO'] == '/'
@@ -111,51 +107,21 @@ class BigApp < Sinatra::Base
 
 
   post '/get_shipments' do
-    order_ids = []
-    shipments = []
-    shipped_order_ids = []
-    partially_shipped_order_ids = []
-    @payload['parameters']['status_id'] = '2'; #shipped
-    min_date_modified =  @payload['parameters']['min_date_modified']
-    order_options = min_date_modified
-    shipped_orders = Service.request_bigapp :get, "/orders",  {:min_date_modified => order_options,:status_id =>  @payload['parameters']['status_id'] }, @headers, @config1
-    unless shipped_orders.empty?
-      shipped_orders.each do |order|
-        shipped_order_ids << order['id']
-      end
-      shipped_order_ids
-    end
-
-    @payload['parameters']['status_id'] = '3'; #partially shipped
-    min_date_modified =  @payload['parameters']['min_date_modified']
-    order_options = min_date_modified
-    partially_shipped_orders = Service.request_bigapp :get, "/orders",  {:min_date_modified => order_options,:status_id =>  @payload['parameters']['status_id'] }, @headers, @config1
-    unless partially_shipped_orders.empty?
-      partially_shipped_orders.each do |order|
-        partially_shipped_order_ids << order['id']
-       end
-      partially_shipped_order_ids
-    end
-    #   merge both shipped order ids and partially shipped_order_ids
-    order_ids = shipped_order_ids + partially_shipped_order_ids
-    min_date_modified =  @payload['parameters']['min_date_modified']
-    order_options = min_date_modified
     content_type :json
-    puts "#{ payload['request_id']}"
-    unless order_ids.empty?
-      order_ids.each do |order_id|
-        response = Service.request_bigapp :get, "/orders/#{order_id}/shipments",  {:min_date_modified => order_options }, @headers, @config1
-        my_json = {
-            :request_id => @payload['request_id'],
-            :parameters => @payload['parameters'],
-            :shipments => response.to_json
-        }
-        shipments << my_json
-
-      end
-      pretty_json =  JSON.pretty_generate(shipments)
-      pretty_json
+    resp_val = []
+    list_orders = Service.list_all_order(@config1,@headers)
+    get_shipments_data = @payload['parameters']['min_date_modified']
+    list_orders.each do |order|
+      response = Service.request_bigapp :get, "/orders/#{order['id']}/shipments", get_shipments_data, @headers, @config1
+      resp_val += response
     end
+    shipment_response = resp_val.reject &:empty?
+    shipment_json = {
+        :request_id => @payload['request_id'],
+        :parameters => @payload['parameters'],
+        :shipments => shipment_response
+    }
+    return JSON.pretty_generate(shipment_json)
   end
 
 
