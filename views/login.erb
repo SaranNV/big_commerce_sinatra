@@ -1,0 +1,30 @@
+
+<script src="jquery-1.11.1.min.js" type="text/javascript"></script>
+<link href="<%= url('/header.css') %>" rel="stylesheet" type="text/css" />
+
+<form class="form" action="/login" method="post">
+
+  <p>Username:</p><input class="username" type="text" name="message">
+  <input type="hidden" id="username"  value="sample" />
+  <p>Password:</p><input class="password" type="password" name="message">
+  <input type="hidden" id="password"  value="wombat" />
+
+  <input type="button" class="signup" value="Signup"/>
+</form>
+
+<script type="application/javascript">
+  $('.signup').on('click',function(event){
+    event.preventDefault();
+    var username = $(".username").val();
+    var password = $(".password").val();
+    var hidden_username = $(':hidden#username').val();
+    var hidden_password = $(':hidden#password').val();
+
+    if(hidden_username == username && hidden_password == password ){
+         window.location.href = '/demo';
+    }else{
+      alert("incorrect username and password")
+    }
+  })
+
+</script>

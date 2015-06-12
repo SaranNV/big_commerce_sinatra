@@ -22,9 +22,13 @@
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
 <<<<<<< HEAD
+    <SUITE FILE_PATH="coverage/big_commerce_sinatra@development.coverage" NAME="development Coverage Results" MODIFIED="1434004776727" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="bigcommerce_sinatra" />
+=======
+<<<<<<< HEAD
     <SUITE FILE_PATH="coverage/bigcommerce_sinatra@development.coverage" NAME="development Coverage Results" MODIFIED="1433504939872" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="bigcommerce_sinatra" />
 =======
     <SUITE FILE_PATH="coverage/big_commerce_sinatra@development.coverage" NAME="development Coverage Results" MODIFIED="1433932919057" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="bigcommerce_sinatra" />
+>>>>>>> 0511a20dbd33a3d70e504dc63d7f34a9c06b2bb3
     <SUITE FILE_PATH="coverage/sinatra_integration_example-master@development.coverage" NAME="development Coverage Results" MODIFIED="1432902208457" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="sinatra_integration_example-master" />
     <SUITE FILE_PATH="coverage/big_commerce_sinatra@big_commerce.coverage" NAME="big_commerce Coverage Results" MODIFIED="1433247393435" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="big_commerce_sinatra" />
 >>>>>>> a249256c34e29ea6a1d616565fd0751bce5cfc67
@@ -45,6 +49,9 @@
   <component name="FileEditorManager">
     <leaf>
 <<<<<<< HEAD
+      <file leaf-file-name="index.erb" pinned="false" current-in-tab="true">
+=======
+<<<<<<< HEAD
       <file leaf-file-name="big_app.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/big_app.rb">
           <provider selected="true" editor-type-id="text-editor">
@@ -52,12 +59,13 @@
               <caret line="72" column="9" selection-start-line="72" selection-start-column="9" selection-end-line="72" selection-end-column="9" />
 =======
       <file leaf-file-name="index.erb" pinned="false" current-in-tab="false">
+>>>>>>> 0511a20dbd33a3d70e504dc63d7f34a9c06b2bb3
         <entry file="file://$PROJECT_DIR$/views/index.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="12.610169">
-              <caret line="258" column="14" selection-start-line="258" selection-start-column="14" selection-end-line="258" selection-end-column="14" />
+            <state vertical-scroll-proportion="3.2749326">
+              <caret line="279" column="43" selection-start-line="279" selection-start-column="43" selection-end-line="279" selection-end-column="43" />
               <folding>
-                <marker date="1433932916739" expanded="true" signature="10006:10019" placeholder="..." />
+                <marker date="1433995963390" expanded="true" signature="10006:10019" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -74,9 +82,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="big_app.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="big_app.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/big_app.rb">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+            <state vertical-scroll-proportion="0.0">
+              <caret line="156" column="0" selection-start-line="156" selection-start-column="0" selection-end-line="156" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.ru" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config.ru">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+=======
 <<<<<<< HEAD
             <state vertical-scroll-proportion="-6.875">
               <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
@@ -86,6 +108,7 @@
 =======
             <state vertical-scroll-proportion="6.531646">
               <caret line="184" column="39" selection-start-line="184" selection-start-column="39" selection-end-line="184" selection-end-column="39" />
+>>>>>>> 0511a20dbd33a3d70e504dc63d7f34a9c06b2bb3
               <folding />
 >>>>>>> a249256c34e29ea6a1d616565fd0751bce5cfc67
             </state>
@@ -103,8 +126,12 @@
         <entry file="file://$PROJECT_DIR$/Entity/Customers.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
+<<<<<<< HEAD
+              <caret line="16" column="17" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
+=======
               <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
 >>>>>>> a249256c34e29ea6a1d616565fd0751bce5cfc67
+>>>>>>> 0511a20dbd33a3d70e504dc63d7f34a9c06b2bb3
               <folding />
             </state>
           </provider>
@@ -252,6 +279,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -301,10 +329,13 @@
         </subPane>
       </pane>
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
       <pane id="Scope" />
 =======
 >>>>>>> a249256c34e29ea6a1d616565fd0751bce5cfc67
       <pane id="Scratches" />
+>>>>>>> 0511a20dbd33a3d70e504dc63d7f34a9c06b2bb3
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -529,6 +560,9 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
 <<<<<<< HEAD
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17290837" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+=======
+<<<<<<< HEAD
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31713146" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.43771043" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -543,6 +577,7 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
 =======
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17051792" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+>>>>>>> 0511a20dbd33a3d70e504dc63d7f34a9c06b2bb3
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34365326" sideWeight="0.49721116" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32817337" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -550,12 +585,16 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32817337" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32817337" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
+=======
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
 >>>>>>> a249256c34e29ea6a1d616565fd0751bce5cfc67
+>>>>>>> 0511a20dbd33a3d70e504dc63d7f34a9c06b2bb3
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -573,9 +612,9 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33306772" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32817337" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32817337" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -594,6 +633,9 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="ruby-line">
           <url>file://$PROJECT_DIR$/big_app.rb</url>
+<<<<<<< HEAD
+          <line>226</line>
+=======
 <<<<<<< HEAD
           <line>22</line>
           <option name="timeStamp" value="161" />
@@ -697,28 +739,65 @@
       <option name="time" value="184" />
 =======
           <line>221</line>
+>>>>>>> 0511a20dbd33a3d70e504dc63d7f34a9c06b2bb3
           <option name="timeStamp" value="284" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="ruby-line">
           <url>file://$PROJECT_DIR$/big_app.rb</url>
-          <line>216</line>
+          <line>221</line>
           <option name="timeStamp" value="285" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="ruby-line">
           <url>file://$PROJECT_DIR$/big_app.rb</url>
-          <line>135</line>
-          <option name="timeStamp" value="287" />
+          <line>76</line>
+          <option name="timeStamp" value="303" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="ruby-line">
+          <url>file://$PROJECT_DIR$/big_app.rb</url>
+          <line>77</line>
+          <option name="timeStamp" value="304" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="ruby-line">
+          <url>file://$PROJECT_DIR$/big_app.rb</url>
+          <line>140</line>
+          <option name="timeStamp" value="323" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="ruby-line">
+          <url>file://$PROJECT_DIR$/big_app.rb</url>
+          <line>139</line>
+          <option name="timeStamp" value="327" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="ruby-line">
+          <url>file://$PROJECT_DIR$/big_app.rb</url>
+          <line>152</line>
+          <option name="timeStamp" value="328" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="ruby-line">
+          <url>file://$PROJECT_DIR$/big_app.rb</url>
+          <line>155</line>
+          <option name="timeStamp" value="329" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="ruby-line">
+          <url>file://$PROJECT_DIR$/big_app.rb</url>
+          <line>156</line>
+          <option name="timeStamp" value="330" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
+<<<<<<< HEAD
+      <option name="time" value="331" />
+=======
       <option name="time" value="303" />
 >>>>>>> a249256c34e29ea6a1d616565fd0751bce5cfc67
+>>>>>>> 0511a20dbd33a3d70e504dc63d7f34a9c06b2bb3
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
+=======
 <<<<<<< HEAD
     <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.1.5/gems/unicorn-4.9.0/lib/unicorn/http_server.rb">
       <provider selected="true" editor-type-id="text-editor">
@@ -797,6 +876,7 @@
         </state>
       </provider>
     </entry>
+>>>>>>> 0511a20dbd33a3d70e504dc63d7f34a9c06b2bb3
     <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.1.5/gems/unicorn-4.9.0/bin/unicorn">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1057,14 +1137,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.1.5/gems/rack-protection-1.5.3/lib/rack/protection/xss_header.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.1.5/gems/rack-protection-1.5.3/lib/rack/protection/json_csrf.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33248731">
@@ -1179,16 +1251,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Entity/Customers.rb">
+    <entry file="file://$PROJECT_DIR$/Entity/Orders.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
+          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
           <folding />
 >>>>>>> a249256c34e29ea6a1d616565fd0751bce5cfc67
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Entity/Orders.rb">
+    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.1.5/gems/sinatra-1.4.6/lib/sinatra/show_exceptions.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3322884">
           <caret line="28" column="4" selection-start-line="28" selection-start-column="4" selection-end-line="28" selection-end-column="4" />
@@ -1199,14 +1271,31 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
 <<<<<<< HEAD
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+=======
+<<<<<<< HEAD
           <caret line="630" column="4" selection-start-line="630" selection-start-column="4" selection-end-line="630" selection-end-column="4" />
 =======
           <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
 >>>>>>> a249256c34e29ea6a1d616565fd0751bce5cfc67
+>>>>>>> 0511a20dbd33a3d70e504dc63d7f34a9c06b2bb3
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.1.5@global/gems/ruby-debug-ide-0.4.28/bin/rdebug-ide">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="120" column="0" selection-start-line="120" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.1.5/gems/rack-1.6.1/lib/rack/handler/webrick.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33164558">
+          <caret line="88" column="0" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
+=======
 <<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/config/environments/staging.rb">
       <provider selected="true" editor-type-id="text-editor">
@@ -1255,10 +1344,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+>>>>>>> 0511a20dbd33a3d70e504dc63d7f34a9c06b2bb3
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/EcmaScript5.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="173" column="0" selection-start-line="173" selection-start-column="0" selection-end-line="173" selection-end-column="0" />
+=======
     <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.1.5/gems/bigcommerce-0.10.0/lib/bigcommerce/resource.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1270,29 +1366,39 @@
           <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
 >>>>>>> a249256c34e29ea6a1d616565fd0751bce5cfc67
           <folding />
+>>>>>>> 0511a20dbd33a3d70e504dc63d7f34a9c06b2bb3
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.1.5@global/gems/ruby-debug-ide-0.4.28/bin/rdebug-ide">
+    <entry file="file://$PROJECT_DIR$/config.ru">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
+<<<<<<< HEAD
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+=======
 <<<<<<< HEAD
           <caret line="41" column="29" selection-start-line="41" selection-start-column="29" selection-end-line="41" selection-end-column="29" />
 =======
           <caret line="120" column="0" selection-start-line="120" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
+>>>>>>> 0511a20dbd33a3d70e504dc63d7f34a9c06b2bb3
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.1.5/gems/rack-1.6.1/lib/rack/handler/webrick.rb">
+    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.1.5/gems/rack-protection-1.5.3/lib/rack/protection/path_traversal.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33164558">
+<<<<<<< HEAD
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+=======
           <caret line="88" column="0" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
 >>>>>>> a249256c34e29ea6a1d616565fd0751bce5cfc67
+>>>>>>> 0511a20dbd33a3d70e504dc63d7f34a9c06b2bb3
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.1.5/gems/sinatra-1.4.6/lib/sinatra/base.rb">
+    <entry file="file://$PROJECT_DIR$/Entity/Customers.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.84918034">
           <caret line="135" column="36" selection-start-line="133" selection-start-column="8" selection-end-line="136" selection-end-column="50" />
@@ -1304,14 +1410,40 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
 <<<<<<< HEAD
+          <caret line="16" column="17" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
+=======
+<<<<<<< HEAD
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
 =======
           <caret line="1086" column="0" selection-start-line="1086" selection-start-column="0" selection-end-line="1086" selection-end-column="0" />
 >>>>>>> a249256c34e29ea6a1d616565fd0751bce5cfc67
+>>>>>>> 0511a20dbd33a3d70e504dc63d7f34a9c06b2bb3
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.1.5/gems/rack-protection-1.5.3/lib/rack/protection/xss_header.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5063291">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/big_app.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="156" column="0" selection-start-line="156" selection-start-column="0" selection-end-line="156" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.1.5/gems/sinatra-1.4.6/lib/sinatra/base.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1016" column="0" selection-start-line="1016" selection-start-column="0" selection-end-line="1016" selection-end-column="0" />
+=======
 <<<<<<< HEAD
     <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.1.5/gems/rest-client-1.6.8/lib/restclient/resource.rb">
       <provider selected="true" editor-type-id="text-editor">
@@ -1323,6 +1455,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="173" column="0" selection-start-line="173" selection-start-column="0" selection-end-line="173" selection-end-column="0" />
 >>>>>>> a249256c34e29ea6a1d616565fd0751bce5cfc67
+>>>>>>> 0511a20dbd33a3d70e504dc63d7f34a9c06b2bb3
           <folding />
         </state>
       </provider>
@@ -1367,15 +1500,17 @@
 =======
     <entry file="file://$PROJECT_DIR$/views/index.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="12.610169">
-          <caret line="258" column="14" selection-start-line="258" selection-start-column="14" selection-end-line="258" selection-end-column="14" />
+        <state vertical-scroll-proportion="3.2749326">
+          <caret line="279" column="43" selection-start-line="279" selection-start-column="43" selection-end-line="279" selection-end-column="43" />
           <folding>
-            <marker date="1433932916739" expanded="true" signature="10006:10019" placeholder="..." />
+            <marker date="1433995963390" expanded="true" signature="10006:10019" placeholder="..." />
           </folding>
 >>>>>>> a249256c34e29ea6a1d616565fd0751bce5cfc67
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+=======
     <entry file="file://$PROJECT_DIR$/big_app.rb">
       <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
@@ -1407,5 +1542,6 @@
         </state>
       </provider>
     </entry>
+>>>>>>> 0511a20dbd33a3d70e504dc63d7f34a9c06b2bb3
   </component>
 </project>

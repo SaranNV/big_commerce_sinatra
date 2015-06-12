@@ -18,18 +18,27 @@ class BigApp < Sinatra::Base
   before  do
     unless request.env['PATH_INFO'] == '/'
       request.body.rewind
-      @payload = JSON.parse(request.body.read).with_indifferent_access
-      puts "payload value"
-      puts "#{@payload}"
-      @config1 = Bigcommerce::Api.new({
-                                      :username => @payload['parameters']['api_username'],
-                                      :store_url => @payload['parameters']['api_path'],
-                                      :api_key => @payload['parameters']['api_token']
-                                  })
-      @headers = {"Content-Type" => "application/json", 'Accept' => 'application/json'}
+      request_val = request.body.read
+      unless request_val == ""
+        @payload = JSON.parse(request_val).with_indifferent_access
+
+        @config1 = Bigcommerce::Api.new({
+                                        :username => @payload['parameters']['api_username'],
+                                        :store_url => @payload['parameters']['api_path'],
+                                        :api_key => @payload['parameters']['api_token']
+                                    })
+        @headers = {"Content-Type" => "application/json", 'Accept' => 'application/json'}
+      end
     end
   end
 
+  get '/' do
+    erb :login
+  end
+
+  get '/demo' do
+    erb :index
+  end
 
   post '/add_product' do
     content_type :json
@@ -61,11 +70,12 @@ class BigApp < Sinatra::Base
   end
 
   post '/add_customer' do
+    content_type :json
     add_customer_data = @payload['customer']
       customer_data = Entity::Customers.post_format_data(add_customer_data)
       response = Service.request_bigapp :post, "/customers", customer_data, @headers, @config1
-      # return JSON.pretty_generate(response)
-      response.to_json
+      return JSON.pretty_generate(response)
+      # response.to_json
   end
 
   post '/get_customers' do
@@ -99,27 +109,31 @@ class BigApp < Sinatra::Base
   post '/get_shipments' do
     order_ids = []
     shipments = []
-    @payload['parameters']['status_id'] = '2'; #shipped
+    shipped_order_ids = []
+    partially_shipped_order_ids = []
+    @payload['status_id'] = '2'; #shipped
     min_date_modified =  @payload['parameters']['min_date_modified']
     order_options = min_date_modified
-    orders = Service.request_bigapp :get, "/orders",  {:min_date_modified => order_options,:status_id =>  @payload['parameters']['status_id'] }, @headers, @config1
-    unless orders.empty?
-      orders.each do |order|
-        order_ids << order['id']
+    shipped_orders = Service.request_bigapp :get, "/orders",  {:min_date_modified => order_options,:status_id =>  @payload['status_id'] }, @headers, @config1
+    unless shipped_orders.empty?
+      shipped_orders.each do |order|
+        shipped_order_ids << order['id']
       end
-      order_ids
+      shipped_order_ids
     end
 
-    @payload['parameters']['status_id'] = '3'; #partially shipped
+    @payload['status_id'] = '3'; #partially shipped
     min_date_modified =  @payload['parameters']['min_date_modified']
     order_options = min_date_modified
-    orders = Service.request_bigapp :get, "/orders",  {:min_date_modified => order_options,:status_id =>  @payload['parameters']['status_id'] }, @headers, @config1
-    unless orders.empty?
-      orders.each do |order|
-        order_ids << order['id']
-      end
-      order_ids
+    partially_shipped_orders = Service.request_bigapp :get, "/orders",  {:min_date_modified => order_options,:status_id =>  @payload['status_id'] }, @headers, @config1
+    unless partially_shipped_orders.empty?
+      partially_shipped_orders.each do |order|
+        partially_shipped_order_ids << order['id']
+       end
+      partially_shipped_order_ids
     end
+    #   merge both shipped order ids and partially shipped_order_ids
+    order_ids = shipped_order_ids + partially_shipped_order_ids
     min_date_modified =  @payload['parameters']['min_date_modified']
     order_options = min_date_modified
     content_type :json
@@ -128,16 +142,17 @@ class BigApp < Sinatra::Base
       order_ids.each do |order_id|
         response = Service.request_bigapp :get, "/orders/#{order_id}/shipments",  {:min_date_modified => order_options }, @headers, @config1
         my_json = {
-            :request_id => payload['request_id'],
-            :parameters => payload['parameters'],
-            :shipments => response.to_json
+            :request_id => @payload['request_id'],
+            :parameters => @payload['parameters'],
+            :shipments => response
         }
         shipments << my_json
 
       end
-      pretty_json =  JSON.pretty_generate(shipments)
-      pretty_json
+
     end
+    pretty_json =  JSON.pretty_generate(shipments)
+    pretty_json
   end
 
 
@@ -149,12 +164,6 @@ class BigApp < Sinatra::Base
       response = Service.request_bigapp :get, "/orders/#{order_id}/shipments/#{shipment_id}",{:limit => '100'}, headers, @config1
       Entity::Shipments.get_format_shipment_data(response,@payload)
   end
-
-  get '/' do
-    erb :index
-  end
-
-
 end
 
 
@@ -205,36 +214,15 @@ class Service
     elsif response.code == 409
       exception = JSON.parse response
       exception.each do |response_error|
-        return response_error['details']['conflict_reason']
+        return {:error => response_error['details']['conflict_reason']}
       end
     elsif response.code == 400
       exception = JSON.parse response
       exception.each do |response_error|
-        return response_error['message']
+        return {:error => response_error['message']}
       end
     end
   end
-
-  def self.list_all_order(config,headers)
-    @config = config.connection.configuration
-    resource_options = {
-        :user => @config[:username],
-        :password => @config[:api_key],
-        :headers => headers
-    }
-
-    rest_client = RestClient::Resource.new "#{@config[:store_url]}/api/v2/orders.json", resource_options
-    response = rest_client.get  :accept => :json, :content_type => :json
-
-
-    if (200..201) === response.code
-      JSON.parse response
-
-    elsif response.code == 204
-      return []
-    end
-  end
-
   class ResponseError < StandardError;
   end
 
