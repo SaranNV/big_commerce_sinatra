@@ -139,18 +139,19 @@ class BigApp < Sinatra::Base
     content_type :json
     puts "#{ payload['request_id']}"
     unless order_ids.empty?
+      shipment_response = []
       order_ids.each do |order_id|
         response = Service.request_bigapp :get, "/orders/#{order_id}/shipments",  {:min_date_modified => order_options }, @headers, @config1
-        my_json = {
-            :request_id => @payload['request_id'],
-            :parameters => @payload['parameters'],
-            :shipments => response
-        }
-        shipments << my_json
-
+        shipment_response << response
       end
 
     end
+    my_json = {
+        :request_id => @payload['request_id'],
+        :parameters => @payload['parameters'],
+        :shipments => shipment_response
+    }
+    shipments << my_json
     pretty_json =  JSON.pretty_generate(shipments)
     pretty_json
   end
