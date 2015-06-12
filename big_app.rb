@@ -142,7 +142,7 @@ class BigApp < Sinatra::Base
       shipment_response = []
       order_ids.each do |order_id|
         response = Service.request_bigapp :get, "/orders/#{order_id}/shipments",  {:min_date_modified => order_options }, @headers, @config1
-        shipment_response << response
+        shipment_response += response
       end
 
     end
