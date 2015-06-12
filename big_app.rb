@@ -122,18 +122,19 @@ class BigApp < Sinatra::Base
       shipped_order_ids
     end
 
-    @payload['status_id'] = '3'; #partially shipped
-    min_date_modified =  @payload['parameters']['min_date_modified']
-    order_options = min_date_modified
-    partially_shipped_orders = Service.request_bigapp :get, "/orders",  {:min_date_modified => order_options,:status_id =>  @payload['status_id'] }, @headers, @config1
-    unless partially_shipped_orders.empty?
-      partially_shipped_orders.each do |order|
-        partially_shipped_order_ids << order['id']
-       end
-      partially_shipped_order_ids
-    end
-    #   merge both shipped order ids and partially shipped_order_ids
-    order_ids = shipped_order_ids + partially_shipped_order_ids
+    # @payload['status_id'] = '3'; #partially shipped
+    # min_date_modified =  @payload['parameters']['min_date_modified']
+    # order_options = min_date_modified
+    # partially_shipped_orders = Service.request_bigapp :get, "/orders",  {:min_date_modified => order_options,:status_id =>  @payload['status_id'] }, @headers, @config1
+    # unless partially_shipped_orders.empty?
+    #   partially_shipped_orders.each do |order|
+    #     partially_shipped_order_ids << order['id']
+    #    end
+    #   partially_shipped_order_ids
+    # end
+    # #   merge both shipped order ids and partially shipped_order_ids
+    # order_ids = shipped_order_ids + partially_shipped_order_ids
+    order_ids = shipped_order_ids
     min_date_modified =  @payload['parameters']['min_date_modified']
     order_options = min_date_modified
     content_type :json
