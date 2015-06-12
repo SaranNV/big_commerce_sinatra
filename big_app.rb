@@ -153,7 +153,7 @@ class BigApp < Sinatra::Base
     }
     shipments << my_json
     pretty_json =  JSON.pretty_generate(shipments)
-    pretty_json
+    return pretty_json
   end
 
 
