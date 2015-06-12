@@ -5,6 +5,7 @@
   <label><span>Username:</span><input type="text" class="user_name" name="api_username" value="" placeholder="username"></label>
   <label><span>Path:</span><input type="text" class="store_path" name="api_path" value="" placeholder="store_url"></label>
   <label><span>Token:</span><input type="text" class="token" name="api_token" value="" placeholder="api_token"></label>
+  <p><button type="button" class="small right show" data-showelement=".api_connection_info">Cancel</button></p>
 </div>
 <p><button type="button" class="small right showbutton" data-showelement=".api_connection_info">Edit api connection info</button></p>
 <%
@@ -303,6 +304,11 @@
         var data_show_ele = $(this).attr('data-showelement');
         $(data_show_ele).slideDown();
         $(this).parent().fadeOut();
-        console.log( this.value );
+    });
+    $('.show').on('click',function(){
+        var data_show_ele = $(this).attr('data-showelement');
+        $(data_show_ele).slideUp();
+        $(this).children().fadeIn();
+        $('.showbutton').closest('p').css('display', 'inline');
     });
 </script>

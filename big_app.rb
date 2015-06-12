@@ -21,7 +21,7 @@ class BigApp < Sinatra::Base
   # end
 
   before  do
-    unless request.env['PATH_INFO'] == '/'
+    unless request.env['PATH_INFO'] == '/' ||  '/demo'
       request.body.rewind
       @payload = JSON.parse(request.body.read).with_indifferent_access
       puts "payload value"
@@ -35,6 +35,13 @@ class BigApp < Sinatra::Base
     end
   end
 
+  get '/' do
+    erb :login
+  end
+
+  get '/demo' do
+    erb :index
+  end
 
   post '/add_product' do
     content_type :json
@@ -159,12 +166,6 @@ class BigApp < Sinatra::Base
       response = Service.request_bigapp :get, "/orders/#{order_id}/shipments/#{shipment_id}",{:limit => '100'}, headers, @config1
       Entity::Shipments.get_format_shipment_data(response,@payload)
   end
-
-  get '/' do
-    erb :index
-  end
-
-
 end
 
 

@@ -219,3 +219,26 @@ button.small:hover {opacity:1;}
 .api_connection_info + p button {margin-right:20px;}
 .api_connection_info span {display:block;font-size:11px;color:rgba(0,0,0,.5);}
 
+ .form {
+     background: #eceeee;
+     border: 1px solid #42464b;
+     border-radius: 6px;
+     height: 196px;
+     margin: 20px auto 0;
+     width: 298px;
+ }
+
+ .username {
+     margin: 7px;
+ }
+
+ .password {
+     margin: 7px;
+ }
+
+ p{
+     margin-bottom: 4px;
+     margin-left: 6px;
+ }
+
+
