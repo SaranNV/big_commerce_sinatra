@@ -34,21 +34,13 @@ class BigApp < Sinatra::Base
   post '/add_product' do
     content_type :json
     add_product_data = @payload['product']
-    add_product_data.each do |product_options|
-         response = Service.request_bigapp :post, "/products", product_options, @headers, @config1
+    @category = Service.get_or_create_category(add_product_data['categories'].first,@headers, @config1)
+    add_product_data['categories'] = [
+             @category
+         ]
+         response = Service.request_bigapp :post, "/products", add_product_data, @headers, @config1
          puts response
          return JSON.pretty_generate(response)
-    end
-  end
-
-  post '/get_products_demo' do
-    get_product_data = @payload['products']
-
-     get_product_data.each do |product_options|
-       last_modified_date = product_options['min_date_created']
-      response = Service.request_bigapp :get, "/products", product_options, @headers, @config1
-      return JSON.pretty_generate(response.last['date_modified'])
-     end
   end
 
   post '/get_products' do
@@ -62,11 +54,9 @@ class BigApp < Sinatra::Base
 
   post '/update_product' do
     update_product_data = @payload['product']
-    update_product_data.each do |product_options|
-      product_detail = product_options.except(:product_id)
-      response = Service.request_bigapp :put, "/products/#{product_options['product_id']}", product_detail, @headers, @config
+      product_detail = update_product_data.except(:product_id)
+      response = Service.request_bigapp :put, "/products/#{update_product_data['product_id']}", product_detail, @headers, @config
       return JSON.pretty_generate(response)
-    end
   end
 
   post '/add_customer' do
@@ -89,11 +79,9 @@ class BigApp < Sinatra::Base
 
   post '/add_order' do
     add_order_data = @payload['order']
-    add_order_data.each do |order_options|
-      response = Service.request_bigapp :post, "/orders", order_options, @headers, @config1
+      response = Service.request_bigapp :post, "/orders", add_order_data, @headers, @config1
       puts response
       return JSON.pretty_generate(response)
-    end
   end
 
 
@@ -188,12 +176,12 @@ class Service
     elsif response.code == 409
       exception = JSON.parse response
       exception.each do |response_error|
-        return response_error['details']['conflict_reason']
+        return {:error => response_error['details']['conflict_reason']}
       end
     elsif response.code == 400
       exception = JSON.parse response
       exception.each do |response_error|
-        return response_error['message']
+        return {:error => response_error['message']}
       end
     end
   end
@@ -217,6 +205,20 @@ class Service
       return []
     end
   end
+
+  def self.get_or_create_category(category,headers,config)
+    category_name = category
+    response = Service.request_bigapp :get, "/categories",{:name=>category_name},headers,config
+    unless response.present?
+      #if the response is empty  category was not exist on store,so we are creating new one"
+      response =Service.request_bigapp :post, "/categories",{:name=>category_name},headers,config
+      category_id = response['id']
+    else
+      category_id = response.first['id']
+    end
+    category_id
+  end
+
 
   class ResponseError < StandardError;
   end
