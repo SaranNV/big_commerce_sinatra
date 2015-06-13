@@ -101,10 +101,6 @@
           'default_input' => {
                   'request_id' => '',
                   'parameters' => {
-<<<<<<< HEAD
-
-=======
->>>>>>> 0ad0827aaa664c2e680c9a53bb0125491baefd28
                   },
                   'order' => {
                           "products"=>[{
@@ -127,9 +123,7 @@
                           'phone' => '',
                           'email' => 'some.person@example.com',
                           },
-
                   },
-
           },
          'doc_link' => 'https://developer.bigcommerce.com/api/stores/v2/orders#create-order'
         },
@@ -138,10 +132,6 @@
           'default_input' => {
                   'request_id' => '',
                   'parameters' => {
-<<<<<<< HEAD
-
-=======
->>>>>>> 0ad0827aaa664c2e680c9a53bb0125491baefd28
                   },
                   'customer' => {
                           'firstname' => 'Some',
@@ -206,7 +196,11 @@
         var $button = $form.find('button[type=submit]');
         if(!$button.is(':disabled'))
             if (user_name === "" || store_url === "" || token === "" ){
-                alert("Check user_name,store_url and token ")
+                alert("Check user_name,store_url and token ");
+                var data_show_ele = $(".api_connection_info");
+                $(data_show_ele).slideDown();
+                $('.showbutton').closest('p').css('display', 'none');
+
             }else{
                 WombatTestFront.request($form);
             }
@@ -311,14 +305,11 @@
         var data_show_ele = $(this).attr('data-showelement');
         $(data_show_ele).slideDown();
         $(this).parent().fadeOut();
-<<<<<<< HEAD
-=======
     });
     $('.show').on('click',function(){
         var data_show_ele = $(this).attr('data-showelement');
         $(data_show_ele).slideUp();
         $(this).children().fadeIn();
         $('.showbutton').closest('p').css('display', 'inline');
->>>>>>> 0ad0827aaa664c2e680c9a53bb0125491baefd28
     });
 </script>
