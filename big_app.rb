@@ -56,11 +56,9 @@ class BigApp < Sinatra::Base
 
   post '/update_product' do
     update_product_data = @payload['product']
-    update_product_data.each do |product_options|
-      product_detail = product_options.except(:product_id)
+      product_detail = update_product_data.except(:product_id)
       response = Service.request_bigapp :put, "/products/#{product_options['product_id']}", product_detail, @headers, @config1
       return JSON.pretty_generate(response)
-    end
   end
 
   post '/add_customer' do
@@ -83,12 +81,10 @@ class BigApp < Sinatra::Base
 
   post '/add_order' do
     add_order_data = @payload['order']
-    add_order_data.each do |order_options|
-      response = Service.request_bigapp :post, "/orders", order_options, @headers, @config1
+      response = Service.request_bigapp :post, "/orders", add_order_data, @headers, @config1
       puts response
       return JSON.pretty_generate(response)
     end
-  end
 
 
   post '/get_orders' do
