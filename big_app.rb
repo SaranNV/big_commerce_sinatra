@@ -18,9 +18,7 @@ class BigApp < Sinatra::Base
   before  do
     unless request.env['PATH_INFO'] == '/'
       request.body.rewind
-      request_val = request.body.read
-      unless request_val == ""
-        @payload = JSON.parse(request_val).with_indifferent_access
+        @payload = JSON.parse(request.body.read).with_indifferent_access
 
         @config1 = Bigcommerce::Api.new({
                                         :username => @payload['parameters']['api_username'],
@@ -28,17 +26,13 @@ class BigApp < Sinatra::Base
                                         :api_key => @payload['parameters']['api_token']
                                     })
         @headers = {"Content-Type" => "application/json", 'Accept' => 'application/json'}
-      end
     end
   end
 
   get '/' do
-    erb :login
-  end
-
-  get '/demo' do
     erb :index
   end
+
 
   post '/add_product' do
     content_type :json
