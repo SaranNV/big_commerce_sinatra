@@ -1,11 +1,11 @@
 <% ROOTURL = "#{request.env['rack.url_scheme']}://#{request.env['HTTP_HOST']}" %>
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="jquery-1.11.1.min.js" type="text/javascript"></script>
 <link href="<%= url('/header.css') %>" rel="stylesheet" type="text/css" />
 <div class="block api_connection_info" style="display:none;">
   <label><span>Username:</span><input type="text" class="user_name" name="api_username" value="" placeholder="username"></label>
   <label><span>Path:</span><input type="text" class="store_path" name="api_path" value="" placeholder="store_url"></label>
   <label><span>Token:</span><input type="text" class="token" name="api_token" value="" placeholder="api_token"></label>
+  <p><button type="button" class="small right show" data-showelement=".api_connection_info">Cancel</button></p>
 </div>
 <p><button type="button" class="small right showbutton" data-showelement=".api_connection_info">Edit api connection info</button></p>
 <%
@@ -101,7 +101,10 @@
           'default_input' => {
                   'request_id' => '',
                   'parameters' => {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0ad0827aaa664c2e680c9a53bb0125491baefd28
                   },
                   'order' => {
                           "products"=>[{
@@ -135,7 +138,10 @@
           'default_input' => {
                   'request_id' => '',
                   'parameters' => {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0ad0827aaa664c2e680c9a53bb0125491baefd28
                   },
                   'customer' => {
                           'firstname' => 'Some',
@@ -238,8 +244,10 @@
             request_object.parameters.api_path = decodeURIComponent($('.api_connection_info input[name=api_path]').val());
             request_object.parameters.api_token = encodeURIComponent($('.api_connection_info input[name=api_token]').val());
             request_input = JSON.stringify(request_object,null,null);
+                console.log(request_input);
 
              }
+
             catch (e) { }
 
             if(!request_object) {
@@ -303,5 +311,14 @@
         var data_show_ele = $(this).attr('data-showelement');
         $(data_show_ele).slideDown();
         $(this).parent().fadeOut();
+<<<<<<< HEAD
+=======
+    });
+    $('.show').on('click',function(){
+        var data_show_ele = $(this).attr('data-showelement');
+        $(data_show_ele).slideUp();
+        $(this).children().fadeIn();
+        $('.showbutton').closest('p').css('display', 'inline');
+>>>>>>> 0ad0827aaa664c2e680c9a53bb0125491baefd28
     });
 </script>

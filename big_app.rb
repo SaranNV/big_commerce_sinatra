@@ -19,17 +19,20 @@ class BigApp < Sinatra::Base
   before  do
     unless request.env['PATH_INFO'] == '/'
       request.body.rewind
-      @payload = JSON.parse(request.body.read).with_indifferent_access
-      # connections = @config
-      @config1 = Bigcommerce::Api.new({
-                                      :store_url => @payload['parameters']['api_path'],
-                                      :username => @payload['parameters']['api_username'],
-                                      :api_key => @payload['parameters']['api_token']
-                                  })
-      @headers = {"Content-Type" => "application/json", 'Accept' => 'application/json'}
+        @payload = JSON.parse(request.body.read).with_indifferent_access
+
+        @config1 = Bigcommerce::Api.new({
+                                        :username => @payload['parameters']['api_username'],
+                                        :store_url => @payload['parameters']['api_path'],
+                                        :api_key => @payload['parameters']['api_token']
+                                    })
+        @headers = {"Content-Type" => "application/json", 'Accept' => 'application/json'}
     end
   end
 
+  get '/' do
+    erb :index
+  end
 
   post '/add_product' do
     content_type :json
@@ -54,9 +57,9 @@ class BigApp < Sinatra::Base
 
   post '/update_product' do
     update_product_data = @payload['product']
-      product_detail = update_product_data.except(:product_id)
-      response = Service.request_bigapp :put, "/products/#{update_product_data['product_id']}", product_detail, @headers, @config
-      return JSON.pretty_generate(response)
+    product_detail = update_product_data.except(:product_id)
+    response = Service.request_bigapp :put, "/products/#{update_product_data['product_id']}", product_detail, @headers, @config
+    return JSON.pretty_generate(response)
   end
 
   post '/add_customer' do
@@ -93,7 +96,6 @@ class BigApp < Sinatra::Base
     Entity::Orders.get_format_order_data(response,@payload)
   end
 
-
   post '/get_shipments' do
     content_type :json
     resp_val = []
@@ -112,7 +114,6 @@ class BigApp < Sinatra::Base
     return JSON.pretty_generate(shipment_json)
   end
 
-
   post '/get_shipment' do
        content_type :json
       limit = @payload['parameters']['limit']
@@ -121,12 +122,6 @@ class BigApp < Sinatra::Base
       response = Service.request_bigapp :get, "/orders/#{order_id}/shipments/#{shipment_id}",{:limit => '100'}, headers, @config1
       Entity::Shipments.get_format_shipment_data(response,@payload)
   end
-
-  get '/' do
-    erb :index
-  end
-
-
 end
 
 
@@ -144,12 +139,12 @@ class Service
         :password => @config[:api_key],
         :headers => headers
     }
-
+    
     rest_client = RestClient::Resource.new "#{@config[:store_url]}/api/v2#{path}.json", resource_options
 
     response = case method
                  when :get then
-                   rest_client.get :params => options, :accept => :json, :content_type => :json
+                   rest_client.get :params => options, :content_type => :json, :accept => :json
                  when :post then
                    begin
                      rest_client.post(options.to_json, :content_type => :json, :accept => :json)

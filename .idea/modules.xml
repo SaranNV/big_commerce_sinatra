@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/.idea/bigcommerce_sinatra.iml" filepath="$PROJECT_DIR$/.idea/bigcommerce_sinatra.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/.idea/big_commerce_sinatra.iml" filepath="$PROJECT_DIR$/.idea/big_commerce_sinatra.iml" />
+>>>>>>> 07f9f54f661a0e583ee0e0c0c0f564ea0ea6a840
     </modules>
   </component>
 </project>

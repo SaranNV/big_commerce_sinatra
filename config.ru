@@ -1,4 +1,4 @@
-require './big_app'
 
+require './big_app'
 
 run BigApp
