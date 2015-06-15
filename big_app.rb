@@ -123,8 +123,13 @@ class BigApp < Sinatra::Base
     content_type :json
     add_shipment_data = @payload['shipment']
     order_id = @payload['shipment']['order_id']
+    get_order_response = Service.list_all_order(@config1,@headers)
+    order_response = get_order_response.find{|order| order['id'] == order_id.to_i}
+    if order_response != []
     @order_address = Service.request_bigapp :get, "/orders/#{order_id}/shipping_addresses",  @headers, @config1
     add_shipment_data['order_address_id'] = @order_address.first['id']
+    @order_product = Service.request_bigapp :get, "/orders/#{order_id}/products",  @headers, @config1
+    add_shipment_data['items'].first['order_product_id'] = order_id
     add_shipment_data = add_shipment_data.except(:order_id)
     response = Service.request_bigapp :get, "/orders/#{order_id}/shipments", add_shipment_data, @headers, @config1
 
@@ -136,6 +141,9 @@ class BigApp < Sinatra::Base
       add_shipment_data = add_shipment_data.except(:items)
       shipment_response = Service.request_bigapp :put, "/orders/#{order_id}/shipments/#{shipment_id}", add_shipment_data, @headers, @config1
       return JSON.pretty_generate(shipment_response)
+    end
+    else
+      return []
     end
   end
 
@@ -226,7 +234,6 @@ class Service
       return []
     end
   end
-
   class ResponseError < StandardError;
   end
 

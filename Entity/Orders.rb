@@ -11,7 +11,7 @@ module Entity
       pretty_json
     end
 
-    def format_wombat_object(responses)
+    def self.format_wombat_object(responses)
       datas = []
       responses.each do |response|
         data ={
