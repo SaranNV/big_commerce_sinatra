@@ -56,34 +56,33 @@ class BigApp < Sinatra::Base
 
   post '/update_product' do
     update_product_data = @payload['product']
-      product_detail = update_product_data.except(:product_id)
-      response = Service.request_bigapp :put, "/products/#{product_options['product_id']}", product_detail, @headers, @config1
-      return JSON.pretty_generate(response)
+    product_detail = update_product_data.except(:product_id)
+    response = Service.request_bigapp :put, "/products/#{update_product_data['product_id']}", product_detail, @headers, @config1
+    return JSON.pretty_generate(response)
   end
 
   post '/add_customer' do
     content_type :json
     add_customer_data = @payload['customer']
-      customer_data = Entity::Customers.post_format_data(add_customer_data)
-      response = Service.request_bigapp :post, "/customers", customer_data, @headers, @config1
-      return JSON.pretty_generate(response)
-      # response.to_json
+    customer_data = Entity::Customers.post_format_data(add_customer_data)
+    response = Service.request_bigapp :post, "/customers", customer_data, @headers, @config1
+    return JSON.pretty_generate(response)
   end
 
   post '/get_customers' do
     content_type :json
     get_customer_data =  @payload['parameters']['min_date_created']
     customer_options = get_customer_data
-      response = Service.request_bigapp :get, "/customers", {:min_date_created => customer_options}, @headers, @config1
-      Entity::Customers.get_format_customer_data(response,@payload)
+    response = Service.request_bigapp :get, "/customers", {:min_date_created => customer_options}, @headers, @config1
+    Entity::Customers.get_format_customer_data(response,@payload)
   end
 
 
   post '/add_order' do
     add_order_data = @payload['order']
-      response = Service.request_bigapp :post, "/orders", add_order_data, @headers, @config1
-      puts response
-      return JSON.pretty_generate(response)
+    response = Service.request_bigapp :post, "/orders", add_order_data, @headers, @config1
+    puts response
+    return JSON.pretty_generate(response)
     end
 
 
@@ -93,6 +92,13 @@ class BigApp < Sinatra::Base
     order_options = min_date_modified
     response = Service.request_bigapp :get, "/orders",  {:min_date_modified => order_options }, @headers, @config1
     Entity::Orders.get_format_order_data(response,@payload)
+  end
+
+  post '/update_order' do
+    update_order_data = @payload['order']
+    order_detail = update_order_data.except(:order_id)
+    response = Service.request_bigapp :put, "/orders/#{update_order_data['order_id']}", order_detail, @headers, @config1
+    return JSON.pretty_generate(response)
   end
 
   post '/get_shipments' do
@@ -113,57 +119,25 @@ class BigApp < Sinatra::Base
     return JSON.pretty_generate(shipment_json)
   end
 
-  #
-  # post '/get_shipments' do
-  #   order_ids = []
-  #   shipments = []
-  #   shipped_order_ids = []
-  #   partially_shipped_order_ids = []
-  #   @payload['status_id'] = '2'; #shipped
-  #   min_date_modified =  @payload['parameters']['min_date_modified']
-  #   order_options = min_date_modified
-  #   shipped_orders = Service.request_bigapp :get, "/orders",  {:min_date_modified => order_options,:status_id =>  @payload['status_id'] }, @headers, @config1
-  #   unless shipped_orders.empty?
-  #     shipped_orders.each do |order|
-  #       shipped_order_ids << order['id']
-  #     end
-  #     shipped_order_ids
-  #   end
-  #
-  #   @payload['status_id'] = '3'; #partially shipped
-  #   min_date_modified =  @payload['parameters']['min_date_modified']
-  #   order_options = min_date_modified
-  #   partially_shipped_orders = Service.request_bigapp :get, "/orders",  {:min_date_modified => order_options,:status_id =>  @payload['status_id'] }, @headers, @config1
-  #   unless partially_shipped_orders.empty?
-  #     partially_shipped_orders.each do |order|
-  #       partially_shipped_order_ids << order['id']
-  #      end
-  #     partially_shipped_order_ids
-  #   end
-  #   #   merge both shipped order ids and partially shipped_order_ids
-  #   order_ids = shipped_order_ids + partially_shipped_order_ids
-  #   min_date_modified =  @payload['parameters']['min_date_modified']
-  #   order_options = min_date_modified
-  #   content_type :json
-  #   puts "#{ payload['request_id']}"
-  #   unless order_ids.empty?
-  #     shipment_response = []
-  #     order_ids.each do |order_id|
-  #       response = Service.request_bigapp :get, "/orders/#{order_id}/shipments",  {:min_date_modified => order_options }, @headers, @config1
-  #       shipment_response += response
-  #     end
-  #
-  #   end
-  #   my_json = {
-  #       :request_id => @payload['request_id'],
-  #       :parameters => @payload['parameters'],
-  #       :shipments => shipment_response
-  #   }
-  #   shipments << my_json
-  #   pretty_json =  JSON.pretty_generate(shipments)
-  #   return pretty_json
-  # end
+  post '/add_shipment' do
+    content_type :json
+    add_shipment_data = @payload['shipment']
+    order_id = @payload['shipment']['order_id']
+    @order_address = Service.request_bigapp :get, "/orders/#{order_id}/shipping_addresses",  @headers, @config1
+    add_shipment_data['order_address_id'] = @order_address.first['id']
+    add_shipment_data = add_shipment_data.except(:order_id)
+    response = Service.request_bigapp :get, "/orders/#{order_id}/shipments", add_shipment_data, @headers, @config1
 
+    if response.empty?
+      shipment_response = Service.request_bigapp :post, "/orders/#{order_id}/shipments", add_shipment_data, @headers, @config1
+      return JSON.pretty_generate(shipment_response)
+    else
+      shipment_id = response.first['id']
+      add_shipment_data = add_shipment_data.except(:items)
+      shipment_response = Service.request_bigapp :put, "/orders/#{order_id}/shipments/#{shipment_id}", add_shipment_data, @headers, @config1
+      return JSON.pretty_generate(shipment_response)
+    end
+  end
 
   post '/get_shipment' do
        content_type :json
