@@ -32,65 +32,65 @@ class BigApp < Sinatra::Base
     erb :index
   end
 
-
   post '/add_product' do
     content_type :json
     add_product_data = @payload['product']
-    # add_product_data.each do |product_options|
-         response = Service.request_bigapp :post, "/products", add_product_data, @headers, @config1
-         puts response
-         return JSON.pretty_generate(response).to_json
-    # end
+    @category = Service.get_or_create_category(add_product_data['categories'].first,@headers, @config1)
+    add_product_data['categories'] = [
+             @category
+    ]
+     product_data = Service.request_bigapp :post, "/products", add_product_data, @headers, @config1
+     return JSON.pretty_generate(product_data)
   end
-
 
   post '/get_products' do
     content_type :json
     min_date_modified = @payload['parameters']['min_date_modified']
     product_options = min_date_modified
-    response = Service.request_bigapp :get, "/products", {:min_date_modified => product_options }, @headers, @config1
-    Entity::Products.get_format_product_data(response,@payload)
+    get_products_data = Service.request_bigapp :get, "/products", {:min_date_modified => product_options }, @headers, @config1
+    Entity::Products.get_format_product_data(get_products_data,@payload)
   end
 
 
   post '/update_product' do
     update_product_data = @payload['product']
     product_detail = update_product_data.except(:product_id)
-    response = Service.request_bigapp :put, "/products/#{update_product_data['product_id']}", product_detail, @headers, @config1
-    return JSON.pretty_generate(response)
+    product_data = Service.request_bigapp :put, "/products/#{update_product_data['product_id']}", product_detail, @headers, @config
+    return JSON.pretty_generate(product_data)
   end
 
   post '/add_customer' do
     content_type :json
     add_customer_data = @payload['customer']
     customer_data = Entity::Customers.post_format_data(add_customer_data)
-    response = Service.request_bigapp :post, "/customers", customer_data, @headers, @config1
-    return JSON.pretty_generate(response)
+    customer_details = Service.request_bigapp :post, "/customers", customer_data, @headers, @config1
+    return JSON.pretty_generate(customer_details)
   end
 
   post '/get_customers' do
     content_type :json
     get_customer_data =  @payload['parameters']['min_date_created']
     customer_options = get_customer_data
-    response = Service.request_bigapp :get, "/customers", {:min_date_created => customer_options}, @headers, @config1
-    Entity::Customers.get_format_customer_data(response,@payload)
+    customer_details = Service.request_bigapp :get, "/customers", {:min_date_created => customer_options}, @headers, @config1
+    Entity::Customers.get_format_customer_data(customer_details,@payload)
+
   end
 
 
   post '/add_order' do
     add_order_data = @payload['order']
-    response = Service.request_bigapp :post, "/orders", add_order_data, @headers, @config1
-    puts response
-    return JSON.pretty_generate(response)
-    end
+      order_data = Service.request_bigapp :post, "/orders", add_order_data, @headers, @config1
+      return JSON.pretty_generate(order_data)
+  end
+
 
 
   post '/get_orders' do
     content_type :json
     min_date_modified =  @payload['parameters']['min_date_modified']
     order_options = min_date_modified
-    response = Service.request_bigapp :get, "/orders",  {:min_date_modified => order_options }, @headers, @config1
-    Entity::Orders.get_format_order_data(response,@payload)
+    get_order_datas = Service.request_bigapp :get, "/orders",  {:min_date_modified => order_options }, @headers, @config1
+    Entity::Orders.get_format_order_data(get_order_datas,@payload)
   end
 
   post '/update_order' do
@@ -102,19 +102,15 @@ class BigApp < Sinatra::Base
 
   post '/get_shipments' do
     content_type :json
-    resp_val = []
+    shipment_datas = []
     list_orders = Service.list_all_order(@config1,@headers)
     get_shipments_data = @payload['parameters']['min_date_modified']
     list_orders.each do |order|
-      response = Service.request_bigapp :get, "/orders/#{order['id']}/shipments", get_shipments_data, @headers, @config1
-      resp_val += response
+      data = Service.request_bigapp :get, "/orders/#{order['id']}/shipments", get_shipments_data, @headers, @config1
+      shipment_datas += data
     end
-    shipment_response = resp_val.reject &:empty?
-    shipment_json = {
-              :request_id => @payload['request_id'],
-              :parameters => @payload['parameters'],
-              :shipments => shipment_response
-          }
+    shipment_response = shipment_datas.reject &:empty?
+    shipment_json = Entity::Shipments.get_format_shipment_data(shipment_response,@payload,@headers,@config1)
     return JSON.pretty_generate(shipment_json)
   end
 
@@ -162,7 +158,7 @@ class BigApp < Sinatra::Base
       order_id = @payload['shipment']['order_id']
       shipment_id = @payload['shipment']['shipment_id']
       response = Service.request_bigapp :get, "/orders/#{order_id}/shipments/#{shipment_id}",{:limit => '100'}, headers, @config1
-      Entity::Shipments.get_format_shipment_data(response,@payload)
+      Entity::Shipments.get_format_shipment_data(response,@payload, headers, @config1)
   end
 end
 
@@ -181,7 +177,6 @@ class Service
         :password => @config[:api_key],
         :headers => headers
     }
-
 
     rest_client = RestClient::Resource.new "#{@config[:store_url]}/api/v2#{path}.json", resource_options
 
@@ -243,6 +238,20 @@ class Service
       return []
     end
   end
+
+  def self.get_or_create_category(category,headers,config)
+    category_name = category
+    response = Service.request_bigapp :get, "/categories",{:name=>category_name},headers,config
+    unless response.present?
+      #if the response is empty  category was not exist on store,so we are creating new one"
+      response =Service.request_bigapp :post, "/categories",{:name=>category_name},headers,config
+      category_id = response['id']
+    else
+      category_id = response.first['id']
+    end
+    category_id
+  end
+
   class ResponseError < StandardError;
   end
 

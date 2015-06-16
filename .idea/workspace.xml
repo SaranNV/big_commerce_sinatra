@@ -2,6 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
 <<<<<<< HEAD
+    <list default="true" id="1d338e67-3f33-4c4d-8581-d7288e82e5e4" name="Default" comment="" />
+    <ignored path="big_commerce_sinatra.iws" />
+=======
+<<<<<<< HEAD
     <list default="true" id="89f7b689-da40-44dd-a5d5-efe605afbe19" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/big_app.rb" afterPath="$PROJECT_DIR$/big_app.rb" />
     </list>
@@ -10,6 +14,7 @@
     <list default="true" id="a2668e4b-e69a-4747-bca6-43bcdc69105e" name="Default" comment="" />
     <ignored path="sinatra_integration_example-master.iws" />
 >>>>>>> a249256c34e29ea6a1d616565fd0751bce5cfc67
+>>>>>>> 0ad0827aaa664c2e680c9a53bb0125491baefd28
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,6 +27,9 @@
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
 <<<<<<< HEAD
+    <SUITE FILE_PATH="coverage/big_commerce_sinatra@development.coverage" NAME="development Coverage Results" MODIFIED="1434180194710" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="bigcommerce_sinatra" />
+=======
+<<<<<<< HEAD
     <SUITE FILE_PATH="coverage/big_commerce_sinatra@development.coverage" NAME="development Coverage Results" MODIFIED="1434004776727" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="bigcommerce_sinatra" />
 =======
 <<<<<<< HEAD
@@ -32,6 +40,7 @@
     <SUITE FILE_PATH="coverage/sinatra_integration_example-master@development.coverage" NAME="development Coverage Results" MODIFIED="1432902208457" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="sinatra_integration_example-master" />
     <SUITE FILE_PATH="coverage/big_commerce_sinatra@big_commerce.coverage" NAME="big_commerce Coverage Results" MODIFIED="1433247393435" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="big_commerce_sinatra" />
 >>>>>>> a249256c34e29ea6a1d616565fd0751bce5cfc67
+>>>>>>> 0ad0827aaa664c2e680c9a53bb0125491baefd28
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -44,10 +53,17 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
-    <favorites_list name="sinatra_integration_example-master" />
+    <favorites_list name="big_commerce_sinatra" />
   </component>
   <component name="FileEditorManager">
     <leaf>
+<<<<<<< HEAD
+      <file leaf-file-name="big_app.rb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/big_app.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.4722222">
+              <caret line="57" column="78" selection-start-line="57" selection-start-column="78" selection-end-line="57" selection-end-column="78" />
+=======
 <<<<<<< HEAD
       <file leaf-file-name="index.erb" pinned="false" current-in-tab="true">
 =======
@@ -88,15 +104,19 @@
 <<<<<<< HEAD
             <state vertical-scroll-proportion="0.0">
               <caret line="156" column="0" selection-start-line="156" selection-start-column="0" selection-end-line="156" selection-end-column="0" />
+>>>>>>> 0ad0827aaa664c2e680c9a53bb0125491baefd28
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="config.ru" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config.ru">
+      <file leaf-file-name="Products.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Entity/Products.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
+<<<<<<< HEAD
+              <caret line="10" column="7" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
+=======
               <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
 =======
 <<<<<<< HEAD
@@ -109,12 +129,20 @@
             <state vertical-scroll-proportion="6.531646">
               <caret line="184" column="39" selection-start-line="184" selection-start-column="39" selection-end-line="184" selection-end-column="39" />
 >>>>>>> 0511a20dbd33a3d70e504dc63d7f34a9c06b2bb3
+>>>>>>> 0ad0827aaa664c2e680c9a53bb0125491baefd28
               <folding />
 >>>>>>> a249256c34e29ea6a1d616565fd0751bce5cfc67
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
+      <file leaf-file-name="Shipments.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Entity/Shipments.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="9" column="50" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="50" />
+=======
 <<<<<<< HEAD
       <file leaf-file-name="date.rb" pinned="false" current-in-tab="false">
         <entry file="file://$APPLICATION_HOME_DIR$/rubystubs21/date.rb">
@@ -132,11 +160,22 @@
               <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
 >>>>>>> a249256c34e29ea6a1d616565fd0751bce5cfc67
 >>>>>>> 0511a20dbd33a3d70e504dc63d7f34a9c06b2bb3
+>>>>>>> 0ad0827aaa664c2e680c9a53bb0125491baefd28
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
+      <file leaf-file-name="index.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/index.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="14.745763">
+              <caret line="128" column="0" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
+              <folding>
+                <marker date="1434179915698" expanded="true" signature="8637:8650" placeholder="..." />
+              </folding>
+=======
 <<<<<<< HEAD
       <file leaf-file-name="time.rb" pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/.rvm/rubies/ruby-2.1.5/lib/ruby/2.1.0/time.rb">
@@ -211,6 +250,7 @@
             <state vertical-scroll-proportion="0.0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
+>>>>>>> 0ad0827aaa664c2e680c9a53bb0125491baefd28
             </state>
           </provider>
         </entry>
@@ -251,9 +291,9 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="65" />
-    <option name="y" value="24" />
+    <option name="y" value="-4" />
     <option name="width" value="1301" />
-    <option name="height" value="744" />
+    <option name="height" value="772" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -278,8 +318,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -329,6 +367,10 @@
         </subPane>
       </pane>
 <<<<<<< HEAD
+      <pane id="Scratches" />
+      <pane id="Scope" />
+=======
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
       <pane id="Scope" />
@@ -336,6 +378,7 @@
 >>>>>>> a249256c34e29ea6a1d616565fd0751bce5cfc67
       <pane id="Scratches" />
 >>>>>>> 0511a20dbd33a3d70e504dc63d7f34a9c06b2bb3
+>>>>>>> 0ad0827aaa664c2e680c9a53bb0125491baefd28
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -539,7 +582,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="a2668e4b-e69a-4747-bca6-43bcdc69105e" name="Default" comment="" />
+      <changelist id="1d338e67-3f33-4c4d-8581-d7288e82e5e4" name="Default" comment="" />
       <created>1433131299294</created>
       <option name="number" value="Default" />
       <updated>1433131299294</updated>
@@ -548,17 +591,27 @@
   </component>
   <component name="ToolWindowManager">
 <<<<<<< HEAD
+    <frame x="65" y="-4" width="1301" height="772" extended-state="6" />
+    <editor active="false" />
+=======
+<<<<<<< HEAD
     <frame x="65" y="24" width="1301" height="744" extended-state="0" />
 =======
     <frame x="65" y="24" width="1301" height="744" extended-state="6" />
 >>>>>>> a249256c34e29ea6a1d616565fd0751bce5cfc67
     <editor active="true" />
+>>>>>>> 0ad0827aaa664c2e680c9a53bb0125491baefd28
     <layout>
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32988048" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25338647" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3993808" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+=======
 <<<<<<< HEAD
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17290837" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
 =======
@@ -580,42 +633,26 @@
 >>>>>>> 0511a20dbd33a3d70e504dc63d7f34a9c06b2bb3
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34365326" sideWeight="0.49721116" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32817337" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+>>>>>>> 0ad0827aaa664c2e680c9a53bb0125491baefd28
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5388349" sideWeight="0.50278884" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32817337" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+=======
 <<<<<<< HEAD
 =======
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
 >>>>>>> a249256c34e29ea6a1d616565fd0751bce5cfc67
 >>>>>>> 0511a20dbd33a3d70e504dc63d7f34a9c06b2bb3
+>>>>>>> 0ad0827aaa664c2e680c9a53bb0125491baefd28
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32817337" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32988048" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3513932" sideWeight="0.49721116" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5388349" sideWeight="0.50278884" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33306772" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32817337" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -630,6 +667,12 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+<<<<<<< HEAD
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
+      <option name="time" value="368" />
+=======
       <breakpoints>
         <line-breakpoint enabled="true" type="ruby-line">
           <url>file://$PROJECT_DIR$/big_app.rb</url>
@@ -792,10 +835,17 @@
       <option name="time" value="303" />
 >>>>>>> a249256c34e29ea6a1d616565fd0751bce5cfc67
 >>>>>>> 0511a20dbd33a3d70e504dc63d7f34a9c06b2bb3
+>>>>>>> 0ad0827aaa664c2e680c9a53bb0125491baefd28
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/big_app.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+=======
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
@@ -1077,31 +1127,41 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+>>>>>>> 0ad0827aaa664c2e680c9a53bb0125491baefd28
           <folding />
 >>>>>>> a249256c34e29ea6a1d616565fd0751bce5cfc67
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.1.5/gems/rack-1.6.1/lib/rack/chunked.rb">
+    <entry file="file://$PROJECT_DIR$/views/index.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
+<<<<<<< HEAD
+          <caret line="228" column="0" selection-start-line="228" selection-start-column="0" selection-end-line="228" selection-end-column="0" />
+          <folding>
+            <marker date="1434179915698" expanded="true" signature="8637:8650" placeholder="..." />
+          </folding>
+=======
 <<<<<<< HEAD
           <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
 =======
           <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
           <folding />
 >>>>>>> a249256c34e29ea6a1d616565fd0751bce5cfc67
+>>>>>>> 0ad0827aaa664c2e680c9a53bb0125491baefd28
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.1.5/gems/rack-1.6.1/lib/rack/content_length.rb">
+    <entry file="file://$PROJECT_DIR$/Entity/Shipments.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <caret line="9" column="50" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="50" />
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+=======
     <entry file="file://$USER_HOME$/.rvm/rubies/ruby-2.1.5/lib/ruby/2.1.0/net/imap.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1116,10 +1176,13 @@
         </state>
       </provider>
     </entry>
+>>>>>>> 0ad0827aaa664c2e680c9a53bb0125491baefd28
     <entry file="file://$USER_HOME$/.rvm/rubies/ruby-2.1.5/lib/ruby/2.1.0/json/common.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="284" column="0" selection-start-line="284" selection-start-column="0" selection-end-line="284" selection-end-column="0" />
+<<<<<<< HEAD
+=======
         </state>
       </provider>
     </entry>
@@ -1394,10 +1457,14 @@
           <caret line="88" column="0" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
 >>>>>>> a249256c34e29ea6a1d616565fd0751bce5cfc67
 >>>>>>> 0511a20dbd33a3d70e504dc63d7f34a9c06b2bb3
+>>>>>>> 0ad0827aaa664c2e680c9a53bb0125491baefd28
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/Entity/Products.rb">
+=======
     <entry file="file://$PROJECT_DIR$/Entity/Customers.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.84918034">
@@ -1432,16 +1499,17 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/big_app.rb">
+>>>>>>> 0ad0827aaa664c2e680c9a53bb0125491baefd28
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="156" column="0" selection-start-line="156" selection-start-column="0" selection-end-line="156" selection-end-column="0" />
+          <caret line="10" column="7" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.1.5/gems/sinatra-1.4.6/lib/sinatra/base.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.33147633">
           <caret line="1016" column="0" selection-start-line="1016" selection-start-column="0" selection-end-line="1016" selection-end-column="0" />
 =======
 <<<<<<< HEAD
@@ -1460,6 +1528,22 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/views/index.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="14.745763">
+          <caret line="128" column="0" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
+          <folding>
+            <marker date="1434179915698" expanded="true" signature="8637:8650" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/big_app.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4722222">
+          <caret line="57" column="78" selection-start-line="57" selection-start-column="78" selection-end-line="57" selection-end-column="78" />
+=======
 <<<<<<< HEAD
     <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.1.5/gems/httparty-0.13.5/lib/httparty/parser.rb">
       <provider selected="true" editor-type-id="text-editor">
@@ -1538,6 +1622,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7245902">
           <caret line="72" column="9" selection-start-line="72" selection-start-column="9" selection-end-line="72" selection-end-column="9" />
+>>>>>>> 0ad0827aaa664c2e680c9a53bb0125491baefd28
           <folding />
         </state>
       </provider>

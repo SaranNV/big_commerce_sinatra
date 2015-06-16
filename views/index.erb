@@ -87,7 +87,7 @@
                           "description"=> "This timeless fashion staple will never go out of style!",
                           "price"=> "1429.99",
                           "categories"=> [
-                              14
+                              "Mens"
                           ],
                           "type"=> "physical",
                           "availability" => "available",
@@ -123,7 +123,6 @@
                           'phone' => '',
                           'email' => 'some.person@example.com',
                           },
-
                   },
           },
          'doc_link' => 'https://developer.bigcommerce.com/api/stores/v2/orders#create-order'
@@ -197,7 +196,11 @@
         var $button = $form.find('button[type=submit]');
         if(!$button.is(':disabled'))
             if (user_name === "" || store_url === "" || token === "" ){
-                alert("Check user_name,store_url and token ")
+                alert("Check user_name,store_url and token ");
+                var data_show_ele = $(".api_connection_info");
+                $(data_show_ele).slideDown();
+                $('.showbutton').closest('p').css('display', 'none');
+
             }else{
                 WombatTestFront.request($form);
             }
@@ -259,7 +262,6 @@
 
             } else { // request object parsed
                 // make request
-                console.log(request_input);
 //                request_object.parameters.api_username = encodeURIComponent($('.api_connection_info input[name=api_username]').val());
 //                request_object.parameters.api_path = encodeURIComponent($('.api_connection_info input[name=api_path]').val());
 //                request_object.parameters.api_token = encodeURIComponent($('.api_connection_info input[name=api_token]').val());
