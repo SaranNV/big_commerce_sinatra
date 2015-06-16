@@ -11,7 +11,6 @@ require_relative 'Entity/Products'
 require_relative 'Entity/Orders'
 require_relative 'Entity/Customers'
 require_relative 'Entity/Shipments'
-
 class BigApp < Sinatra::Base
   attr_reader :payload
 
@@ -126,24 +125,34 @@ class BigApp < Sinatra::Base
     get_order_response = Service.list_all_order(@config1,@headers)
     order_response = get_order_response.find{|order| order['id'] == order_id.to_i}
     if order_response != []
-    @order_address = Service.request_bigapp :get, "/orders/#{order_id}/shipping_addresses",  @headers, @config1
-    add_shipment_data['order_address_id'] = @order_address.first['id']
-    @order_product = Service.request_bigapp :get, "/orders/#{order_id}/products",  @headers, @config1
-    add_shipment_data['items'].first['order_product_id'] = order_id
-    add_shipment_data = add_shipment_data.except(:order_id)
-    response = Service.request_bigapp :get, "/orders/#{order_id}/shipments", add_shipment_data, @headers, @config1
+        @order_address = Service.request_bigapp :get, "/orders/#{order_id}/shipping_addresses",  @headers, @config1
+        add_shipment_data['order_address_id'] = @order_address.first['id']
 
-    if response.empty?
-      shipment_response = Service.request_bigapp :post, "/orders/#{order_id}/shipments", add_shipment_data, @headers, @config1
-      return JSON.pretty_generate(shipment_response)
+        @order_product = Service.request_bigapp :get, "/orders/#{order_id}/products",  @headers, @config1
+        items = []
+        @order_product.each do |product_data|
+          item = {
+              :order_product_id => product_data['id'],
+              :quantity => product_data['quantity']
+          }
+          items << item
+        end
+        add_shipment_data['items'] = items
+
+        add_shipment_data = add_shipment_data.except(:order_id)
+        response = Service.request_bigapp :get, "/orders/#{order_id}/shipments", add_shipment_data, @headers, @config1
+
+        if response.empty?
+          shipment_response = Service.request_bigapp :post, "/orders/#{order_id}/shipments", add_shipment_data, @headers, @config1
+          return JSON.pretty_generate(shipment_response)
+        else
+          shipment_id = response.first['id']
+          add_shipment_data = add_shipment_data.except(:items)
+          shipment_response = Service.request_bigapp :put, "/orders/#{order_id}/shipments/#{shipment_id}", add_shipment_data, @headers, @config1
+          return JSON.pretty_generate(shipment_response)
+        end
     else
-      shipment_id = response.first['id']
-      add_shipment_data = add_shipment_data.except(:items)
-      shipment_response = Service.request_bigapp :put, "/orders/#{order_id}/shipments/#{shipment_id}", add_shipment_data, @headers, @config1
-      return JSON.pretty_generate(shipment_response)
-    end
-    else
-      return []
+          return []
     end
   end
 
