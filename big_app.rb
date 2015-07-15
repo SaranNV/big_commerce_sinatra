@@ -7,135 +7,24 @@ require 'active_support/core_ext/numeric/time'
 require 'base64'
 require 'bigcommerce'
 require 'rest-client'
-require 'uri'
-require 'time'
-require 'date'
-
+require_relative 'Entity/Products'
+require_relative 'Entity/Orders'
+require_relative 'Entity/Customers'
+require_relative 'Entity/Shipments'
 class BigApp < Sinatra::Base
   attr_reader :payload
 
   before  do
     unless request.env['PATH_INFO'] == '/'
       request.body.rewind
-      @payload = JSON.parse(request.body.read).with_indifferent_access
-      puts "payload value"
-      puts "#{@payload}"
-      @config = Bigcommerce::Api.new({
-                                      :username => @payload['parameters']['api_username'],
-                                      :store_url => @payload['parameters']['api_path'],
-                                      :api_key => @payload['parameters']['api_token']
-                                  })
-      @headers = {"Content-Type" => "application/json", 'Accept' => 'application/json'}
-    end
-  end
+        @payload = JSON.parse(request.body.read).with_indifferent_access
 
-
-  post '/add_product' do
-    add_product_data = @payload['product']
-    add_product_data.each do |product_options|
-         response = Service.request_bigapp :post, "/products", product_options, @headers, @config
-         puts response
-         return JSON.pretty_generate(response).to_json
-    end
-  end
-
-  post '/get_products_demo' do
-    # get_product_data = @payload['parameters']['min_date_created']
-    get_product_data = @payload['products']
-    # product_options = get_product_data
-    get_product_data.each do |product_options|
-      response = Service.request_bigapp :get, "/products", product_options, @headers, @config
-      return response.to_json
-    end
-
-  end
-
-  post '/get_products' do
-    @products = []
-    # get_product_data = @payload['products']
-    # get_product_data.each do |product_options|
-    #   product_options = @payload['parameters']['min_date_created'] || @payload['parameters']['max_date_created'] || @payload['parameters']['min_date_modified'] || @config['max_date_modified'] ||
-    #       @payload['parameters']['min_date_last_imported'] || @payload['parameters']['max_date_last_imported']
-    product_options = DateTime.parse(@payload['parameters']['min_date_created'])
-    product_date = product_options.strftime('%a %b %d %H:%M:%S %Z %Y')
-    # @products << {'min_date_created' => product_date}
-
-    @headers = {"Content-Type" => "application/json", 'Accept' => 'application/json',
-                "X-Hub-Access-Token"=> "7f3bbce9dafb861ac511430afd61ba8a28366752d496c0c8",
-                "X-Hub-Store"=> "556fdb5a736d61422aec0000"}
-    # puts "#{@products}"
-    # @products.each do |product_date_options|
-    #   puts "#{product_date_options}"
-    response = Service.request_bigapp :get, "/products", {:min_date_created => product_date}, @headers, @config
-      # return JSON.pretty_generate(response).to_json
-    puts "#{response}"
-      return response.to_json
-    # end
-  end
-
-  post '/update_product' do
-    update_product_data = @payload['product']
-    update_product_data.each do |product_options|
-      product_detail = product_options.except(:product_id)
-      response = Service.request_bigapp :put, "/products/#{product_options['product_id']}", product_detail, @headers, @config
-      return JSON.pretty_generate(response)
-    end
-  end
-
-  post '/add_customer' do
-    add_customer_data = @payload['customer']
-    add_customer_data.each do |customer_options|
-      response = Service.request_bigapp :post, "/customers", customer_options, @headers, @config
-      return JSON.pretty_generate(response)
-    end
-  end
-
-  post '/get_customers' do
-    get_customer_data = @payload['customers']
-    get_customer_data.each do |customer_options|
-      response = Service.request_bigapp :get, "/customers", customer_options, @headers, @config
-      return JSON.pretty_generate(response)
-    end
-  end
-
-
-  post '/add_order' do
-    add_order_data = @payload['order']
-    add_order_data.each do |order_options|
-      response = Service.request_bigapp :post, "/orders", order_options, @headers, @config
-      puts response
-      return JSON.pretty_generate(response)
-    end
-  end
-
-
-  post '/get_orders' do
-    get_order_data = @payload['orders']
-    get_order_data.each do |order_options|
-      response = Service.request_bigapp :get, "/orders", order_options, @headers, @config
-      return JSON.pretty_generate(response)
-    end
-  end
-
-
-  post '/get_shipments' do
-    resp_val = []
-    list_orders = Service.list_all_order(@config,@headers)
-    get_shipments_data = @payload['shipments']
-   list_orders.each do |order|
-      response = Service.request_bigapp :get, "/orders/#{order['id']}/shipments", get_shipments_data, @headers, @config
-      resp_val << response
-    end
-    reject_empty_array = res_val.reject &:empty?
-    return JSON.pretty_generate(reject_empty_array)
-  end
-
-
-  post '/get_shipment' do
-    get_shipment_data = @payload['shipment']
-    get_shipment_data.each do |shipment_options|
-      response = Service.request_bigapp :get, "/orders/#{shipment_options['order_id']}/shipments", shipment_options, headers, api
-      return JSON.pretty_generate(response)
+        @config1 = Bigcommerce::Api.new({
+                                        :username => @payload['parameters']['api_username'],
+                                        :store_url => @payload['parameters']['api_path'],
+                                        :api_key => @payload['parameters']['api_token']
+                                    })
+        @headers = {"Content-Type" => "application/json", 'Accept' => 'application/json'}
     end
   end
 
@@ -143,7 +32,134 @@ class BigApp < Sinatra::Base
     erb :index
   end
 
+  post '/add_product' do
+    content_type :json
+    add_product_data = @payload['product']
+    @category = Service.get_or_create_category(add_product_data['categories'].first,@headers, @config1)
+    add_product_data['categories'] = [
+             @category
+    ]
+     product_data = Service.request_bigapp :post, "/products", add_product_data, @headers, @config1
+     return JSON.pretty_generate(product_data)
+  end
 
+  post '/get_products' do
+    content_type :json
+    min_date_modified = @payload['parameters']['min_date_modified']
+    product_options = min_date_modified
+    get_products_data = Service.request_bigapp :get, "/products", {:min_date_modified => product_options }, @headers, @config1
+    Entity::Products.get_format_product_data(get_products_data,@payload)
+  end
+
+
+  post '/update_product' do
+    update_product_data = @payload['product']
+    product_detail = update_product_data.except(:product_id)
+    product_data = Service.request_bigapp :put, "/products/#{update_product_data['product_id']}", product_detail, @headers, @config
+    return JSON.pretty_generate(product_data)
+  end
+
+  post '/add_customer' do
+    content_type :json
+    add_customer_data = @payload['customer']
+    customer_data = Entity::Customers.post_format_data(add_customer_data)
+    customer_details = Service.request_bigapp :post, "/customers", customer_data, @headers, @config1
+    return JSON.pretty_generate(customer_details)
+  end
+
+  post '/get_customers' do
+    content_type :json
+    get_customer_data =  @payload['parameters']['min_date_created']
+    customer_options = get_customer_data
+    customer_details = Service.request_bigapp :get, "/customers", {:min_date_created => customer_options}, @headers, @config1
+    Entity::Customers.get_format_customer_data(customer_details,@payload)
+
+  end
+
+
+  post '/add_order' do
+    add_order_data = @payload['order']
+      order_data = Service.request_bigapp :post, "/orders", add_order_data, @headers, @config1
+      return JSON.pretty_generate(order_data)
+  end
+
+
+
+  post '/get_orders' do
+    content_type :json
+    min_date_modified =  @payload['parameters']['min_date_modified']
+    order_options = min_date_modified
+    get_order_datas = Service.request_bigapp :get, "/orders",  {:min_date_modified => order_options }, @headers, @config1
+    Entity::Orders.get_format_order_data(get_order_datas,@payload)
+  end
+
+  post '/update_order' do
+    update_order_data = @payload['order']
+    order_detail = update_order_data.except(:order_id)
+    response = Service.request_bigapp :put, "/orders/#{update_order_data['order_id']}", order_detail, @headers, @config1
+    return JSON.pretty_generate(response)
+  end
+
+  post '/get_shipments' do
+    content_type :json
+    shipment_datas = []
+    list_orders = Service.list_all_order(@config1,@headers)
+    get_shipments_data = @payload['parameters']['min_date_modified']
+    list_orders.each do |order|
+      data = Service.request_bigapp :get, "/orders/#{order['id']}/shipments", get_shipments_data, @headers, @config1
+      shipment_datas += data
+    end
+    shipment_response = shipment_datas.reject &:empty?
+    shipment_json = Entity::Shipments.get_format_shipment_data(shipment_response,@payload,@headers,@config1)
+    return JSON.pretty_generate(shipment_json)
+  end
+
+  post '/add_shipment' do
+    content_type :json
+    add_shipment_data = @payload['shipment']
+    order_id = @payload['shipment']['order_id']
+    get_order_response = Service.list_all_order(@config1,@headers)
+    order_response = get_order_response.find{|order| order['id'] == order_id.to_i}
+    if order_response != []
+        @order_address = Service.request_bigapp :get, "/orders/#{order_id}/shipping_addresses",  @headers, @config1
+        add_shipment_data['order_address_id'] = @order_address.first['id']
+
+        @order_product = Service.request_bigapp :get, "/orders/#{order_id}/products",  @headers, @config1
+        items = []
+        @order_product.each do |product_data|
+          item = {
+              :order_product_id => product_data['id'],
+              :quantity => product_data['quantity']
+          }
+          items << item
+        end
+        add_shipment_data['items'] = items
+
+        add_shipment_data = add_shipment_data.except(:order_id)
+        response = Service.request_bigapp :get, "/orders/#{order_id}/shipments", add_shipment_data, @headers, @config1
+
+        if response.empty?
+          shipment_response = Service.request_bigapp :post, "/orders/#{order_id}/shipments", add_shipment_data, @headers, @config1
+          return JSON.pretty_generate(shipment_response)
+        else
+          shipment_id = response.first['id']
+          add_shipment_data = add_shipment_data.except(:items)
+          shipment_response = Service.request_bigapp :put, "/orders/#{order_id}/shipments/#{shipment_id}", add_shipment_data, @headers, @config1
+          return JSON.pretty_generate(shipment_response)
+        end
+    else
+          return []
+    end
+  end
+
+  post '/get_shipment' do
+       content_type :json
+      limit = @payload['parameters']['limit']
+      order_id = @payload['shipment']['order_id']
+      shipment_id = @payload['shipment']['shipment_id']
+      response = Service.request_bigapp :get, "/orders/#{order_id}/shipments/#{shipment_id}",{:limit => '100'}, headers, @config1
+      Entity::Shipments.get_format_shipment_data(response,@payload, headers, @config1)
+  end
 end
 
 
@@ -161,7 +177,6 @@ class Service
         :password => @config[:api_key],
         :headers => headers
     }
-
 
     rest_client = RestClient::Resource.new "#{@config[:store_url]}/api/v2#{path}.json", resource_options
 
@@ -194,12 +209,12 @@ class Service
     elsif response.code == 409
       exception = JSON.parse response
       exception.each do |response_error|
-        return response_error['details']['conflict_reason']
+        return {:error => response_error['details']['conflict_reason']}
       end
     elsif response.code == 400
       exception = JSON.parse response
       exception.each do |response_error|
-        return response_error['message']
+        return {:error => response_error['message']}
       end
     end
   end
@@ -222,6 +237,19 @@ class Service
     elsif response.code == 204
       return []
     end
+  end
+
+  def self.get_or_create_category(category,headers,config)
+    category_name = category
+    response = Service.request_bigapp :get, "/categories",{:name=>category_name},headers,config
+    unless response.present?
+      #if the response is empty  category was not exist on store,so we are creating new one"
+      response =Service.request_bigapp :post, "/categories",{:name=>category_name},headers,config
+      category_id = response['id']
+    else
+      category_id = response.first['id']
+    end
+    category_id
   end
 
   class ResponseError < StandardError;
