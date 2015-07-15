@@ -40,6 +40,10 @@ class BigApp < Sinatra::Base
              @category
     ]
      product_data = Service.request_bigapp :post, "/products", add_product_data, @headers, @config1
+     if product_data['price'].present?
+      @price =  product_data['price'].to_f
+      product_data['price'] = @price.round(2)
+     end
      return JSON.pretty_generate(product_data)
   end
 
