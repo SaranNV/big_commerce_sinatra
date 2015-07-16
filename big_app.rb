@@ -15,7 +15,6 @@ class BigApp < Sinatra::Base
   attr_reader :payload
 
   before  do
-    Rails.logger.info(JSON.parse(request.body.read).with_indifferent_access)
     puts(JSON.parse(request.body.read).with_indifferent_access)
     unless request.env['PATH_INFO'] == '/'
       request.body.rewind
