@@ -15,6 +15,7 @@ class BigApp < Sinatra::Base
   attr_reader :payload
 
   before  do
+    console.log(JSON.parse(request.body.read).with_indifferent_access)
     unless request.env['PATH_INFO'] == '/'
       request.body.rewind
         @payload = JSON.parse(request.body.read).with_indifferent_access
