@@ -18,6 +18,7 @@ class BigApp < Sinatra::Base
     unless request.env['PATH_INFO'] == '/'
       request.body.rewind
         @payload = JSON.parse(request.body.read).with_indifferent_access
+        puts(@payload)
 
         @config1 = Bigcommerce::Api.new({
                                         :username => @payload['parameters']['api_username'],
@@ -72,8 +73,6 @@ class BigApp < Sinatra::Base
   end
 
   post '/get_customers' do
-    logger.info("----------------------------------------------------------------------")
-    puts("get_order test")
     content_type :json
     get_customer_data =  @payload['parameters']['min_date_created']
     customer_options = get_customer_data
@@ -92,8 +91,6 @@ class BigApp < Sinatra::Base
 
 
   post '/get_orders' do
-    logger.info("----------------------------------------------------------------------")
-    puts("get_order test")
     content_type :json
     min_date_modified =  @payload['parameters']['min_date_modified']
     order_options = min_date_modified
@@ -109,8 +106,6 @@ class BigApp < Sinatra::Base
   end
 
   post '/get_shipments' do
-    logger.info("----------------------------------------------------------------------")
-    puts("get_order test")
     content_type :json
     shipment_datas = []
     list_orders = Service.list_all_order(@config1,@headers)
