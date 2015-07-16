@@ -18,7 +18,6 @@ class BigApp < Sinatra::Base
     unless request.env['PATH_INFO'] == '/'
       request.body.rewind
         @payload = JSON.parse(request.body.read).with_indifferent_access
-        puts(@payload)
 
         @config1 = Bigcommerce::Api.new({
                                         :username => @payload['parameters']['api_username'],
@@ -83,6 +82,7 @@ class BigApp < Sinatra::Base
 
 
   post '/add_order' do
+    puts(@payload)
     add_order_data = @payload['order']
       order_data = Service.request_bigapp :post, "/orders", add_order_data, @headers, @config1
       return JSON.pretty_generate(order_data)
