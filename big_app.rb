@@ -85,6 +85,7 @@ class BigApp < Sinatra::Base
     puts("------------------------------------------------------------------------------------")
     puts(@payload)
     $stdout.flush
+    content_type :json
     add_order_data = @payload['order']
       order_data = Service.request_bigapp :post, "/orders", add_order_data, @headers, @config1
       return JSON.pretty_generate(order_data)
