@@ -13,9 +13,19 @@ module Entity
 
     def self.format_wombat_object(responses,headers,config1)
       datas = []
+      order_products = []
       responses.each do |response|
         shipping_address = Service.request_bigapp :get, "/orders/#{response['id']}/shipping_addresses",  headers, config1
         products = Service.request_bigapp :get, "/orders/#{response['id']}/products",  headers, config1
+        products.each do |product|
+         product_details = {
+            :product_id => product['product_id'],
+            :name => product['name'],
+            :quantity => product['quantity'],
+            :price => product['total_inc_tax'],
+          }
+          order_products << product_details
+        end
         data ={
             :id => response['id'],
             :status => response['status'],
@@ -25,9 +35,9 @@ module Entity
             :totals => {
                 :item => response['subtotal_ex_tax'].to_f,
                 :discount => response['discount_amount'].to_f + response['coupon_discount'].to_f,
-                :tax => response['total_tax'].to_f,
+                :tax => response['subtotal_ex_tax'].to_f,
                 :shipping => response['shipping_cost_ex_tax'].to_f,
-                :payment =>response['total_inc_tax'].to_f,
+                :payment =>response['total_inc_tax'].to_f + response['subtotal_ex_tax'].to_f,
                 :order => response['total_inc_tax'].to_f,
             },
             :order_message => response['customer_message'],
@@ -53,16 +63,11 @@ module Entity
                 :country => shipping_address.first['country_iso2'],
                 :phone => shipping_address.first['phone']
             },
-            :line_items => {
-                :product_id => products.first['product_id'],
-                :name => products.first['name'],
-                :quantity => products.first['quantity'],
-                :price => products.first['total_inc_tax'],
-        }
-
+            :line_items => order_products
 
         }
         datas << data
+        order_products = []
       end
       datas
     end
