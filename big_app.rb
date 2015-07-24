@@ -82,9 +82,9 @@ class BigApp < Sinatra::Base
 
 
   post '/add_order' do
-    puts("------------------------------------------------------------------------------------")
-    puts(@payload)
-    $stdout.flush
+    # puts("------------------------------------------------------------------------------------")
+    # puts(@payload)
+    # $stdout.flush
     content_type :json
     add_order_data = @payload['order']
       order_data = Service.request_bigapp :post, "/orders", add_order_data, @headers, @config1
@@ -98,7 +98,8 @@ class BigApp < Sinatra::Base
     min_date_modified =  @payload['parameters']['min_date_modified']
     order_options = min_date_modified
     get_order_datas = Service.request_bigapp :get, "/orders",  {:min_date_modified => order_options }, @headers, @config1
-    Entity::Orders.get_format_order_data(get_order_datas,@payload)
+
+    Entity::Orders.get_format_order_data(get_order_datas,@payload,@headers,@config1)
   end
 
   post '/update_order' do
