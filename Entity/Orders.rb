@@ -40,6 +40,18 @@ module Entity
                 :payment =>response['total_inc_tax'].to_f + response['subtotal_ex_tax'].to_f,
                 :order => response['total_inc_tax'].to_f,
             },
+            :line_items => order_products,
+            :shipping_address => {
+                :firstname => shipping_address.first['first_name'],
+                :lastname => shipping_address.first['last_name'],
+                :address1 => shipping_address.first['street_1'],
+                :address2 => shipping_address.first['street_2'],
+                :zipcode => shipping_address.first['zip'],
+                :city => shipping_address.first['city'],
+                :state => shipping_address.first['state'],
+                :country => shipping_address.first['country_iso2'],
+                :phone => shipping_address.first['phone']
+            },
             :order_message => response['customer_message'],
             :billing_address => {
                 :firstname => response['billing_address']['first_name'],
@@ -52,18 +64,6 @@ module Entity
                 :country => response['billing_address']['country_iso2'],
                 :phone => response['billing_address']['phone']
             },
-            :shipping_address => {
-                :firstname => shipping_address.first['first_name'],
-                :lastname => shipping_address.first['last_name'],
-                :address1 => shipping_address.first['street_1'],
-                :address2 => shipping_address.first['street_2'],
-                :zipcode => shipping_address.first['zip'],
-                :city => shipping_address.first['city'],
-                :state => shipping_address.first['state'],
-                :country => shipping_address.first['country_iso2'],
-                :phone => shipping_address.first['phone']
-            },
-            :line_items => order_products
 
         }
         datas << data
