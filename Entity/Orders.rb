@@ -22,7 +22,7 @@ module Entity
             :product_id => product['product_id'],
             :name => product['name'],
             :quantity => product['quantity'],
-            :price => product['total_inc_tax'],
+            :price => convert_price(product['total_inc_tax']),
             :bigcommerce_id => product['id'],
             :bigcommerce_product_id => product['product_id']
           }
@@ -74,5 +74,12 @@ module Entity
       end
       datas
     end
+
+    def self.convert_price(price)
+      @price = price.to_f
+      rounded_price = @price.round(2)
+      rounded_price
+    end
+
   end
 end
