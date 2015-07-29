@@ -47,15 +47,20 @@ module Entity
         products.each do |product|
           item = {
               :name => product['name'],
-              :product_id => product['id'],
+              :product_id => product['product_id'],
               :quantity => product['quantity'],
-              :price =>product['total_inc_tax'].to_f,
+              :price => convert_price(product['total_inc_tax']),
 
           }
           items << item
         end
         items
       end
-  end
+    end
+    def self.convert_price(price)
+      @price = price.to_f
+      rounded_price = @price.round(2)
+      rounded_price
+    end
   end
 end
