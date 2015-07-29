@@ -11,6 +11,7 @@ require_relative 'Entity/Products'
 require_relative 'Entity/Orders'
 require_relative 'Entity/Customers'
 require_relative 'Entity/Shipments'
+require 'securerandom'
 class BigApp < Sinatra::Base
   attr_reader :payload
 
@@ -112,7 +113,18 @@ class BigApp < Sinatra::Base
   post '/get_shipments' do
     content_type :json
     shipment_datas = []
-    list_orders = Service.list_all_order(@config1,@headers)
+    # this line was active before demo for zeeberry deploy into master still-eyrine (29-7-15)
+    # list_orders = Service.list_all_order(@config1,@headers)  previous code
+
+    # content_type :json
+    min_date_modified =  @payload['parameters']['min_date_modified']
+    order_options = min_date_modified
+    list_orders = Service.request_bigapp :get, "/orders",  {:min_date_modified => order_options }, @headers, @config1
+
+    # Entity::Orders.get_format_order_data(get_order_datas,@payload,@headers,@config1)
+
+
+
     get_shipments_data = @payload['parameters']['min_date_modified']
     list_orders.each do |order|
       data = Service.request_bigapp :get, "/orders/#{order['id']}/shipments", get_shipments_data, @headers, @config1
@@ -124,6 +136,7 @@ class BigApp < Sinatra::Base
   end
 
   post '/add_shipment' do
+    tracking_no = SecureRandom.hex(7).upcase
     content_type :json
     add_shipment_data = @payload['shipment']
     order_id = @payload['shipment']['order_id']
@@ -132,7 +145,10 @@ class BigApp < Sinatra::Base
     if order_response != []
         @order_address = Service.request_bigapp :get, "/orders/#{order_id}/shipping_addresses",  @headers, @config1
         add_shipment_data['order_address_id'] = @order_address.first['id']
-
+        update_order_status = {
+            :status_id => "2"
+        }
+        @update_order_status = Service.request_bigapp :put, "/orders/#{order_id}",update_order_status,@headers,@config1
         @order_product = Service.request_bigapp :get, "/orders/#{order_id}/products",  @headers, @config1
         items = []
         @order_product.each do |product_data|
@@ -143,6 +159,7 @@ class BigApp < Sinatra::Base
           items << item
         end
         add_shipment_data['items'] = items
+        add_shipment_data['tracking_number'] = tracking_no
 
         add_shipment_data = add_shipment_data.except(:order_id)
         response = Service.request_bigapp :get, "/orders/#{order_id}/shipments", add_shipment_data, @headers, @config1

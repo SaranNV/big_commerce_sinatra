@@ -17,7 +17,7 @@
         </COVERAGE_PATTERN>
       </EXTENSION>
       <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
-      <RACK_CONFIG_SETTINGS_ID NAME="PORT" VALUE="4000" />
+      <RACK_CONFIG_SETTINGS_ID NAME="PORT" VALUE="3000" />
       <RACK_CONFIG_SETTINGS_ID NAME="IP" VALUE="0.0.0.0" />
       <RACK_CONFIG_SETTINGS_ID NAME="CONFIG_FILE" VALUE="config.ru" />
       <RACK_CONFIG_SETTINGS_ID NAME="RACK_SERVER_TYPE" VALUE="default" />
