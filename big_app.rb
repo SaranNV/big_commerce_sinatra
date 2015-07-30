@@ -161,7 +161,7 @@ class BigApp < Sinatra::Base
     end
   end
 
-  post '/get_shipment' do
+  post '/get_shipments' do
        content_type :json
        puts(@payload)
       limit = @payload['parameters']['limit']
