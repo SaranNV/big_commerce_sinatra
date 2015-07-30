@@ -67,14 +67,7 @@ module Entity
                 :country => response['billing_address']['country_iso2'],
                 :phone => response['billing_address']['phone']
             },
-            :payments => [
-                {
-                  :number => 63,
-                  :status => "completed",
-                  :amount => 210,
-                  :payment_method => "Credit Card"
-                }
-            ]
+            :external_ship_code => "USPSFC"
         }
         datas << data
         order_products = []
