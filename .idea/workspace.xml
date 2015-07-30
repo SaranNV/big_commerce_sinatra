@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4fae2a52-7ff5-4ab0-bd72-2ea223f3413a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Entity/Orders.rb" afterPath="$PROJECT_DIR$/Entity/Orders.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/big_app.rb" afterPath="$PROJECT_DIR$/big_app.rb" />
     </list>
     <ignored path="bigcommerce_sinatra.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,20 +33,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="big_app.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="big_app.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/big_app.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="222" column="30" selection-start-line="222" selection-start-column="30" selection-end-line="222" selection-end-column="30" />
+            <state vertical-scroll-proportion="0.28985506">
+              <caret line="165" column="21" selection-start-line="165" selection-start-column="21" selection-end-line="165" selection-end-column="21" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Orders.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Orders.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Entity/Orders.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3043478">
+            <state vertical-scroll-proportion="0.0">
               <caret line="68" column="14" selection-start-line="68" selection-start-column="14" selection-end-line="68" selection-end-column="14" />
               <folding />
             </state>
@@ -67,7 +67,7 @@
         <entry file="file://$PROJECT_DIR$/Entity/Shipments.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="56" column="13" selection-start-line="56" selection-start-column="13" selection-end-line="56" selection-end-column="13" />
+              <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -85,9 +85,9 @@
         <option value="$PROJECT_DIR$/log.txt" />
         <option value="$PROJECT_DIR$/log2.txt" />
         <option value="$PROJECT_DIR$/log4.txt" />
-        <option value="$PROJECT_DIR$/big_app.rb" />
         <option value="$PROJECT_DIR$/Entity/Shipments.rb" />
         <option value="$PROJECT_DIR$/Entity/Orders.rb" />
+        <option value="$PROJECT_DIR$/big_app.rb" />
       </list>
     </option>
   </component>
@@ -744,10 +744,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/big_app.rb">
+    <entry file="file://$PROJECT_DIR$/Entity/Orders.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="222" column="30" selection-start-line="222" selection-start-column="30" selection-end-line="222" selection-end-column="30" />
+          <caret line="68" column="14" selection-start-line="68" selection-start-column="14" selection-end-line="68" selection-end-column="14" />
           <folding />
         </state>
       </provider>
@@ -755,15 +755,15 @@
     <entry file="file://$PROJECT_DIR$/Entity/Shipments.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="56" column="13" selection-start-line="56" selection-start-column="13" selection-end-line="56" selection-end-column="13" />
+          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Entity/Orders.rb">
+    <entry file="file://$PROJECT_DIR$/big_app.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3043478">
-          <caret line="68" column="14" selection-start-line="68" selection-start-column="14" selection-end-line="68" selection-end-column="14" />
+        <state vertical-scroll-proportion="0.28985506">
+          <caret line="165" column="21" selection-start-line="165" selection-start-column="21" selection-end-line="165" selection-end-column="21" />
           <folding />
         </state>
       </provider>

@@ -163,6 +163,7 @@ class BigApp < Sinatra::Base
 
   post '/get_shipment' do
        content_type :json
+       puts(@payload)
       limit = @payload['parameters']['limit']
       order_id = @payload['shipment']['order_id']
       shipment_id = @payload['shipment']['shipment_id']
