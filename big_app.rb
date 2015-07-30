@@ -112,6 +112,7 @@ class BigApp < Sinatra::Base
 
   post '/get_shipments' do
     content_type :json
+    puts(@payload)
     shipment_datas = []
     # this line was active before demo for zeeberry deploy into master still-eyrine (29-7-15)
     # list_orders = Service.list_all_order(@config1,@headers)  previous code
@@ -178,9 +179,8 @@ class BigApp < Sinatra::Base
     end
   end
 
-  post '/get_shipments' do
+  post '/get_shipment' do
        content_type :json
-       puts(@payload)
       limit = @payload['parameters']['limit']
       order_id = @payload['shipment']['order_id']
       shipment_id = @payload['shipment']['shipment_id']
