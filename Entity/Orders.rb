@@ -67,6 +67,7 @@ module Entity
                 :country => response['billing_address']['country_iso2'],
                 :phone => response['billing_address']['phone']
             },
+            :shipping_method => shipping_address.first['shipping_method']
         }
         datas << data
         order_products = []
