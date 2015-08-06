@@ -188,6 +188,12 @@ class BigApp < Sinatra::Base
   post '/set_inventory' do
     content_type :json
     Entity::Inventory.push(@payload,headers,@config1)
+    # result_set_inventory = Entity::Inventory.push(@payload,headers,@config1)
+    # inventory_json = {
+    #     :request_id => @payload['request_id'],
+    #     :parameters => @payload['parameters'],
+    #     :inventory => result_set_inventory
+    # }
   end
 end
 
