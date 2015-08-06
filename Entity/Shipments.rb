@@ -33,7 +33,17 @@ module Entity
               :country => shipment_response['shipping_address']['country_iso2'],
               :phone => shipment_response['shipping_address']['phone',]
              },
-             :items => get_Order_Products(shipment_response['order_id'],headers,config),
+            :billing_address =>{
+                :firstname => shipment_response['billing_address']['first_name'],
+                :lastname => shipment_response['billing_address']['last_name'],
+                :address1 => shipment_response['billing_address']['street_1'],
+                :address2 => shipment_response['billing_address']['street_2'],
+                :city => shipment_response['billing_address']['city'],
+                :state => shipment_response['billing_address']['state'],
+                :country => shipment_response['billing_address']['country_iso2'],
+                :phone => shipment_response['billing_address']['phone',]
+            },
+            :items => get_Order_Products(shipment_response['order_id'],headers,config),
         }
         datas << data
       end
