@@ -11,6 +11,7 @@ require_relative 'Entity/Products'
 require_relative 'Entity/Orders'
 require_relative 'Entity/Customers'
 require_relative 'Entity/Shipments'
+require_relative 'Entity/Inventory'
 require 'securerandom'
 class BigApp < Sinatra::Base
   attr_reader :payload
@@ -83,9 +84,6 @@ class BigApp < Sinatra::Base
 
 
   post '/add_order' do
-    # puts("------------------------------------------------------------------------------------")
-    # puts(@payload)
-    # $stdout.flush
     content_type :json
     add_order_data = @payload['order']
       order_data = Service.request_bigapp :post, "/orders", add_order_data, @headers, @config1
@@ -189,8 +187,7 @@ class BigApp < Sinatra::Base
 
   post '/set_inventory' do
     content_type :json
-    puts(@payload)
-
+    Entity::Inventory.push(@payload,headers,@config1)
   end
 end
 
@@ -214,7 +211,11 @@ class Service
 
     response = case method
                  when :get then
-                   rest_client.get :params => options, :content_type => :json, :accept => :json
+                    begin
+                      rest_client.get :params => options, :content_type => :json, :accept => :json
+                    rescue => e
+                      e.response
+                    end
                  when :post then
                    begin
                      rest_client.post(options.to_json, :content_type => :json, :accept => :json)
@@ -236,6 +237,11 @@ class Service
 
     if (200..201) === response.code
       JSON.parse response
+    elsif response.code == 404
+      exception = JSON.parse response
+      exception.each do |response_error|
+        return response_error['message']
+      end
     elsif response.code == 204
       return []
     elsif response.code == 409

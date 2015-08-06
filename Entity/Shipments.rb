@@ -23,14 +23,6 @@ module Entity
             :status => 'ready',
             # :order_status => order status,
             :stock_location => 'default',
-            :totals => {
-              :item => 200,
-              :adjustment => 10,
-              :tax => 10,
-              :shipping => 0,
-              :payment => 210,
-              :order => 210
-            },
             :shipping_address =>{
               :firstname => shipment_response['shipping_address']['first_name'],
               :lastname => shipment_response['shipping_address']['last_name'],

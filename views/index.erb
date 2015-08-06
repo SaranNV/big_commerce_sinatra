@@ -13,10 +13,10 @@
         'get_products' => {
           'default_input' => {
                   'parameters' => {
-                         "min_date_modified" => "2015-06-08T04:51:54+00:00"
+                         "min_date_modified" => "2015-08-05T04:51:54+00:00"
                   },
                   'products' => {
-                         "min_date_modified" => "2015-06-08T04:51:54+00:00"
+                         "min_date_modified" => "2015-08-05T04:51:54+00:00"
                   }
           },
           'doc_link' => 'https://developer.bigcommerce.com/api/stores/v2/products#list-products'
@@ -25,10 +25,10 @@
         'get_orders' =>{
           'default_input' => {
                   'parameters' => {
-                          "min_date_modified" => "2015-06-08T04:51:54+00:00"
+                          "min_date_modified" => "2015-08-05T04:51:54+00:00"
                   },
                   'orders' => {
-                        "min_date_modified" => "2015-06-08T04:51:54+00:00"
+                        "min_date_modified" => "2015-08-05T04:51:54+00:00"
                   }
           },
           'doc_link' => 'https://developer.bigcommerce.com/api/stores/v2/orders#list-orders'
@@ -36,10 +36,10 @@
         'get_customers' =>{
           'default_input' => {
                   "parameters"=> {
-                          "min_date_created"=> "2015-06-09T04:49:57+0000"
+                          "min_date_created"=> "2015-08-05T04:49:57+0000"
                   },
                   'customers' => {
-                          "min_date_created"=> "2015-06-09T04:49:57+0000",
+                          "min_date_created"=> "2015-08-05T04:49:57+0000",
                           'customer_group_id' => '0',
                   }
           },
@@ -49,10 +49,10 @@
         'get_shipments' => {
           'default_input' => {
                   "parameters"=> {
-                        "min_date_modified"=> "2015-06-09T04:49:57+0000"
+                        "min_date_modified"=> "2015-08-05T04:49:57+0000"
                   },
                   'shipments' => {
-                        "min_date_modified"=> "2015-06-09T04:49:57+0000"
+                        "min_date_modified"=> "2015-08-05T04:49:57+0000"
 
                   }
           },
@@ -79,11 +79,11 @@
         'add_product' => {
           'default_input' =>{
                   'parameters' => {
-                          "min_date_modified" => "2015-06-08T04:51:54+00:00"
+                          "min_date_modified" => "2015-08-05T04:51:54+00:00"
                   },
                   'product' => {
-                          "name"=> "sd",
-                          "sku"=> "sd",
+                          "name"=> "Shirt",
+                          "sku"=> "Shirt",
                           "description"=> "This timeless fashion staple will never go out of style!",
                           "price"=> "100.00",
                           "categories"=> [
@@ -91,7 +91,9 @@
                           ],
                           "type"=> "physical",
                           "availability" => "available",
-                          "weight" => "0.5"
+                          "weight" => "0.5",
+                          "is_visible" => true,
+                          "inventory_tracking" => "simple"
                          },
                   },
           'doc_link' => 'https://developer.bigcommerce.com/api/stores/v2/products#create-product'
@@ -115,7 +117,7 @@
                           'company' => '',
                           'street_1' => '123 Some St',
                           'street_2' => '',
-                          'city' => '',
+                          'city' => 'Hollywood',
                           'state' => 'District of Columbia',
                           'zip' => '78757',
                           'country' => 'United States',
@@ -168,9 +170,24 @@
                          }
                   },
           },
-          'doc_link' => 'https://developer.bigcommerce.com/api/stores/v2/orders#create-order'
+          'doc_link' => 'https://developer.bigcommerce.com/api/stores/v2/customers#create-customer'
         },
-  }
+        'set_inventory' => {
+          'default_input' => {
+                  'request_id' => '',
+                  'parameters' => {
+                  },
+                  'inventory' => {
+                          "product_id"=> "ZB1000",
+                          "sku"=> "ZB1000",
+                          "quantity"=> 3845,
+                          "backorder_allocation_quantity"=> 0,
+                          "id"=> "ZB1000"
+                  }
+          },
+                'doc_link' => 'https://developer.bigcommerce.com/api/stores/v2/products/skus'
+        },
+   }
 %>
 
 <div class="block">
