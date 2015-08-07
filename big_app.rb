@@ -253,7 +253,11 @@ class Service
     elsif response.code == 409
       exception = JSON.parse response
       exception.each do |response_error|
-        return {:error => response_error['details']['conflict_reason']}
+        if response_error['details']['conflict_reason']
+          return {:error => response_error['details']['conflict_reason']}
+        else
+          return {:error => response_error['message']} #Out of stock product message
+        end
       end
     elsif response.code == 400
       exception = JSON.parse response
