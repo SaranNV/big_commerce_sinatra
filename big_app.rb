@@ -137,11 +137,11 @@ class BigApp < Sinatra::Base
     tracking_no = SecureRandom.hex(7).upcase
     content_type :json
     add_shipment_data = @payload['shipment']
-    console.log(@payload)
+    puts(@payload)
     order_id = @payload['shipment']['order_id']
     get_order_response = Service.list_all_order(@config1,@headers)
     order_response = get_order_response.find{|order| order['id'] == order_id.to_i}
-    console.log(order_response)
+    puts(order_response)
     if order_response != []
         @order_address = Service.request_bigapp :get, "/orders/#{order_id}/shipping_addresses",  @headers, @config1
         add_shipment_data['order_address_id'] = @order_address.first['id']
