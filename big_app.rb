@@ -157,7 +157,7 @@ class BigApp < Sinatra::Base
         add_shipment_data['items'] = items
         add_shipment_data['tracking_number'] = @payload['shipment']['tracking']
 
-        add_shipment_data = add_shipment_data.except(:order_id)
+        add_shipment_data = add_shipment_data.except(:id)
         response = Service.request_bigapp :get, "/orders/#{order_id}/shipments", add_shipment_data, @headers, @config1
 
         if response.empty?
