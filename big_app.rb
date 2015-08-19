@@ -134,15 +134,11 @@ class BigApp < Sinatra::Base
   end
 
   post '/add_shipment' do
-    tracking_no = SecureRandom.hex(7).upcase
     content_type :json
     add_shipment_data = @payload['shipment']
-    puts(@payload)
-    order_id = @payload['shipment']['order_id']
-    get_order_response = Service.list_all_order(@config1,@headers)
-    order_response = get_order_response.find{|order| order['id'] == order_id.to_i}
-    puts(order_response)
-    if order_response != []
+    order_id = @payload['shipment']['id'] || @payload['shipment']['order_id']
+    get_order_response = Service.request_bigapp :get, "/orders/#{order_id}", "", @config1
+    if get_order_response.class == Hash
         @order_address = Service.request_bigapp :get, "/orders/#{order_id}/shipping_addresses",  @headers, @config1
         add_shipment_data['order_address_id'] = @order_address.first['id']
         update_order_status = {
@@ -159,7 +155,7 @@ class BigApp < Sinatra::Base
           items << item
         end
         add_shipment_data['items'] = items
-        add_shipment_data['tracking_number'] = tracking_no
+        add_shipment_data['tracking_number'] = @payload['shipment']['tracking']
 
         add_shipment_data = add_shipment_data.except(:order_id)
         response = Service.request_bigapp :get, "/orders/#{order_id}/shipments", add_shipment_data, @headers, @config1
