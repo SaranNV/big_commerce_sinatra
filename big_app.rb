@@ -156,17 +156,21 @@ class BigApp < Sinatra::Base
         end
         add_shipment_data['items'] = items
         add_shipment_data['tracking_number'] = @payload['shipment']['tracking']
-
-        add_shipment_data = add_shipment_data.except(:order_id)
-        response = Service.request_bigapp :get, "/orders/#{order_id}/shipments", add_shipment_data, @headers, @config1
+        shipment_format_data = {
+            :tracking_number => add_shipment_data['tracking_number'],
+            :order_address_id =>  add_shipment_data['order_address_id'],
+            :items => add_shipment_data['items']
+        }
+        # add_shipment_data = add_shipment_data.except(:id,:status,:tracking)
+        response = Service.request_bigapp :get, "/orders/#{order_id}/shipments", shipment_format_data, @headers, @config1
 
         if response.empty?
-          shipment_response = Service.request_bigapp :post, "/orders/#{order_id}/shipments", add_shipment_data, @headers, @config1
+          shipment_response = Service.request_bigapp :post, "/orders/#{order_id}/shipments", shipment_format_data, @headers, @config1
           return JSON.pretty_generate(shipment_response)
         else
           shipment_id = response.first['id']
           add_shipment_data = add_shipment_data.except(:items)
-          shipment_response = Service.request_bigapp :put, "/orders/#{order_id}/shipments/#{shipment_id}", add_shipment_data, @headers, @config1
+          shipment_response = Service.request_bigapp :put, "/orders/#{order_id}/shipments/#{shipment_id}", shipment_format_data, @headers, @config1
           return JSON.pretty_generate(shipment_response)
         end
     else
