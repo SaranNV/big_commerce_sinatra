@@ -141,10 +141,6 @@ class BigApp < Sinatra::Base
     if get_order_response.class == Hash
         @order_address = Service.request_bigapp :get, "/orders/#{order_id}/shipping_addresses",  @headers, @config1
         add_shipment_data['order_address_id'] = @order_address.first['id']
-        update_order_status = {
-            :status_id => "2"
-        }
-        @update_order_status = Service.request_bigapp :put, "/orders/#{order_id}",update_order_status,@headers,@config1
         @order_product = Service.request_bigapp :get, "/orders/#{order_id}/products",  @headers, @config1
         items = []
         @order_product.each do |product_data|
@@ -155,17 +151,25 @@ class BigApp < Sinatra::Base
           items << item
         end
         add_shipment_data['items'] = items
-        add_shipment_data['tracking_number'] = @payload['shipment']['tracking']
+        if @payload['shipment']['tracking'].nil?
+          add_shipment_data['tracking_number'] = SecureRandom.hex(7).upcase
+        else
+          add_shipment_data['tracking_number'] = @payload['shipment']['tracking']
+        end
         shipment_format_data = {
             :tracking_number => add_shipment_data['tracking_number'],
             :order_address_id =>  add_shipment_data['order_address_id'],
-            :items => add_shipment_data['items']
+            :items => items
         }
         # add_shipment_data = add_shipment_data.except(:id,:status,:tracking)
         response = Service.request_bigapp :get, "/orders/#{order_id}/shipments", shipment_format_data, @headers, @config1
 
         if response.empty?
           shipment_response = Service.request_bigapp :post, "/orders/#{order_id}/shipments", shipment_format_data, @headers, @config1
+          update_order_status = {
+              :status_id => "2"
+          }
+          @update_order_status = Service.request_bigapp :put, "/orders/#{order_id}",update_order_status,@headers,@config1
           return JSON.pretty_generate(shipment_response)
         else
           shipment_id = response.first['id']
